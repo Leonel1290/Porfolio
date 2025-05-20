@@ -1,90 +1,197 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Detector de Gas - Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de Gas Inteligente - Seguridad para el Hogar</title>
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Detector de Gas</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre el Proyecto</a></li>
-        <li class="nav-item"><a class="nav-link" href="#caracteristicas">Características</a></li>
-        <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" aria-label="Navegación principal del sitio">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/logo.png" alt="Logo Detector de Gas" width="30" height="30" class="d-inline-block align-text-top me-2">
+                Detector de Gas
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#sobre">Sobre el Proyecto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#caracteristicas">Características</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#demo">Demo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<!-- HERO -->
-<header class="bg-primary text-white text-center py-5">
-  <div class="container">
-    <h1>Detector de Gas Inteligente</h1>
-    <p class="lead">Seguridad para tu hogar con tecnología IoT</p>
-  </div>
-</header>
+    <header class="bg-primary text-white text-center py-5 d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-3">Detector de Gas Inteligente</h1>
+            <p class="lead fs-4">Seguridad ininterrumpida para tu hogar con tecnología IoT de vanguardia.</p>
+            <a href="#contacto" class="btn btn-light btn-lg mt-4">¡Contáctanos hoy!</a>
+        </div>
+    </header>
 
-<!-- SOBRE EL PROYECTO -->
-<section id="sobre" class="py-5">
-  <div class="container">
-    <h2>Sobre el Proyecto</h2>
-    <p>Este detector de gas tiene como objetivo prevenir accidentes domésticos mediante la detección temprana de fugas de gas. Está desarrollado con una ESP32, sensor MQ2/MQ6, buzzer, y una app/web que muestra los datos en tiempo real.</p>
-  </div>
-</section>
+    <section id="sobre" class="py-5 bg-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-md-2">
+                    <img src="assets/images/dispositivo-grande.jpg" class="img-fluid rounded shadow-lg" alt="Imagen del dispositivo detector de gas">
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <h2 class="display-5 fw-bold mb-4">La tranquilidad de tu hogar, nuestra prioridad.</h2>
+                    <p class="lead">Este **detector de gas inteligente** es tu aliado para prevenir accidentes domésticos. Desarrollado con una **ESP32** y sensores de alta precisión (MQ2/MQ6), detecta fugas de gas de manera instantánea, alertándote a través de un **buzzer integrado** y una **aplicación web en tiempo real**.</p>
+                    <p>Nuestro compromiso es brindarte una solución robusta y confiable que se integra perfectamente en tu ecosistema de hogar inteligente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- CARACTERÍSTICAS -->
-<section id="caracteristicas" class="bg-light py-5">
-  <div class="container">
-    <h2>Características</h2>
-    <ul>
-      <li>Detección de gas butano, propano y gas natural</li>
-      <li>Notificaciones vía buzzer y web</li>
-      <li>Control automático de válvula (opcional)</li>
-      <li>Visualización de datos en tiempo real</li>
-    </ul>
-  </div>
-</section>
+    <section id="caracteristicas" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5">Características que nos definen</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <div class="col">
+                    <div class="card h-100 text-center p-3 shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-gas-fill display-4 text-primary mb-3"></i>
+                            <h3 class="card-title h5 mb-3">Detección Multi-Gas</h3>
+                            <p class="card-text">Identifica eficazmente gas butano, propano y gas natural, cubriendo un amplio espectro de riesgos domésticos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 text-center p-3 shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-bell-fill display-4 text-primary mb-3"></i>
+                            <h3 class="card-title h5 mb-3">Alertas Inmediatas</h3>
+                            <p class="card-text">Recibe notificaciones sonoras a través del buzzer y alertas en tu dispositivo móvil o navegador web.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 text-center p-3 shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-gear-fill display-4 text-primary mb-3"></i>
+                            <h3 class="card-title h5 mb-3">Control de Válvula</h3>
+                            <p class="card-text">Opción de integración para el cierre automático de válvulas de gas en caso de fuga (requiere hardware adicional).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 text-center p-3 shadow-sm">
+                        <div class="card-body">
+                            <i class="bi bi-graph-up display-4 text-primary mb-3"></i>
+                            <h3 class="card-title h5 mb-3">Datos en Tiempo Real</h3>
+                            <p class="card-text">Monitorea los niveles de gas y el estado del dispositivo desde cualquier lugar con nuestra interfaz intuitiva.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- DEMO / GALERÍA -->
-<section id="demo" class="py-5">
-  <div class="container">
-    <h2>Galería y Demo</h2>
-    <div class="row">
-      <div class="col-md-6">
-        <img src="assets/images/dispositivo.jpg" class="img-fluid rounded" alt="Dispositivo">
-      </div>
-      <div class="col-md-6">
-        <video controls class="w-100 rounded">
-          <source src="assets/demo/demo.mp4" type="video/mp4">
-          Tu navegador no soporta este video.
-        </video>
-      </div>
-    </div>
-  </div>
-</section>
+    <section id="demo" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5">Conoce nuestro Detector en Acción</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 mb-4">
+                    <div class="card shadow-lg border-0 rounded-3">
+                        <img src="assets/images/dispositivo-detalle.jpg" class="card-img-top img-fluid rounded-top" alt="Detalle del dispositivo detector de gas">
+                        <div class="card-body text-center">
+                            <h3 class="card-title h4">Vista detallada del dispositivo</h3>
+                            <p class="card-text text-muted">Explora la ingeniería detrás de la seguridad de tu hogar.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow-lg border-0 rounded-3">
+                        <div class="ratio ratio-16x9 rounded-top">
+                            <iframe src="assets/demo/demo.mp4" title="Video demostrativo del Detector de Gas Inteligente" allowfullscreen class="rounded-top"></iframe>
+                        </div>
+                        <div class="card-body text-center">
+                            <h3 class="card-title h4">Demostración en video</h3>
+                            <p class="card-text text-muted">Mira cómo funciona en un escenario real.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- CONTACTO -->
-<section id="contacto" class="bg-dark text-white py-5">
-  <div class="container">
-    <h2>Contacto</h2>
-    <p>Email: tuemail@ejemplo.com</p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/tuusuario" class="text-white">linkedin.com/in/tuusuario</a></p>
-    <p>GitHub: <a href="https://github.com/tuusuario" class="text-white">github.com/tuusuario</a></p>
-  </div>
-</section>
+    <section class="bg-primary text-white text-center py-5">
+        <div class="container">
+            <h2 class="display-5 fw-bold mb-4">¿Listo para proteger a tu familia?</h2>
+            <p class="lead mb-4">No esperes a que sea demasiado tarde. Invierte en la seguridad de tu hogar hoy mismo.</p>
+            <a href="#contacto" class="btn btn-light btn-lg">¡Adquiere el tuyo ahora!</a>
+        </div>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/main.js"></script>
+    <section id="contacto" class="bg-dark text-white py-5">
+        <div class="container">
+            <h2 class="text-center display-5 fw-bold mb-5">Ponte en Contacto</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre completo</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mensaje" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Enviar Mensaje</button>
+                        </div>
+                    </form>
+                    <hr class="my-5 border-white-50">
+                    <div class="text-center">
+                        <p class="mb-1">¿Prefieres contactarnos directamente?</p>
+                        <p class="lead mb-3">Email: <a href="mailto:tuemail@ejemplo.com" class="text-white text-decoration-underline">tuemail@ejemplo.com</a></p>
+                        <div class="d-flex justify-content-center gap-4 mt-4">
+                            <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener noreferrer" aria-label="Perfil de LinkedIn">
+                                <i class="bi bi-linkedin text-white display-4"></i>
+                            </a>
+                            <a href="https://github.com/tuusuario" target="_blank" rel="noopener noreferrer" aria-label="Perfil de GitHub">
+                                <i class="bi bi-github text-white display-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white-50 text-center py-4">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 Detector de Gas Inteligente. Todos los derechos reservados.</p>
+            <p class="mb-0">Diseñado con <span class="text-danger">&hearts;</span> y Bootstrap.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </body>
 </html>
