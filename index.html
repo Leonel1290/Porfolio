@@ -1,434 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tu Nombre - Portfolio: Detector de Gas</title>
-
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/github/explore/80688e429a7d4d79bb6075e7a2ac32df2b0c6197/topics/robot/robot.png">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary-bg: #1A1A2E; /* Fondo oscuro principal */
-            --secondary-bg: #16213E; /* Fondo secundario más claro */
-            --accent-color: #E94560; /* Color de acento (rojo/rosa) */
-            --text-light: #E0E0E0; /* Texto claro */
-            --text-dark: #B0B0B0; /* Texto oscuro */
-            --card-bg: #0F3460; /* Fondo de tarjetas */
-        }
-
-        body {
-            background-color: var(--primary-bg);
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-light);
-            line-height: 1.6;
-            scroll-behavior: smooth; /* Desplazamiento suave para anclas */
-        }
-
-        .navbar {
-            background-color: var(--secondary-bg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .navbar-brand, .nav-link {
-            color: var(--text-light) !important;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-color) !important;
-        }
-
-        .btn-primary-custom {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            color: #fff;
-            font-weight: bold;
-            padding: 0.75rem 2rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .btn-primary-custom:hover {
-            background-color: #c93550; /* Un tono más oscuro del acento */
-            border-color: #c93550;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
-            padding: 8rem 0 5rem;
-            text-align: center;
-        }
-
-        .hero-section h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 3.5rem;
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-
-        .hero-section p.lead {
-            font-size: 1.25rem;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-        }
-
-        .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-color);
-            box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
-            margin-bottom: 2rem;
-        }
-
-        /* Section Styling */
-        section {
-            padding: 5rem 0;
-            background-color: var(--primary-bg);
-        }
-
-        section:nth-of-type(even) { /* Para secciones alternas */
-            background-color: var(--secondary-bg);
-        }
-
-        section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-        }
-        section h2::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background-color: var(--text-light);
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Project Card */
-        .project-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease;
-            height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-card h3 {
-            color: var(--text-light);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .project-card .img-fluid {
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-card .badge {
-            background-color: var(--accent-color);
-            color: #fff;
-            font-size: 0.85rem;
-            padding: 0.4em 0.8em;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            border-radius: 3px;
-        }
-
-        .project-card .btn-group {
-            margin-top: auto; /* Empuja los botones al final de la tarjeta */
-            padding-top: 1.5rem; /* Espacio para que no se pegue al texto */
-        }
-
-        .project-card .btn {
-            margin-right: 0.5rem;
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-        }
-        .project-card .btn:hover {
-            background-color: #c93550;
-            border-color: #c93550;
-        }
-
-        /* About Section */
-        .about-content {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-
-        .skills-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center; /* Centra las habilidades */
-            margin-top: 2rem;
-        }
-
-        .skills-list li {
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 0.5rem 1.2rem;
-            margin: 0.5rem;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 0.95rem;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            text-align: center;
-        }
-
-        .contact-content .social-icons a {
-            color: var(--text-light);
-            font-size: 2.5rem;
-            margin: 0 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .contact-content .social-icons a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--secondary-bg);
-            color: var(--text-dark);
-            text-align: center;
-            padding: 2rem 0;
-            font-size: 0.9rem;
-            margin-top: 3rem;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2.5rem;
-            }
-            section h2 {
-                font-size: 2rem;
-            }
-            .project-card {
-                padding: 1.5rem;
-            }
-            .about-content, .contact-content {
-                padding: 1.5rem;
-            }
-            .skills-list li {
-                font-size: 0.85rem;
-                padding: 0.4rem 1rem;
-            }
-            .contact-content .social-icons a {
-                font-size: 2rem;
-                margin: 0 0.8rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detector de Gas - Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-lg fixed-top shadow">
-        <div class="container">
-            <a class="navbar-brand" href="#">Tu Nombre</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#inicio">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#proyectos">Proyectos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#sobre-mi">Sobre Mí</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Detector de Gas</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre el Proyecto</a></li>
+        <li class="nav-item"><a class="nav-link" href="#caracteristicas">Características</a></li>
+        <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="bg-primary text-white text-center py-5">
+  <div class="container">
+    <h1>Detector de Gas Inteligente</h1>
+    <p class="lead">Seguridad para tu hogar con tecnología IoT</p>
+  </div>
 </header>
 
-<main>
-    <section class="hero-section" id="inicio">
-        <div class="container">
-            <h1>Hola, soy [Tu Nombre]</h1>
-            <p class="lead">Programador entusiasta especializado en sistemas embebidos y IoT.</p>
-            <p class="lead">Explora mis proyectos y cómo convierto ideas en código funcional.</p>
-            <a href="#proyectos" class="btn btn-primary-custom mt-3">Ver Proyectos</a>
-        </div>
-    </section>
+<!-- SOBRE EL PROYECTO -->
+<section id="sobre" class="py-5">
+  <div class="container">
+    <h2>Sobre el Proyecto</h2>
+    <p>Este detector de gas tiene como objetivo prevenir accidentes domésticos mediante la detección temprana de fugas de gas. Está desarrollado con una ESP32, sensor MQ2/MQ6, buzzer, y una app/web que muestra los datos en tiempo real.</p>
+  </div>
+</section>
 
-    ---
+<!-- CARACTERÍSTICAS -->
+<section id="caracteristicas" class="bg-light py-5">
+  <div class="container">
+    <h2>Características</h2>
+    <ul>
+      <li>Detección de gas butano, propano y gas natural</li>
+      <li>Notificaciones vía buzzer y web</li>
+      <li>Control automático de válvula (opcional)</li>
+      <li>Visualización de datos en tiempo real</li>
+    </ul>
+  </div>
+</section>
 
-    <section id="proyectos">
-        <div class="container">
-            <h2>Mis Proyectos Destacados</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-
-                <div class="col">
-                    <div class="project-card">
-                        <img src="URL_DE_IMAGEN_DE_TU_DETECTOR_DE_GAS" class="img-fluid" alt="Imagen del Detector de Gas">
-                        <h3>Detector de Gas Programable</h3>
-                        <p>Un sistema autónomo de detección de fugas de gas con alertas visuales y sonoras, desarrollado con microcontroladores.</p>
-                        <div class="mb-3">
-                            <span class="badge">Arduino</span>
-                            <span class="badge">C/C++</span>
-                            <span class="badge">Sensores MQ-x</span>
-                            <span class="badge">IoT (Opcional)</span>
-                        </div>
-                        <div class="btn-group">
-                            <a href="#" target="_blank" class="btn btn-sm btn-primary-custom">Ver Demo <i class="fas fa-external-link-alt ms-1"></i></a>
-                            <a href="https://github.com/leonel1290/Porfolio" target="_blank" class="btn btn-sm btn-primary-custom">Código <i class="fab fa-github ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                </div>
-        </div>
-    </section>
-
-    ---
-
-    <section id="sobre-mi">
-        <div class="container">
-            <h2>Sobre Mí</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="about-content text-center">
-                        <p>¡Hola! Soy **[Tu Nombre Completo]**, un desarrollador apasionado por la programación y la electrónica. Mi interés principal radica en la creación de sistemas embebidos y soluciones IoT que resuelvan problemas del mundo real, como el **Detector de Gas Programable** que acabas de ver.</p>
-                        <p>Tengo experiencia en el diseño de prototipos, desarrollo de firmware y la implementación de lógica de control. Me encanta aprender nuevas tecnologías y enfrentar desafíos técnicos para llevar mis proyectos a la vida.</p>
-                        <p>Además de mis habilidades técnicas, soy una persona autodidacta, resolutiva y con una gran capacidad para trabajar en equipo. Siempre busco la mejora continua y aplicar las mejores prácticas en cada línea de código.</p>
-                        
-                        <h4 class="mt-4 text-light">Mis Habilidades:</h4>
-                        <ul class="skills-list">
-                            <li>C/C++</li>
-                            <li>Arduino</li>
-                            <li>ESP32 / ESP8266</li>
-                            <li>Python</li>
-                            <li>Electrónica Digital</li>
-                            <li>Sensores</li>
-                            <li>IoT</li>
-                            <li>Git / GitHub</li>
-                            <li>Resolución de Problemas</li>
-                            <li>Pensamiento Lógico</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    ---
-
-    <section id="contacto">
-        <div class="container">
-            <h2>Contáctame</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="contact-content">
-                        <p class="lead">
-                            ¿Tienes una idea, una pregunta o simplemente quieres saludar? ¡No dudes en contactarme!
-                        </p>
-                        <p>
-                            La colaboración y el networking son clave en el mundo del desarrollo. Estoy abierto a nuevas oportunidades y proyectos interesantes.
-                        </p>
-                        
-                        <div class="mb-4">
-                            <a href="TU_ENLACE_AL_FORMULARIO_DE_GOOGLE" target="_blank" class="btn btn-primary-custom btn-lg">
-                                Rellenar Formulario de Contacto <i class="fas fa-paper-plane ms-2"></i>
-                            </a>
-                        </div>
-
-                        <p class="mt-4">También puedes encontrarme en:</p>
-                        <div class="social-icons">
-                            <a href="https://linkedin.com/in/tu_perfil_linkedin" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/tu_usuario_github" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="mailto:tu.email@ejemplo.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2025 [Tu Nombre]. Todos los derechos reservados.</p>
-        <p>Hecho con <i class="fas fa-heart text-danger"></i> y código.</p>
+<!-- DEMO / GALERÍA -->
+<section id="demo" class="py-5">
+  <div class="container">
+    <h2>Galería y Demo</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <img src="assets/images/dispositivo.jpg" class="img-fluid rounded" alt="Dispositivo">
+      </div>
+      <div class="col-md-6">
+        <video controls class="w-100 rounded">
+          <source src="assets/demo/demo.mp4" type="video/mp4">
+          Tu navegador no soporta este video.
+        </video>
+      </div>
     </div>
-</footer>
+  </div>
+</section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function(){
-        // Smooth scrolling for navigation links
-        $('a.nav-link[href^="#"]').on('click', function(e) {
-            e.preventDefault();
-            const target = $($(this).attr('href'));
-            if(target.length) {
-                $('html, body').animate({ scrollTop: target.offset().top - $('nav.navbar').outerHeight() }, 800); // Ajusta por la altura del navbar
-            }
-        });
+<!-- CONTACTO -->
+<section id="contacto" class="bg-dark text-white py-5">
+  <div class="container">
+    <h2>Contacto</h2>
+    <p>Email: tuemail@ejemplo.com</p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/tuusuario" class="text-white">linkedin.com/in/tuusuario</a></p>
+    <p>GitHub: <a href="https://github.com/tuusuario" class="text-white">github.com/tuusuario</a></p>
+  </div>
+</section>
 
-        // Hide explosion overlay on load (if using one from previous version)
-        // If you don't have the explosion overlay, you can remove this part
-        $(window).on('load', function() {
-            // Check if the overlay exists before trying to manipulate it
-            if ($('#explosionOverlay').length) {
-                $('#explosionOverlay').addClass('fade-out');
-                // Optional: Remove overlay from DOM after animation completes
-                setTimeout(function() {
-                    $('#explosionOverlay').remove();
-                }, 2500); // Matches transition duration + delay
-            }
-            $('body').css('overflow-y', 'auto'); 
-            $('body').css('overflow-x', 'hidden'); 
-        });
-    });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
