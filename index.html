@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Portafolio ASG - Seguridad en tu Hogar</title>
 
-    <link rel="shortcut icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp"> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -17,7 +19,7 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
+            min-height: 100vh;
         }
 
         .navbar {
@@ -144,13 +146,29 @@
         main {
             flex-grow: 1;
         }
+
+        /* Estilos específicos para la sección de gráficos */
+        .graphs-section .card {
+            background-color: #132E35;
+            border: 1px solid #2D4A53;
+            color: #AFB3B7;
+            text-align: center;
+        }
+        .graphs-section .card-title {
+            color: #fff;
+        }
+        .graphs-section .card-body i {
+            font-size: 4rem;
+            color: #698180;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
 
 <div id="explosionOverlay" class="explosion-animation-overlay">
     <div class="explosion-image-container">
-        <p class="text-white">Cargando portafolio...</p>
+        <p class="text-white">Cargando portafolio ASG...</p>
     </div>
 </div>
 
@@ -170,13 +188,16 @@
                         <a class="nav-link" href="#caracteristicas">Características</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#audiencia">Audiencia</a>
+                        <a class="nav-link" href="#aspectos-tecnicos">Tecnología</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#datos-y-encuestas">Datos y Encuestas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="btn btn-custom" href="#">Comprar Dispositivo</a>
+                        <a class="btn btn-custom" href="#">Adquirir Dispositivo</a>
                     </li>
                 </ul>
             </div>
@@ -189,10 +210,10 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-start">
-                    <h1>Protege lo que más importa</h1>
+                    <h1>Tu Hogar, Siempre Seguro</h1>
                     <div class="hero-line"></div>
-                    <p class="lead">Tu hogar seguro con **ASG**. Detección precisa de fugas de gas en tiempo real.</p>
-                    <a href="#" class="btn btn-custom mt-3">Inicia Sesión</a>
+                    <p class="lead">ASG: **Detección precisa de fugas de gas** y protección activa para tu tranquilidad.</p>
+                    <a href="#" class="btn btn-custom mt-3">Descubre ASG</a>
                 </div>
                 <div class="col-md-6 text-center mt-4 mt-md-0">
                     <img src="https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp"
@@ -208,12 +229,10 @@
 
     <section class="py-5" id="vision-general">
         <div class="container">
-            <h2 class="section-title">Visión General del Proyecto</h2>
+            <h2 class="section-title">Visión General</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <p class="lead mb-4">El proyecto **ASG - Seguridad en tu Hogar**, también conocido como **AgainSafeGas**, nace de la necesidad imperante de garantizar la seguridad en el ámbito doméstico. Nuestro objetivo es prevenir accidentes trágicos causados por fugas de gas, ofreciendo una solución innovadora y confiable.</p>
-                    <p class="mb-4">Identificamos el problema crítico de las fugas de gas no detectadas, que pueden llevar a situaciones de alto riesgo. La solución que ofrecemos es un sistema integral de seguridad capaz de detectar la presencia de gas, activar un cierre automático de las válvulas de suministro y alertar de inmediato a los usuarios a través de una aplicación móvil intuitiva.</p>
-                    <p>Con **ASG**, la tranquilidad de tu familia y la protección de tu patrimonio están aseguradas mediante tecnología de vanguardia y un diseño enfocado en la usabilidad y la eficacia.</p>
+                    <p class="lead">**ASG (AgainSafeGas)** nace para solucionar un problema crítico: las fugas de gas no detectadas en el hogar. Nuestro sistema ofrece una protección integral, no solo alertando, sino también actuando automáticamente para cerrar la fuente de gas y proteger a tu familia.</p>
                 </div>
             </div>
         </div>
@@ -227,16 +246,18 @@
             <div class="row g-4">
                 <div class="col-md-4">
                     <i class="fas fa-shield-alt mb-3"></i>
-                    <h3>Seguridad Total</h3>
-                    <p>Sistema de **cierre automático de válvulas** para una protección eficaz e inmediata ante cualquier fuga.</p>
+                    <h3>Seguridad Activa</h3>
+                    <p>Cierre automático de válvulas para respuesta instantánea ante fugas.</p>
                 </div>
                 <div class="col-md-4">
                     <i class="fas fa-mobile-alt mb-3"></i>
-                    <h3>Monitoreo Remoto</h3>
-                    <p>Control y supervisión de tu hogar desde cualquier lugar a través de nuestra **app segura y fácil de usar**.</p>
-                 fungicide:
-                    <h3>Alertas en Tiempo Real</h3>
-                    <p>**Notificaciones inmediatas** en tu celular ante cualquier fuga detectada, permitiendo una acción rápida.</p>
+                    <h3>Control Total</h3>
+                    <p>Monitorea y gestiona tu sistema desde cualquier lugar con nuestra app.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-bell mb-3"></i>
+                    <h3>Alertas Instantáneas</h3>
+                    <p>Recibe notificaciones en tiempo real ante cualquier incidencia.</p>
                 </div>
             </div>
         </div>
@@ -246,20 +267,11 @@
 
     <section class="py-5" id="aspectos-tecnicos">
         <div class="container">
-            <h2 class="section-title">Aspectos Técnicos Destacados</h2>
+            <h2 class="section-title">Tecnología de ASG</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="company-info mx-auto text-start">
-                        <p class="mb-3">El proyecto **ASG** está construido sobre una base tecnológica robusta para garantizar su fiabilidad y rendimiento:</p>
-                        <ul>
-                            <li>**Sensores de Detección:** Utilizamos sensores de gas de alta precisión (MQ-series o equivalentes) capaces de identificar diversas concentraciones de gases combustibles.</li>
-                            <li>**Actuadores:** Integración con válvulas de cierre automáticas que se activan al detectar un nivel de gas peligroso.</li>
-                            <li>**Conectividad IoT:** La comunicación del dispositivo con la nube se realiza a través de módulos Wi-Fi (como ESP32/ESP8266) para asegurar el monitoreo remoto.</li>
-                            <li>**Plataforma de Desarrollo:** El firmware del dispositivo está programado en C++ (Arduino/ESP-IDF), mientras que el backend de la aplicación web y móvil se desarrolla en PHP con el framework CodeIgniter, aprovechando su eficiencia y seguridad.</li>
-                            <li>**Base de Datos:** Para el almacenamiento de datos de usuarios, dispositivos y registros de eventos, se utiliza una base de datos relacional (ej. MySQL/PostgreSQL), garantizando la integridad y accesibilidad de la información.</li>
-                            <li>**Interfaz de Usuario:** La aplicación móvil (disponible para Android e iOS) se desarrolla con tecnologías híbridas (ej. React Native o Flutter) para una experiencia consistente y un despliegue eficiente.</li>
-                        </ul>
-                        <p class="mt-4">Nuestro enfoque técnico se centra en la **escalabilidad, la seguridad de los datos y la facilidad de mantenimiento**, asegurando un producto duradero y de alto rendimiento.</p>
+                        <p>ASG integra **sensores de alta precisión** con un sistema de **actuadores inteligentes** para el cierre de válvulas. La **conectividad IoT** garantiza el monitoreo constante y la interacción remota a través de una **aplicación móvil intuitiva**. Desarrollado con robustez y escalabilidad en mente.</p>
                     </div>
                 </div>
             </div>
@@ -268,19 +280,56 @@
 
     ---
 
-    <section class="py-5 text-center" id="audiencia">
+    <section class="py-5 graphs-section" id="datos-y-encuestas">
         <div class="container">
-            <h2 class="section-title">Audiencia Objetivo y Propuesta de Valor</h2>
-            <div class="row justify-content-center">
+            <h2 class="section-title">Datos y Encuestas</h2>
+            <div class="row justify-content-center text-center">
                 <div class="col-lg-8">
-                    <p class="lead">**ASG** está diseñado pensando en la seguridad de **todos los hogares** y, en particular, para:</p>
-                    <ul class="list-unstyled mb-4">
-                        <li><i class="fas fa-check-circle text-success me-2"></i> **Familias con niños y/o personas mayores:** Quienes son más vulnerables a los peligros de una fuga de gas.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i> **Propietarios de viviendas y apartamentos:** Que buscan una solución avanzada para la seguridad de su propiedad.</li>
-                        <li><i class="fas fa-check-circle text-success me-2"></i> **Personas preocupadas por la prevención:** Que desean evitar tragedias y contar con una respuesta automática.</li>
-                    </ul>
-                    <h3 class="text-white mt-5 mb-3">Nuestra Propuesta de Valor Única:</h3>
-                    <p>A diferencia de los detectores de gas pasivos que solo alertan, **ASG ofrece una solución proactiva y completa**. No solo detectamos la fuga, sino que **actuamos automáticamente cerrando las válvulas de gas**, mitigando instantáneamente el peligro. La integración con una aplicación móvil te proporciona **control total y tranquilidad constante**, sin importar dónde te encuentres. Es una inversión en la seguridad y la paz mental de tu hogar.</p>
+                    <p class="lead mb-5">Creemos en la mejora continua y en la opinión de nuestros usuarios. Te invitamos a explorar algunos datos relevantes de nuestro proyecto y a participar en nuestras encuestas para ayudarnos a crecer.</p>
+                </div>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-5">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                            <i class="fas fa-chart-pie mb-3"></i>
+                            <h4 class="card-title">Estadísticas Clave</h4>
+                            <p class="card-text">Descubre la importancia de la seguridad en el hogar con datos y gráficos sobre incidentes por fugas de gas.</p>
+                            <a href="https://docs.google.com/presentation/d/TU_ID_DEL_GRAFICO_1/edit?usp=sharing" target="_blank" class="btn btn-custom mt-3">Ver Gráfico de Impacto</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                            <i class="fas fa-poll-h mb-3"></i>
+                            <h4 class="card-title">Tu Opinión Importa</h4>
+                            <p class="card-text">Ayúdanos a mejorar ASG participando en nuestras breves encuestas de satisfacción y sugerencias.</p>
+                            <a href="https://forms.gle/TU_ID_DE_LA_ENCUESTA_1" target="_blank" class="btn btn-custom mt-3">Ir a la Encuesta (Formulario)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 justify-content-center mt-4">
+                 <div class="col-md-5">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                            <i class="fas fa-chart-bar mb-3"></i>
+                            <h4 class="card-title">Rendimiento del Sistema</h4>
+                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta.</p>
+                            <a href="https://docs.google.com/presentation/d/TU_ID_DEL_GRAFICO_2/edit?usp=sharing" target="_blank" class="btn btn-custom mt-3">Ver Gráfico de Rendimiento</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                            <i class="fas fa-comments mb-3"></i>
+                            <h4 class="card-title">Comentarios de Usuarios</h4>
+                            <p class="card-text">Comparte tu experiencia o ideas para futuras mejoras de ASG.</p>
+                            <a href="https://forms.gle/TU_ID_DE_LA_ENCUESTA_2" target="_blank" class="btn btn-custom mt-3">Deja tu Comentario (Formulario)</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -290,17 +339,17 @@
 
     <section class="py-5" id="contacto">
         <div class="container">
-            <h2 class="section-title">Información de Contacto</h2>
+            <h2 class="section-title">Contacto</h2>
             <div class="company-info mx-auto text-center">
-                <h2 class="mb-3">¡Contáctanos!</h2>
+                <h2 class="mb-3">¡Hablemos de Seguridad!</h2>
                 <address>
                     <p><strong>Empresa:</strong> AgainSafeGas</p>
-                    <p><strong>Dirección:</strong> Río Tercero, Córdoba, Argentina</p>
+                    <p><strong>Ubicación:</strong> Río Tercero, Córdoba, Argentina</p>
                     <p><strong>Teléfono:</strong> <a href="tel:+543571623889" class="text-light">3571-623889</a></p>
                     <p><strong>Email:</strong> <a href="mailto:againsafegas.ascii@gmail.com" class="text-light">againsafegas.ascii@gmail.com</a></p>
-                    <p><strong>Sitio Web:</strong> <a href="https://www.gassafe.com" target="_blank" class="text-light">www.AgainSafeGas.com</a> (ejemplo)</p>
+                    <p><strong>Sitio Web:</strong> <a href="https://www.gassafe.com" target="_blank" class="text-light">www.AgainSafeGas.com</a></p>
                 </address>
-                <a href="#" class="btn btn-custom mt-3">¡Adquiere tu dispositivo ASG hoy mismo!</a>
+                <a href="#" class="btn btn-custom mt-3">Adquiere tu ASG hoy mismo</a>
             </div>
         </div>
     </section>
