@@ -1,0 +1,152 @@
+/* Paleta de Colores Personalizada */
+:root {
+    --bs-primary: #007bff; /* Azul vibrante */
+    --bs-secondary: #6c757d; /* Gris para contraste */
+    --bs-success: #28a745; /* Verde para éxito/logros */
+    --bs-info: #17a2b8;    /* Cian para información */
+    --bs-warning: #ffc107; /* Amarillo para alertas */
+    --bs-danger: #dc3545;  /* Rojo para peligros */
+    --bs-dark: #212529;    /* Negro casi puro */
+    --bs-light: #f8f9fa;   /* Blanco casi puro */
+    --bs-white: #ffffff;
+    --bs-body-color: #333;
+    --bs-heading-color: #2c3e50; /* Un gris oscuro para títulos */
+}
+
+/* Sobrescribir variables de Bootstrap para usar nuestra paleta */
+.bg-primary { background-color: var(--bs-primary) !important; }
+.text-primary { color: var(--bs-primary) !important; }
+.btn-primary { 
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+.btn-primary:hover {
+    background-color: darken(var(--bs-primary), 10%); /* Ejemplo de cómo se haría con Sass */
+    border-color: darken(var(--bs-primary), 10%);
+}
+
+/* Gradientes para secciones de impacto */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #0056b3 100%); /* De azul a azul más oscuro */
+}
+
+.bg-gradient-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #343a40 100%); /* De gris a gris oscuro */
+}
+
+/* Estilos Generales */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Fuente más moderna */
+    line-height: 1.7;
+    color: var(--bs-body-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--bs-heading-color);
+}
+
+/* Navbar mejoras */
+.navbar-brand {
+    font-size: 1.8rem;
+}
+
+.navbar-brand img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar-brand img:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* Hero Section Animaciones y Fondo */
+#hero-section {
+    position: relative;
+    overflow: hidden;
+    /* Animación de fondo sutil si se usa un patrón o partículas */
+}
+
+.animated-bg-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/images/bg-pattern.png') repeat; /* Patrón de fondo sutil */
+    opacity: 0.1;
+    animation: bg-scroll 60s linear infinite; /* Animación de movimiento del patrón */
+}
+
+@keyframes bg-scroll {
+    from { background-position: 0 0; }
+    to { background-position: 100% 100%; }
+}
+
+/* Animaciones con GSAP (ejemplo) */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efectos al pasar el mouse */
+.shadow-hover-zoom {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.shadow-hover-zoom:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.icon-bounce {
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon-bounce:hover {
+    transform: translateY(-5px);
+}
+
+.hover-scale {
+    transition: transform 0.3s ease-in-out;
+}
+
+.hover-scale:hover {
+    transform: scale(1.15);
+}
+
+/* Carrusel mejoras */
+.carousel-item img {
+    height: 400px; /* Altura fija para todas las imágenes del carrusel */
+    object-fit: cover; /* Recortar si es necesario */
+}
+
+/* Formulario de Contacto */
+.form-control-lg {
+    border-radius: 0.5rem;
+}
+
+/* Estilos de validación de Bootstrap (para un aspecto más suave) */
+.form-control.is-invalid {
+    border-color: var(--bs-danger);
+}
+.form-control.is-valid {
+    border-color: var(--bs-success);
+}
+.invalid-feedback {
+    color: var(--bs-danger);
+}
