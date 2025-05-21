@@ -273,6 +273,16 @@
                 width: 50%; /* Smaller width for PCs, reduced from 60% */
             }
         }
+        /* Media query for smaller screens specifically for chart axis labels */
+        @media (max-width: 768px) {
+            .chart-container h2 {
+                font-size: 1.1em; /* Make chart titles slightly smaller on mobile */
+            }
+            /* Specific adjustments for problematic chart (chart5) */
+            #chart5 {
+                font-size: 0.7em; /* Reduce font size of labels inside chart if needed */
+            }
+        }
     </style>
 </head>
 <body>
@@ -894,9 +904,9 @@
         type: 'bar',
         data: {
             labels: [
-                'Estimación anual (Min. Salud/Prensa)',
-                'Promedio anual (Morgue Judicial 2018-2021)',
-                'Total acumulado 2019-May 2024 (Min. Salud)'
+                'Est. anual (Min. Salud/Prensa)', // Versión más corta para móvil
+                'Prom. anual (Morgue Judicial 2018-2021)', // Versión más corta para móvil
+                'Total acum. 2019-May 2024 (Min. Salud)' // Versión más corta para móvil
             ],
             datasets: [{
                 label: 'Número de Muertes',
@@ -928,9 +938,12 @@
                 x: {
                     ...scalesOptions.x,
                     ticks: {
-                        autoSkip: false,
-                        maxRotation: 20,
-                        minRotation: 20
+                        autoSkip: false, // Permitir que Chart.js decida si salta etiquetas
+                        maxRotation: 45, // Rotación máxima permitida
+                        minRotation: 0, // Rotación mínima (puede ser 0 si hay espacio)
+                        font: {
+                            size: 10 // Tamaño de fuente más pequeño para etiquetas del eje X
+                        }
                     }
                 }
             }
@@ -942,7 +955,7 @@
     new Chart(ctx6, {
         type: 'pie',
         data: {
-            labels: ['Ventilación Inexistente', 'Calefones', 'Calefactores', 'Conductos de Evacuación Defectuosos', 'Ventilación Insuficiente'],
+            labels: ['Ventilación Inexistente', 'Calefones', 'Calefactores', 'Conductos Evac. Defectuosos', 'Ventilación Insuficiente'], // Etiquetas un poco más cortas
             datasets: [{
                 data: [24.4, 21.3, 21.3, 20.5, 15.4],
                 backgroundColor: [
@@ -986,6 +999,14 @@
                                 label += context.parsed + '%';
                             }
                             return label;
+                        }
+                    }
+                },
+                legend: {
+                    position: 'bottom', // Mover la leyenda a la parte inferior para más espacio
+                    labels: {
+                        font: {
+                            size: 10 // Tamaño de fuente más pequeño para la leyenda
                         }
                     }
                 }
