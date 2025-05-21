@@ -383,9 +383,9 @@
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <i class="fas fa-chart-bar mb-3"></i>
-                            <h4 class="card-title">Rendimiento del Sistema</h4>
-                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta.</p>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nht_vAaWD5Uv3bZz2vhHqWbIlkj9GoHlcHy89J7Kn6EYDg/viewform?usp=header" target="_blank" class="btn btn-custom mt-3">Ver Gráfico de Rendimiento</a>
+                            <h4 class="card-title">Análisis del Mercado (Conclusión)</h4>
+                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta, y una conclusión de encuestas.</p>
+                            <a href="#conclusion-encuestas" class="btn btn-custom mt-3" onclick="mostrarConclusionEncuestas()">Ver Conclusión de Encuestas</a>
                         </div>
                     </div>
                 </div>
@@ -427,6 +427,27 @@
                 </div>
             </div>
             <button onclick="ocultarOpiniones()" class="btn btn-custom">Ocultar Opiniones</button>
+        </div>
+    </section>
+    <section class="py-5" id="conclusion-encuestas">
+        <div class="container">
+            <h2 class="section-title">Conclusión de Encuestas de Mercado</h2>
+            <div class="company-info mx-auto text-start">
+                <h3>Sobre el Producto y su Utilidad:</h3>
+                <p>La mayoría de los encuestados considera que el producto es útil, con un 41.7% que lo ve como tal y un 8.3% que además lo usaría en su vida cotidiana. Sin embargo, un 16.7% lo considera útil pero no lo utilizaría, y otro 16.7% cree que el producto necesita mejoras. Existe también una pequeña porción (8.3%) que no lo considera útil o que propone añadirle conectividad 4G. Esto sugiere que, si bien hay una base de aceptación, hay aspectos importantes a mejorar para aumentar la adopción y satisfacción general.</p>
+
+                <h3>Preferencias de Notificación:</h3>
+                <p>Existe una clara preferencia por recibir notificaciones del dispositivo en una aplicación móvil, con un abrumador 91.7% de los encuestados que respondieron afirmativamente a esta opción. Solo un 8.3% prefiere no recibirlas en una app móvil. Esto indica que el desarrollo de una aplicación móvil para las notificaciones sería altamente valorado.</p>
+
+                <h3>Disposición a Pagar:</h3>
+                <p>La mitad de los encuestados (50%) estaría dispuesto a pagar entre 100 y 200 USD por el dispositivo. Un 41.7% pagaría menos de 100 USD, mientras que solo un 8.3% estaría dispuesto a pagar más de 200 USD. Esto sugiere que el rango de precio óptimo para el dispositivo se encuentra entre los 100 y 200 USD.</p>
+
+                <h3>Perfil del Encuestado (Ubicación y Edad):</h3>
+                <p>La mayoría de los encuestados (83.3%) reside en casas, mientras que un 8.3% vive en departamentos y otro 8.3% en pensiones. En cuanto a la edad, el grupo demográfico más grande (66.7%) tiene entre 18 y 25 años. Otros rangos de edad representados son menos de 18 años (16.7%), 26 a 40 años (8.3%) y más de 60 años (8.3%). Este dato es crucial para orientar las estrategias de marketing y desarrollo del producto hacia el público objetivo principal.</p>
+
+                <p class="lead mt-4">En resumen, el producto tiene un buen potencial de utilidad, pero requiere mejoras y una fuerte integración con una aplicación móvil. El precio ideal se encuentra en el rango de 100 a 200 USD, y el público objetivo principal se sitúa entre los 18 y 25 años, mayoritariamente residentes en casas.</p>
+                <button onclick="ocultarConclusionEncuestas()" class="btn btn-custom mt-3">Ocultar Conclusión</button>
+            </div>
         </div>
     </section>
 
