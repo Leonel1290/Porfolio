@@ -6,14 +6,12 @@
     <title>Portafolio ASG - Seguridad en tu Hogar</title>
 
     <link rel="shortcut icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp">
-
+    <link rel="shortcut icon" href="<?= base_url('/imagenes/Logo.png'); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <style>
         body {
             background: linear-gradient(135deg, #0D1F23, #132E35);
@@ -23,6 +21,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden; /* Evita scroll horizontal si el modelo es muy grande */
         }
 
         .navbar {
@@ -74,10 +73,20 @@
             margin: 1rem 0 1.5rem;
         }
 
-        .hero-img {
-            max-width: 100%;
-            height: auto;
-            animation: float 6s ease-in-out infinite;
+        /* Estilos para el contenedor del modelo 3D */
+        #model-container {
+            width: 100%;
+            height: 400px; /* Ajusta la altura según necesites */
+            background-color: transparent; /* Fondo transparente para el canvas */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Asegura que el modelo no se salga del contenedor */
+        }
+        #model-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block; /* Elimina espacio extra debajo del canvas */
         }
 
         @keyframes float {
@@ -169,18 +178,20 @@
         .chart-container {
             width: 80%;
             margin: 40px auto;
-            background-color: #fff;
+            background-color: #213B42; /* Darker background for depth */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Stronger shadow for 3D effect */
+            color: #AFB3B7;
         }
         .chart-container h2 {
             text-align: center;
-            color: #0056b3; /* Un color que contraste o sea parte de tu paleta */
+            color: #fff; /* White title for better contrast */
+            margin-bottom: 20px;
         }
         .chart-note {
             font-size: 0.9em;
-            color: #666;
+            color: #AFB3B7;
             text-align: center;
             margin-top: 10px;
         }
@@ -232,40 +243,6 @@
         #opiniones-usuarios-imagenes button:hover {
             background-color: #2D4A53;
         }
-
-        /* Estilos para el modelo 3D */
-        .model-container {
-            width: 100%;
-            height: 400px; /* Ajusta la altura según sea necesario */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        model-viewer {
-            width: 100%;
-            height: 100%;
-            background-color: #2D4A53; /* Color de fondo para el visor del modelo */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        /* Estilos para la nueva sección de conclusión */
-        #conclusion-encuestas {
-            display: none; /* Inicialmente oculto */
-            background-color: #132E35;
-            padding: 20px;
-            margin: 20px auto;
-            border-radius: 8px;
-        }
-        #conclusion-encuestas h3 {
-            color: #fff;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        #conclusion-encuestas p {
-            color: #AFB3B7;
-            line-height: 1.6;
-        }
     </style>
 </head>
 <body>
@@ -313,30 +290,11 @@
                     <p class="lead">ASG: Detección precisa de fugas de gas y protección activa para tu tranquilidad.</p>
                 </div>
                 <div class="col-md-6 text-center mt-4 mt-md-0">
-                    <div class="model-container">
-                        <model-viewer
-                            src="steam_condensate_trap__trampa_de_condensado.glb"
-                            alt="Trampa de Condensado"
-                            auto-rotate
-                            camera-controls
-                            ar
-                            shadow-intensity="1"
-                            exposure="1.2"
-                            camera-orbit="0deg 90deg 0m"
-                            field-of-view="30deg"
-                            min-camera-orbit="auto auto 0m"
-                            max-camera-orbit="auto auto auto"
-                            min-field-of-view="10deg"
-                            max-field-of-view="60deg"
-                        >
-                        </model-viewer>
-                    </div>
+                    <div id="model-container"></div>
                 </div>
             </div>
         </div>
     </section>
-
-
 
     <section class="py-5" id="vision-general">
         <div class="container">
@@ -348,8 +306,6 @@
             </div>
         </div>
     </section>
-
-
 
     <section class="features py-5 text-center" id="caracteristicas">
         <div class="container">
@@ -374,8 +330,6 @@
         </div>
     </section>
 
-
-
     <section class="py-5" id="aspectos-tecnicos">
         <div class="container">
             <h2 class="section-title">Tecnología de ASG</h2>
@@ -388,8 +342,6 @@
             </div>
         </div>
     </section>
-
-
 
     <section class="py-5 graphs-section" id="datos-y-encuestas">
         <div class="container">
@@ -426,9 +378,9 @@
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <i class="fas fa-chart-bar mb-3"></i>
-                            <h4 class="card-title">Análisis del Mercado (Conclusión)</h4>
-                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta, y una conclusión de encuestas.</p>
-                            <a href="#conclusion-encuestas" class="btn btn-custom mt-3" onclick="mostrarConclusionEncuestas()">Ver Conclusión de Encuestas</a>
+                            <h4 class="card-title">Rendimiento del Sistema</h4>
+                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta.</p>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nht_vAaWD5Uv3bZz2vhHqWbIlkj9GoHlcHy89J7Kn6EYDg/viewform?usp=header" target="_blank" class="btn btn-custom mt-3">Ver Gráfico de Rendimiento</a>
                         </div>
                     </div>
                 </div>
@@ -436,9 +388,9 @@
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <i class="fas fa-comments mb-3"></i>
-                            <h4 class="card-title">Análisis del Mercado (Imágenes)</h4>
+                            <h4 class="card-title">Sus Opiniones</h4>
                             <p class="card-text">Estas son las recolecciones de opiniones que hicimos a partir de sus participaciones en nuestro formulario</p>
-                            <a href="#opiniones-usuarios-imagenes" onclick="mostrarOpiniones()" class="btn btn-custom mt-3">Ver Opiniones (Imágenes)</a>
+                            <a href="#opiniones-usuarios-imagenes" onclick="mostrarOpiniones()" class="btn btn-custom mt-3">Ver Opiniones</a>
                         </div>
                     </div>
                 </div>
@@ -448,7 +400,7 @@
 
     <section class="py-5" id="opiniones-usuarios-imagenes">
         <div class="container">
-            <h2 class="section-title">Análisis del Mercado (Imágenes de Encuesta)</h2>
+            <h2 class="section-title">Opiniones de Usuarios</h2>
             <div class="row">
                 <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
                     <img src="Captura de pantalla 2025-05-21 005305.png" alt="Captura de opinión 1" class="img-fluid">
@@ -469,427 +421,139 @@
                     <img src="Captura de pantalla 2025-05-21 005355.png" alt="Captura de opinión 6" class="img-fluid">
                 </div>
             </div>
-            <button onclick="ocultarOpiniones()" class="btn btn-custom">Ocultar Opiniones (Imágenes)</button>
+            <button onclick="ocultarOpiniones()" class="btn btn-custom">Ocultar Opiniones</button>
         </div>
     </section>
-
-    <section class="py-5" id="conclusion-encuestas">
-        <div class="container">
-            <h2 class="section-title">Conclusión de Encuestas de Mercado</h2>
-            <div class="company-info mx-auto text-start">
-                <h3>Sobre el Producto y su Utilidad:</h3>
-                <p>La mayoría de los encuestados considera que el producto es útil, con un 41.7% que lo ve como tal y un 8.3% que además lo usaría en su vida cotidiana. Sin embargo, un 16.7% lo considera útil pero no lo utilizaría, y otro 16.7% cree que el producto necesita mejoras. Existe también una pequeña porción (8.3%) que no lo considera útil o que propone añadirle conectividad 4G. Esto sugiere que, si bien hay una base de aceptación, hay aspectos importantes a mejorar para aumentar la adopción y satisfacción general.</p>
-
-                <h3>Preferencias de Notificación:</h3>
-                <p>Existe una clara preferencia por recibir notificaciones del dispositivo en una aplicación móvil, con un abrumador 91.7% de los encuestados que respondieron afirmativamente a esta opción. Solo un 8.3% prefiere no recibirlas en una app móvil. Esto indica que el desarrollo de una aplicación móvil para las notificaciones sería altamente valorado.</p>
-
-                <h3>Disposición a Pagar:</h3>
-                <p>La mitad de los encuestados (50%) estaría dispuesto a pagar entre 100 y 200 USD por el dispositivo. Un 41.7% pagaría menos de 100 USD, mientras que solo un 8.3% estaría dispuesto a pagar más de 200 USD. Esto sugiere que el rango de precio óptimo para el dispositivo se encuentra entre los 100 y 200 USD.</p>
-
-                <h3>Perfil del Encuestado (Ubicación y Edad):</h3>
-                <p>La mayoría de los encuestados (83.3%) reside en casas, mientras que un 8.3% vive en departamentos y otro 8.3% en pensiones. En cuanto a la edad, el grupo demográfico más grande (66.7%) tiene entre 18 y 25 años. Otros rangos de edad representados son menos de 18 años (16.7%), 26 a 40 años (8.3%) y más de 60 años (8.3%). Este dato es crucial para orientar las estrategias de marketing y desarrollo del producto hacia el público objetivo principal.</p>
-
-                <p class="lead mt-4">En resumen, el producto tiene un buen potencial de utilidad, pero requiere mejoras y una fuerte integración con una aplicación móvil. El precio ideal se encuentra en el rango de 100 a 200 USD, y el público objetivo principal se sitúa entre los 18 y 25 años, mayoritariamente residentes en casas.</p>
-                <button onclick="ocultarConclusionEncuestas()" class="btn btn-custom mt-3">Ocultar Conclusión</button>
-            </div>
-        </div>
-    </section>
-
 
     <section class="py-5" id="charts-section">
         <div class="container">
             <h2 class="section-title">Gráficos sobre Incidentes de Gas</h2>
-
             <div class="chart-container">
                 <h2>1. Incidentes en Propiedades Privadas en Argentina (2022-2023)</h2>
                 <canvas id="chart1"></canvas>
+                <div class="chart-note">Fuente: ENARGAS, Informe de Gestión de Seguridad Pública 2023</div>
             </div>
-
             <div class="chart-container">
                 <h2>2. Conexiones Clandestinas de Gas en AMBA (2019-2023)</h2>
                 <canvas id="chart2"></canvas>
+                <div class="chart-note">Fuente: ENARGAS, Informe de Gestión de Seguridad Pública 2023</div>
             </div>
-
             <div class="chart-container">
                 <h2>3. Incidentes de Intoxicación por CO por Distribuidora (2023)</h2>
                 <canvas id="chart3"></canvas>
+                <div class="chart-note">Fuente: ENARGAS, Informe de Gestión de Seguridad Pública 2023</div>
             </div>
-
             <div class="chart-container">
                 <h2>4. Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024)</h2>
                 <canvas id="chart4"></canvas>
+                <div class="chart-note">Fuente: ENARGAS, Informe de Gestión de Seguridad Pública 2024</div>
             </div>
-
             <div class="chart-container">
-                <h2>5. Comparación de Fatalidades por Monóxido de Carbono en Argentina</h2>
+                <h2>5. Accidentes por Gas (2023)</h2>
                 <canvas id="chart5"></canvas>
-                <p class="chart-note">Nota: El total acumulado corresponde a 2019-mayo 2024, no es anual.</p>
+                <div class="chart-note">Fuente: ENARGAS, Informe de Gestión de Seguridad Pública 2023</div>
             </div>
-
-            <div class="chart-container">
-                <h2>6. Factores Contribuyentes a Incidentes de CO (2023)</h2>
-                <canvas id="chart6"></canvas>
-            </div>
-
         </div>
     </section>
 
-
-    <section class="py-5" id="contacto">
-        <div class="container">
-            <h2 class="section-title">Contacto</h2>
-            <div class="company-info mx-auto text-center">
-                <h2 class="mb-3">¡Hablemos de Seguridad!</h2>
-                <address>
-                    <p><strong>Empresa:</strong> AgainSafeGas</p>
-                    <p><strong>Ubicación:</strong> Río Tercero, Córdoba, Argentina</p>
-                    <p><strong>Teléfono:</strong> <a href="tel:+543571623889" class="text-light">3571-623889</a></p>
-                    <p><strong>Email:</strong> <a href="mailto:againsafegas.ascii@gmail.com" class="text-light">againsafegas.ascii@gmail.com</a></p>
-                    <p><strong>Sitio Web:</strong> <a href="https://www.gassafe.com" target="_blank" class="text-light">www.AgainSafeGas.com</a></p>
-                </address>
-                <a href="#" class="btn btn-custom mt-3">Adquiere tu ASG hoy mismo</a>
+    <section class="py-5 bg-dark text-white" id="contacto">
+        <div class="container text-center">
+            <h2 class="section-title text-white">Contáctanos</h2>
+            <p class="lead mb-4">¿Tienes preguntas o quieres saber más sobre ASG? Ponte en contacto con nosotros.</p>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fas fa-envelope me-2"></i> info@asgseguridad.com</li>
+                        <li class="mb-3"><i class="fas fa-phone me-2"></i> +54 9 11 1234 5678</li>
+                        <li class="mb-3"><i class="fas fa-map-marker-alt me-2"></i> Av. Siempre Viva 742, Buenos Aires, Argentina</li>
+                    </ul>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f fa-2x"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in fa-2x"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 </main>
 
-<footer>
-    <p>&copy; 2025 AgainSafeGas Solutions | Todos los derechos reservados.</p>
+<footer class="text-muted">
+    <div class="container">
+        <p class="mb-0">&copy; 2024 ASG. Todos los derechos reservados.</p>
+    </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function(){
-        // Smooth scroll para enlaces internos
-        $('a.nav-link').on('click', function(e) {
-            if (this.hash !== "") {
-                e.preventDefault();
-                const hash = this.hash;
-                const offset = $('.navbar').outerHeight();
-                $('html, body').animate({
-                    scrollTop: $(hash).offset().top - offset
-                }, 800, function(){
-                    window.location.hash = hash;
-                });
-            }
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        const explosionOverlay = document.getElementById('explosionOverlay');
+        setTimeout(() => {
+            explosionOverlay.classList.add('fade-out');
+        }, 1000); // Mantiene la pantalla de carga por 1 segundo
 
-        $('a.btn-custom').on('click', function(e) {
-            // Solo para los botones custom que apuntan a una sección de la página.
-            // Excluye enlaces externos o los que llaman funciones JS directamente.
-            if (this.hash !== "" && $(this).attr('href').startsWith('#') && $(this).attr('onclick') === undefined) {
-                e.preventDefault();
-                const hash = this.hash;
-                const offset = $('.navbar').outerHeight();
-                $('html, body').animate({
-                    scrollTop: $(hash).offset().top - offset
-                }, 800, function(){
-                    window.location.hash = hash;
-                });
-            }
-        });
-
-
-        // Ocultar overlay de animación al cargar la página
-        $(window).on('load', function() {
-            $('#explosionOverlay').addClass('fade-out');
-        });
-    });
-
-    // Función para mostrar la sección de opiniones (imágenes)
-    function mostrarOpiniones() {
-        $('#opiniones-usuarios-imagenes').css('display', 'block');
-        const offset = $('.navbar').outerHeight();
-        $('html, body').animate({
-            scrollTop: $('#opiniones-usuarios-imagenes').offset().top - offset
-        }, 800);
-    }
-
-    // Función para ocultar la sección de opiniones (imágenes)
-    function ocultarOpiniones() {
-        $('#opiniones-usuarios-imagenes').css('display', 'none');
-        const offset = $('.navbar').outerHeight();
-        $('html, body').animate({
-            scrollTop: $('#datos-y-encuestas').offset().top - offset
-        }, 800); // Vuelve a la sección de Datos y Encuestas
-    }
-
-    // Función para mostrar la sección de la conclusión de encuestas
-    function mostrarConclusionEncuestas() {
-        $('#conclusion-encuestas').css('display', 'block');
-        const offset = $('.navbar').outerHeight();
-        $('html, body').animate({
-            scrollTop: $('#conclusion-encuestas').offset().top - offset
-        }, 800);
-    }
-
-    // Función para ocultar la sección de la conclusión de encuestas
-    function ocultarConclusionEncuestas() {
-        $('#conclusion-encuestas').css('display', 'none');
-        const offset = $('.navbar').outerHeight();
-        $('html, body').animate({
-            scrollTop: $('#datos-y-encuestas').offset().top - offset
-        }, 800);
-    }
-
-    // --- Script para los Gráficos de Chart.js ---
-    // Asegúrate de que este script se ejecute después de que el DOM esté cargado.
-    // Aunque está al final del body, si hay problemas, podrías envolverlo en un
-    // document.addEventListener('DOMContentLoaded', function() { ... });
-
-    // --- Gráfico 1: Incidentes en Propiedades Privadas (2022 vs. 2023) ---
-    const ctx1 = document.getElementById('chart1').getContext('2d');
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: ['2022', '2023'],
+        // Datos de ejemplo para los gráficos
+        const dataChart1 = {
+            labels: ['Incendio', 'Explosión', 'Fuga', 'Intox. CO', 'Otros'],
             datasets: [{
-                label: 'Número de Incidentes',
-                data: [216, 253],
-                backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
-                borderWidth: 1
+                label: '# de Incidentes',
+                data: [150, 75, 300, 200, 50],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)', // Red
+                    'rgba(54, 162, 235, 0.8)', // Blue
+                    'rgba(255, 206, 86, 0.8)', // Yellow
+                    'rgba(75, 192, 192, 0.8)', // Green
+                    'rgba(153, 102, 255, 0.8)'  // Purple
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1,
+                // Adding shadow for 3D-like effect
+                shadowOffsetX: 3,
+                shadowOffsetY: 3,
+                shadowBlur: 10,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
             }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Incidentes en Propiedades Privadas en Argentina\n2022-2023',
-                    font: {
-                        size: 18
-                    }
-                },
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Incidentes'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Año'
-                    }
-                }
-            }
-        }
-    });
+        };
 
-    // --- Gráfico 2: Detección de Conexiones Clandestinas en AMBA (2019-2023) ---
-    const ctx2 = document.getElementById('chart2').getContext('2d');
-    new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: ['2019', '2021', '2022', '2023'],
+        const dataChart2 = {
+            labels: ['2019', '2020', '2021', '2022', '2023'],
             datasets: [{
-                label: 'Número de Conexiones Detectadas',
-                data: [424, 636, 544, 1599],
-                backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
+                label: '# de Conexiones Clandestinas',
+                data: [500, 450, 600, 750, 900],
+                backgroundColor: [
+                    'rgba(255, 159, 64, 0.8)', // Orange
+                    'rgba(255, 99, 132, 0.8)', // Red
+                    'rgba(54, 162, 235, 0.8)', // Blue
+                    'rgba(75, 192, 192, 0.8)', // Green
+                    'rgba(153, 102, 255, 0.8)'  // Purple
+                ],
+                borderColor: [
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1,
+                // Adding shadow for 3D-like effect
+                shadowOffsetX: 3,
+                shadowOffsetY: 3,
+                shadowBlur: 10,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
             }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Conexiones Clandestinas de Gas en AMBA\n2019-2023',
-                    font: {
-                        size: 18
-                    }
-                },
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Conexiones Detectadas'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Año'
-                    }
-                }
-            }
-        }
-    });
+        };
 
-    // --- Gráfico 3: Incidentes de Intoxicación por CO por Distribuidora (2023) ---
-    const ctx3 = document.getElementById('chart3').getContext('2d');
-    new Chart(ctx3, {
-        type: 'bar',
-        data: {
-            labels: ['Camuzzi Gas Pampeana S.A.', 'Metrogas S.A.', 'Naturgy BAN S.A.'],
+        const dataChart3 = {
+            labels: ['Metrogas', 'Naturgy', 'Litoral Gas', 'Camuzzi Gas Pampeana', 'Otros'],
             datasets: [{
-                label: 'Número de Incidentes',
-                data: [55, 35, 30],
-                backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(75, 192, 192, 0.6)'],
-                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 159, 64, 1)', 'rgba(75, 192, 192, 1)'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Incidentes de Intoxicación por CO por Distribuidora (2023)',
-                    font: {
-                        size: 18
-                    }
-                },
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Incidentes'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Distribuidora'
-                    },
-                    ticks: {
-                        autoSkip: false,
-                        maxRotation: 45,
-                        minRotation: 45
-                    }
-                }
-            }
-        }
-    });
-
-    // --- Gráfico 4: Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024) ---
-    const ctx4 = document.getElementById('chart4').getContext('2d');
-    new Chart(ctx4, {
-        type: 'bar',
-        data: {
-            labels: ['Ene-May 2023', 'Ene-May 2024'],
-            datasets: [{
-                label: 'Número de Casos',
-                data: [284, 465],
-                backgroundColor: ['rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)'],
-                borderColor: ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Casos de Intoxicación por CO en Argentina\nEnero-Mayo 2023 vs 2024',
-                    font: {
-                        size: 18
-                    }
-                },
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Casos'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Período'
-                    }
-                }
-            }
-        }
-    });
-
-    // --- Gráfico 5: Fatalidades por Monóxido de Carbono en Argentina (Comparación de Fuentes) ---
-    const ctx5 = document.getElementById('chart5').getContext('2d');
-    new Chart(ctx5, {
-        type: 'bar',
-        data: {
-            labels: [
-                'Estimación anual (Min. Salud/Prensa)',
-                'Promedio anual (Morgue Judicial 2018-2021)',
-                'Total acumulado 2019-May 2024 (Min. Salud)'
-            ],
-            datasets: [{
-                label: 'Número de Muertes',
-                data: [225, 22, 34], // 225 es el promedio del rango 200-250
-                backgroundColor: ['rgba(153, 102, 255, 0.6)', 'rgba(201, 203, 207, 0.6)', 'rgba(255, 99, 132, 0.6)'],
-                borderColor: ['rgba(153, 102, 255, 1)', 'rgba(201, 203, 207, 1)', 'rgba(255, 99, 132, 1)'],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Comparación de Fatalidades por Monóxido de Carbono en Argentina',
-                    font: {
-                        size: 18
-                    }
-                },
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Muertes'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Fuente / Tipo de Dato'
-                    },
-                    ticks: {
-                        autoSkip: false,
-                        maxRotation: 20,
-                        minRotation: 20
-                    }
-                }
-            }
-        }
-    });
-
-    // --- Gráfico 6: Factores Contribuyentes a Intoxicaciones por CO (2023) ---
-    const ctx6 = document.getElementById('chart6').getContext('2d');
-    new Chart(ctx6, {
-        type: 'pie',
-        data: {
-            labels: ['Ventilación Inexistente', 'Calefones', 'Calefactores', 'Conductos de Evacuación Defectuosos', 'Ventilación Insuficiente'],
-            datasets: [{
-                data: [24.4, 21.3, 21.3, 20.5, 15.4],
+                label: 'Casos de Intoxicación',
+                data: [120, 90, 60, 40, 30],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.6)',
                     'rgba(54, 162, 235, 0.6)',
@@ -906,33 +570,330 @@
                 ],
                 borderWidth: 1
             }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Factores Contribuyentes a Incidentes de CO (2023)',
-                    font: {
-                        size: 18
-                    }
+        };
+
+        const dataChart4 = {
+            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+            datasets: [
+                {
+                    label: '2023',
+                    data: [25, 30, 45, 38, 55],
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            let label = context.label || '';
-                            if (label) {
-                                label += ': ';
+                {
+                    label: '2024',
+                    data: [30, 35, 50, 42, 60],
+                    backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }
+            ]
+        };
+
+        const dataChart5 = {
+            labels: ['Domésticos', 'Comerciales', 'Industriales', 'Servicios'],
+            datasets: [{
+                label: '# de Accidentes',
+                data: [700, 150, 50, 100],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+
+        // Función para crear un gráfico de barras con estilo 3D
+        function createBarChart3D(ctx, data, title) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: data.datasets.map(dataset => ({
+                        ...dataset,
+                        backgroundColor: dataset.backgroundColor.map(color => color.replace('0.8)', '1)')), // Make bars opaque
+                        borderColor: dataset.borderColor.map(color => color.replace('1)', '0.8)')), // Lighter border
+                        borderWidth: 2,
+                        borderRadius: 5, // Rounded corners for a softer look
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: title,
+                            color: '#fff',
+                            font: {
+                                size: 18,
+                                weight: 'bold'
                             }
-                            if (context.parsed !== null) {
-                                label += context.parsed + '%';
+                        },
+                        legend: {
+                            labels: {
+                                color: '#AFB3B7'
                             }
-                            return label;
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                            bodyColor: '#fff',
+                            titleColor: '#fff'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#AFB3B7'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#AFB3B7'
+                            }
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            top: 10,
+                            bottom: 10,
+                            left: 10,
+                            right: 10
                         }
                     }
                 }
-            }
+            });
         }
+
+        // Función para crear un gráfico de pastel/doughnut con estilo 3D
+        function createPieDoughnutChart3D(ctx, data, title, type = 'pie') {
+            new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: data.labels,
+                    datasets: data.datasets.map(dataset => ({
+                        ...dataset,
+                        backgroundColor: dataset.backgroundColor.map(color => color.replace('0.6)', '0.9)')), // Make slices more opaque
+                        borderColor: dataset.borderColor.map(color => color.replace('1)', '0.7)')), // Lighter border
+                        borderWidth: 2,
+                        hoverOffset: 10, // Slight offset on hover
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: title,
+                            color: '#fff',
+                            font: {
+                                size: 18,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                color: '#AFB3B7'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                            bodyColor: '#fff',
+                            titleColor: '#fff',
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            top: 10,
+                            bottom: 10,
+                            left: 10,
+                            right: 10
+                        }
+                    }
+                }
+            });
+        }
+
+        // Función para crear un gráfico de líneas
+        function createLineChart(ctx, data, title) {
+            new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: title,
+                            color: '#fff',
+                            font: {
+                                size: 18,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            labels: {
+                                color: '#AFB3B7'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                            bodyColor: '#fff',
+                            titleColor: '#fff'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#AFB3B7'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#AFB3B7'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // Renderizar los gráficos
+        const ctx1 = document.getElementById('chart1').getContext('2d');
+        createPieDoughnutChart3D(ctx1, dataChart1, 'Incidentes en Propiedades Privadas en Argentina (2022-2023)', 'doughnut');
+
+        const ctx2 = document.getElementById('chart2').getContext('2d');
+        createBarChart3D(ctx2, dataChart2, 'Conexiones Clandestinas de Gas en AMBA (2019-2023)');
+
+        const ctx3 = document.getElementById('chart3').getContext('2d');
+        createBarChart3D(ctx3, dataChart3, 'Factores Contribuyentes a Incidentes de CO (2023)');
+
+        const ctx4 = document.getElementById('chart4').getContext('2d');
+        createLineChart(ctx4, dataChart4, 'Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024)');
+
+        const ctx5 = document.getElementById('chart5').getContext('2d');
+        createPieDoughnutChart3D(ctx5, dataChart5, 'Accidentes por Gas (2023)', 'pie');
+    });
+
+    function mostrarOpiniones() {
+        document.getElementById('opiniones-usuarios-imagenes').style.display = 'block';
+    }
+
+    function ocultarOpiniones() {
+        document.getElementById('opiniones-usuarios-imagenes').style.display = 'none';
+    }
+</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.150.1/three.min.js"></script>
+<script type="module">
+    import { GLTFLoader } from 'https://unpkg.com/three@0.150.1/examples/jsm/loaders/GLTFLoader.js';
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('model-container');
+        if (!container) {
+            console.error('El contenedor del modelo 3D no se encontró.');
+            return;
+        }
+
+        const scene = new THREE.Scene();
+        scene.background = null; // Fondo transparente
+
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.set(0, 0, 5); // Ajusta la posición de la cámara si es necesario
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // alpha: true para fondo transparente
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setClearColor(0x000000, 0); // Fondo transparente
+        container.appendChild(renderer.domElement);
+
+        // Iluminación
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7); // Luz ambiental suave
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5); // Luz direccional
+        directionalLight.position.set(0, 5, 5);
+        scene.add(directionalLight);
+
+        // Cargar modelo GLTF
+        const loader = new GLTFLoader();
+        let gasDetector;
+
+        loader.load('https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp', function (gltf) {
+            gasDetector = gltf.scene;
+            scene.add(gasDetector);
+
+            // Ajustar posición y escala del modelo si es necesario
+            gasDetector.scale.set(1.5, 1.5, 1.5);
+            gasDetector.position.set(0, -1, 0);
+
+        }, undefined, function (error) {
+            console.error('Error al cargar el modelo GLTF:', error);
+            // Mostrar imagen alternativa si falla la carga del modelo 3D
+            const imgAlt = document.createElement('img');
+            imgAlt.src = "https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp";
+            imgAlt.alt = "Ilustración de fuga de gas";
+            imgAlt.classList.add("hero-img", "img-fluid");
+            container.innerHTML = ''; // Limpiar el contenedor del modelo
+            container.appendChild(imgAlt);
+        });
+
+        // Animación de flotación
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (gasDetector) {
+                // Animación de rotación para un efecto 3D simple
+                gasDetector.rotation.y += 0.005;
+            }
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Manejar el redimensionamiento de la ventana
+        window.addEventListener('resize', () => {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
     });
 </script>
 </body>
