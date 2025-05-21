@@ -163,18 +163,26 @@
             color: #698180;
             margin-bottom: 1rem;
         }
+
         /* Estilos para los contenedores de gráficos */
         .chart-container {
-            width: 80%;
-            margin: 40px auto;
+            flex-grow: 1; /* Permite que el contenedor crezca y ocupe el espacio disponible */
+            width: 100%; /* Ocupa el 100% del ancho de su columna Bootstrap */
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px; /* Añadido margen inferior para separar los contenedores */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .chart-container h2 {
             text-align: center;
-            color: #0056b3; /* Un color que contraste o sea parte de tu paleta */
+            color: #2D4A53; /* Un color que contraste o sea parte de tu paleta */
+            font-size: 1.5rem; /* Ajuste el tamaño del título para que quepa mejor */
+            margin-bottom: 15px;
         }
         .chart-note {
             font-size: 0.9em;
@@ -428,35 +436,50 @@
         <div class="container">
             <h2 class="section-title">Gráficos sobre Incidentes de Gas</h2>
 
-            <div class="chart-container">
-                <h2>1. Incidentes en Propiedades Privadas en Argentina (2022-2023)</h2>
-                <canvas id="chart1"></canvas>
+            <div class="row g-4 mb-4">
+                <div class="col-md-6 d-flex">
+                    <div class="chart-container">
+                        <h2>1. Incidentes en Propiedades Privadas en Argentina (2022-2023)</h2>
+                        <canvas id="chart1"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <div class="chart-container">
+                        <h2>2. Conexiones Clandestinas de Gas en AMBA (2019-2023)</h2>
+                        <canvas id="chart2"></canvas>
+                    </div>
+                </div>
             </div>
 
-            <div class="chart-container">
-                <h2>2. Conexiones Clandestinas de Gas en AMBA (2019-2023)</h2>
-                <canvas id="chart2"></canvas>
+            <div class="row g-4 mb-4">
+                <div class="col-md-6 d-flex">
+                    <div class="chart-container">
+                        <h2>3. Incidentes de Intoxicación por CO por Distribuidora (2023)</h2>
+                        <canvas id="chart3"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <div class="chart-container">
+                        <h2>4. Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024)</h2>
+                        <canvas id="chart4"></canvas>
+                    </div>
+                </div>
             </div>
 
-            <div class="chart-container">
-                <h2>3. Incidentes de Intoxicación por CO por Distribuidora (2023)</h2>
-                <canvas id="chart3"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>4. Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024)</h2>
-                <canvas id="chart4"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>5. Comparación de Fatalidades por Monóxido de Carbono en Argentina</h2>
-                <canvas id="chart5"></canvas>
-                <p class="chart-note">Nota: El total acumulado corresponde a 2019-mayo 2024, no es anual.</p>
-            </div>
-
-            <div class="chart-container">
-                <h2>6. Factores Contribuyentes a Incidentes de CO (2023)</h2>
-                <canvas id="chart6"></canvas>
+            <div class="row g-4 mb-4">
+                <div class="col-md-6 d-flex">
+                    <div class="chart-container">
+                        <h2>5. Comparación de Fatalidades por Monóxido de Carbono en Argentina</h2>
+                        <canvas id="chart5"></canvas>
+                        <p class="chart-note">Nota: El total acumulado corresponde a 2019-mayo 2024, no es anual.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex">
+                    <div class="chart-container">
+                        <h2>6. Factores Contribuyentes a Incidentes de CO (2023)</h2>
+                        <canvas id="chart6"></canvas>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -564,6 +587,7 @@
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false, /* Importante para que el gráfico se ajuste al contenedor */
             plugins: {
                 title: {
                     display: true,
@@ -610,6 +634,7 @@
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false, /* Importante para que el gráfico se ajuste al contenedor */
             plugins: {
                 title: {
                     display: true,
@@ -656,6 +681,7 @@
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false, /* Importante para que el gráfico se ajuste al contenedor */
             plugins: {
                 title: {
                     display: true,
@@ -707,6 +733,7 @@
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false, /* Importante para que el gráfico se ajuste al contenedor */
             plugins: {
                 title: {
                     display: true,
@@ -757,6 +784,7 @@
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false, /* Importante para que el gráfico se ajuste al contenedor */
             plugins: {
                 title: {
                     display: true,
@@ -819,6 +847,7 @@
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false, /* Importante para que el gráfico se ajuste al contenedor */
             plugins: {
                 title: {
                     display: true,
