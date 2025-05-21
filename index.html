@@ -88,6 +88,11 @@
             height: 100% !important;
             display: block; /* Elimina espacio extra debajo del canvas */
         }
+        #model-container img.fallback-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
@@ -513,7 +518,7 @@
                     'rgba(153, 102, 255, 1)'
                 ],
                 borderWidth: 1,
-                // Adding shadow for 3D-like effect
+                // Agregando sombra para un efecto 3D
                 shadowOffsetX: 3,
                 shadowOffsetY: 3,
                 shadowBlur: 10,
@@ -541,7 +546,7 @@
                     'rgba(153, 102, 255, 1)'
                 ],
                 borderWidth: 1,
-                // Adding shadow for 3D-like effect
+                // Agregando sombra para un efecto 3D
                 shadowOffsetX: 3,
                 shadowOffsetY: 3,
                 shadowBlur: 10,
@@ -856,7 +861,8 @@
         const loader = new GLTFLoader();
         let gasDetector;
 
-        loader.load('https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp', function (gltf) {
+        // **IMPORTANTE: Asegúrate de que 'steam_condensate_trap__trampa_de_condensado.glb' esté en la misma carpeta que tu index.html**
+        loader.load('steam_condensate_trap__trampa_de_condensado.glb', function (gltf) {
             gasDetector = gltf.scene;
             scene.add(gasDetector);
 
@@ -868,10 +874,10 @@
             console.error('Error al cargar el modelo GLTF:', error);
             // Mostrar imagen alternativa si falla la carga del modelo 3D
             const imgAlt = document.createElement('img');
-            imgAlt.src = "https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp";
-            imgAlt.alt = "Ilustración de fuga de gas";
-            imgAlt.classList.add("hero-img", "img-fluid");
-            container.innerHTML = ''; // Limpiar el contenedor del modelo
+            imgAlt.src = "https://cdn3d.iconscout.com/3d/premium/thumb/gas-leak-detector-9578613-7751998.png?f=webp"; // Una imagen más apropiada para un detector de gas
+            imgAlt.alt = "Ilustración de detector de fuga de gas";
+            imgAlt.classList.add("fallback-image"); // Clase para aplicar estilos
+            container.innerHTML = ''; // Limpiar el contenedor del canvas
             container.appendChild(imgAlt);
         });
 
