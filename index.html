@@ -870,7 +870,10 @@
         const loader = new GLTFLoader();
         let gasDetector;
 
-        // **IMPORTANTE: Asegúrate de que 'steam_condensate_trap__trampa_de_condensado.glb' esté en la misma carpeta que tu index.html**
+        // **IMPORTANTE:** Para que esto funcione, 'steam_condensate_trap__trampa_de_condensado.glb'
+        // debe estar en la MISMA CARPETA que tu archivo index.html.
+        // Además, necesitas ABRIR index.html a través de un SERVIDOR WEB LOCAL.
+        // No funcionará si simplemente abres el archivo index.html directamente en el navegador (ej: file:///C:/...).
         loader.load('steam_condensate_trap__trampa_de_condensado.glb', function (gltf) {
             gasDetector = gltf.scene;
             scene.add(gasDetector);
