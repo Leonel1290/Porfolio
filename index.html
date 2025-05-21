@@ -167,7 +167,7 @@
         }
         /* Estilos para los contenedores de gráficos */
         .chart-container {
-            width: 80%;
+            width: 80%; /* Default for smaller screens */
             margin: 40px auto;
             background-color: #fff;
             padding: 20px;
@@ -265,6 +265,13 @@
         #conclusion-encuestas p {
             color: #AFB3B7;
             line-height: 1.6;
+        }
+
+        /* Media query for larger screens to make charts smaller */
+        @media (min-width: 992px) {
+            .chart-container {
+                width: 60%; /* Smaller width for PCs */
+            }
         }
     </style>
 </head>
