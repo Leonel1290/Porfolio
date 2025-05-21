@@ -248,6 +248,24 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
+
+        /* Estilos para la nueva sección de conclusión */
+        #conclusion-encuestas {
+            display: none; /* Inicialmente oculto */
+            background-color: #132E35;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+        #conclusion-encuestas h3 {
+            color: #fff;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        #conclusion-encuestas p {
+            color: #AFB3B7;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -408,9 +426,9 @@
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <i class="fas fa-chart-bar mb-3"></i>
-                            <h4 class="card-title">Analisis del mercado</h4>
-                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta.</p>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nht_vAaWD5Uv3bZz2vhHqWbIlkj9GoHlcHy89J7Kn6EYDg/viewform?usp=header" target="_blank" class="btn btn-custom mt-3">Ver Gráfico de Rendimiento</a>
+                            <h4 class="card-title">Análisis del Mercado (Conclusión)</h4>
+                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta, y una conclusión de encuestas.</p>
+                            <a href="#conclusion-encuestas" class="btn btn-custom mt-3" onclick="mostrarConclusionEncuestas()">Ver Conclusión de Encuestas</a>
                         </div>
                     </div>
                 </div>
@@ -418,9 +436,9 @@
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <i class="fas fa-comments mb-3"></i>
-                            <h4 class="card-title">Analisis del mercado</h4>
+                            <h4 class="card-title">Análisis del Mercado (Imágenes)</h4>
                             <p class="card-text">Estas son las recolecciones de opiniones que hicimos a partir de sus participaciones en nuestro formulario</p>
-                            <a href="#opiniones-usuarios-imagenes" onclick="mostrarOpiniones()" class="btn btn-custom mt-3">Ver Opiniones</a>
+                            <a href="#opiniones-usuarios-imagenes" onclick="mostrarOpiniones()" class="btn btn-custom mt-3">Ver Opiniones (Imágenes)</a>
                         </div>
                     </div>
                 </div>
@@ -430,7 +448,7 @@
 
     <section class="py-5" id="opiniones-usuarios-imagenes">
         <div class="container">
-            <h2 class="section-title">Analisis del Mercado</h2>
+            <h2 class="section-title">Análisis del Mercado (Imágenes de Encuesta)</h2>
             <div class="row">
                 <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
                     <img src="Captura de pantalla 2025-05-21 005305.png" alt="Captura de opinión 1" class="img-fluid">
@@ -451,7 +469,29 @@
                     <img src="Captura de pantalla 2025-05-21 005355.png" alt="Captura de opinión 6" class="img-fluid">
                 </div>
             </div>
-            <button onclick="ocultarOpiniones()" class="btn btn-custom">Ocultar Opiniones</button>
+            <button onclick="ocultarOpiniones()" class="btn btn-custom">Ocultar Opiniones (Imágenes)</button>
+        </div>
+    </section>
+
+    <section class="py-5" id="conclusion-encuestas">
+        <div class="container">
+            <h2 class="section-title">Conclusión de Encuestas de Mercado</h2>
+            <div class="company-info mx-auto text-start">
+                <h3>Sobre el Producto y su Utilidad:</h3>
+                <p>La mayoría de los encuestados considera que el producto es útil, con un 41.7% que lo ve como tal y un 8.3% que además lo usaría en su vida cotidiana. Sin embargo, un 16.7% lo considera útil pero no lo utilizaría, y otro 16.7% cree que el producto necesita mejoras. Existe también una pequeña porción (8.3%) que no lo considera útil o que propone añadirle conectividad 4G. Esto sugiere que, si bien hay una base de aceptación, hay aspectos importantes a mejorar para aumentar la adopción y satisfacción general.</p>
+
+                <h3>Preferencias de Notificación:</h3>
+                <p>Existe una clara preferencia por recibir notificaciones del dispositivo en una aplicación móvil, con un abrumador 91.7% de los encuestados que respondieron afirmativamente a esta opción. Solo un 8.3% prefiere no recibirlas en una app móvil. Esto indica que el desarrollo de una aplicación móvil para las notificaciones sería altamente valorado.</p>
+
+                <h3>Disposición a Pagar:</h3>
+                <p>La mitad de los encuestados (50%) estaría dispuesto a pagar entre 100 y 200 USD por el dispositivo. Un 41.7% pagaría menos de 100 USD, mientras que solo un 8.3% estaría dispuesto a pagar más de 200 USD. Esto sugiere que el rango de precio óptimo para el dispositivo se encuentra entre los 100 y 200 USD.</p>
+
+                <h3>Perfil del Encuestado (Ubicación y Edad):</h3>
+                <p>La mayoría de los encuestados (83.3%) reside en casas, mientras que un 8.3% vive en departamentos y otro 8.3% en pensiones. En cuanto a la edad, el grupo demográfico más grande (66.7%) tiene entre 18 y 25 años. Otros rangos de edad representados son menos de 18 años (16.7%), 26 a 40 años (8.3%) y más de 60 años (8.3%). Este dato es crucial para orientar las estrategias de marketing y desarrollo del producto hacia el público objetivo principal.</p>
+
+                <p class="lead mt-4">En resumen, el producto tiene un buen potencial de utilidad, pero requiere mejoras y una fuerte integración con una aplicación móvil. El precio ideal se encuentra en el rango de 100 a 200 USD, y el público objetivo principal se sitúa entre los 18 y 25 años, mayoritariamente residentes en casas.</p>
+                <button onclick="ocultarConclusionEncuestas()" class="btn btn-custom mt-3">Ocultar Conclusión</button>
+            </div>
         </div>
     </section>
 
@@ -538,7 +578,7 @@
         $('a.btn-custom').on('click', function(e) {
             // Solo para los botones custom que apuntan a una sección de la página.
             // Excluye enlaces externos o los que llaman funciones JS directamente.
-            if (this.hash !== "" && $(this).attr('href').startsWith('#')) {
+            if (this.hash !== "" && $(this).attr('href').startsWith('#') && $(this).attr('onclick') === undefined) {
                 e.preventDefault();
                 const hash = this.hash;
                 const offset = $('.navbar').outerHeight();
@@ -557,7 +597,7 @@
         });
     });
 
-    // Función para mostrar la sección de opiniones
+    // Función para mostrar la sección de opiniones (imágenes)
     function mostrarOpiniones() {
         $('#opiniones-usuarios-imagenes').css('display', 'block');
         const offset = $('.navbar').outerHeight();
@@ -566,13 +606,31 @@
         }, 800);
     }
 
-    // Función para ocultar la sección de opiniones
+    // Función para ocultar la sección de opiniones (imágenes)
     function ocultarOpiniones() {
         $('#opiniones-usuarios-imagenes').css('display', 'none');
         const offset = $('.navbar').outerHeight();
         $('html, body').animate({
             scrollTop: $('#datos-y-encuestas').offset().top - offset
         }, 800); // Vuelve a la sección de Datos y Encuestas
+    }
+
+    // Función para mostrar la sección de la conclusión de encuestas
+    function mostrarConclusionEncuestas() {
+        $('#conclusion-encuestas').css('display', 'block');
+        const offset = $('.navbar').outerHeight();
+        $('html, body').animate({
+            scrollTop: $('#conclusion-encuestas').offset().top - offset
+        }, 800);
+    }
+
+    // Función para ocultar la sección de la conclusión de encuestas
+    function ocultarConclusionEncuestas() {
+        $('#conclusion-encuestas').css('display', 'none');
+        const offset = $('.navbar').outerHeight();
+        $('html, body').animate({
+            scrollTop: $('#datos-y-encuestas').offset().top - offset
+        }, 800);
     }
 
     // --- Script para los Gráficos de Chart.js ---
