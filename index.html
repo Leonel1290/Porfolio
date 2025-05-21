@@ -103,7 +103,7 @@
             padding: 2rem;
             color: #fff;
         }
-        
+
         .section-title {
             color: #fff;
             font-size: 2.5rem;
@@ -181,6 +181,41 @@
             color: #666;
             text-align: center;
             margin-top: 10px;
+        }
+
+        /* Estilos para la sección de opiniones (imágenes) */
+        #opiniones-usuarios-imagenes {
+            display: none; /* Inicialmente oculto */
+            background-color: #132E35;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        #opiniones-usuarios-imagenes img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            /* Puedes ajustar el tamaño si las imágenes son muy grandes */
+            max-height: 500px; /* Ejemplo: limita la altura máxima */
+            object-fit: contain; /* Asegura que la imagen se ajuste sin cortarse */
+        }
+
+        #opiniones-usuarios-imagenes button {
+            background-color: #698180;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #opiniones-usuarios-imagenes button:hover {
+            background-color: #2D4A53;
         }
     </style>
 </head>
@@ -266,7 +301,7 @@
                     <i class="fas fa-mobile-alt mb-3"></i>
                     <h3>Control Total</h3>
                     <p>Monitorea y gestiona tu sistema desde cualquier lugar con nuestra app.</p>
-                 fungicide>
+                </div>
                 <div class="col-md-4">
                     <i class="fas fa-bell mb-3"></i>
                     <h3>Alertas Instantáneas</h3>
@@ -338,9 +373,9 @@
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <i class="fas fa-comments mb-3"></i>
-                            <h4 class="card-title">Comentarios de Usuarios</h4>
-                            <p class="card-text">Comparte tu experiencia o ideas para futuras mejoras de ASG.</p>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nht_vAaWD5Uv3bZz2vhHqWbIlkj9GoHlcHy89J7Kn6EYDg/viewform?usp=header" target="_blank" class="btn btn-custom mt-3">Deja tu Comentario (Formulario)</a>
+                            <h4 class="card-title">Sus Opiniones</h4>
+                            <p class="card-text">Estas son las recolecciones de opiniones que hicimos a partir de sus participaciones en nuestro formulario</p>
+                            <a href="#opiniones-usuarios-imagenes" onclick="mostrarOpiniones()" class="btn btn-custom mt-3">Ver Opiniones</a>
                         </div>
                     </div>
                 </div>
@@ -348,10 +383,24 @@
         </div>
     </section>
 
+    <section class="py-5" id="opiniones-usuarios-imagenes">
+        <div class="container">
+            <h2 class="section-title">Opiniones de Usuarios</h2>
+            <img src="Captura de pantalla 2025-05-21 005305.png" alt="Captura de opinión 1">
+            <img src="Captura de pantalla 2025-05-21 005313.png" alt="Captura de opinión 2">
+            <img src="Captura de pantalla 2025-05-21 005320.png" alt="Captura de opinión 3">
+            <img src="Captura de pantalla 2025-05-21 005329.png" alt="Captura de opinión 4">
+            <img src="Captura de pantalla 2025-05-21 005337.png" alt="Captura de opinión 5">
+            <img src="Captura de pantalla 2025-05-21 005355.png" alt="Captura de opinión 6">
+            <button onclick="ocultarOpiniones()" class="btn btn-custom">Ocultar Opiniones</button>
+        </div>
+    </section>
+
+
     <section class="py-5" id="charts-section">
         <div class="container">
             <h2 class="section-title">Gráficos sobre Incidentes de Gas</h2>
-            
+
             <div class="chart-container">
                 <h2>1. Incidentes en Propiedades Privadas en Argentina (2022-2023)</h2>
                 <canvas id="chart1"></canvas>
@@ -414,21 +463,58 @@
 <script>
     $(document).ready(function(){
         // Smooth scroll para enlaces internos
-        $('a[href^="#"]').on('click', function(e) {
-            e.preventDefault();
-            const target = $($(this).attr('href'));
-            if(target.length) {
-                // Ajusta el offset para tener en cuenta la altura del navbar fijo
-                const offset = $('.navbar').outerHeight() + 10; 
-                $('html, body').animate({ scrollTop: target.offset().top - offset }, 500);
+        $('a.nav-link').on('click', function(e) {
+            if (this.hash !== "") {
+                e.preventDefault();
+                const hash = this.hash;
+                const offset = $('.navbar').outerHeight();
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top - offset
+                }, 800, function(){
+                    window.location.hash = hash;
+                });
             }
         });
+
+        $('a.btn-custom').on('click', function(e) {
+            // Solo para los botones custom que apuntan a una sección de la página.
+            // Excluye enlaces externos o los que llaman funciones JS directamente.
+            if (this.hash !== "" && $(this).attr('href').startsWith('#')) {
+                e.preventDefault();
+                const hash = this.hash;
+                const offset = $('.navbar').outerHeight();
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top - offset
+                }, 800, function(){
+                    window.location.hash = hash;
+                });
+            }
+        });
+
 
         // Ocultar overlay de animación al cargar la página
         $(window).on('load', function() {
             $('#explosionOverlay').addClass('fade-out');
         });
     });
+
+    // Función para mostrar la sección de opiniones
+    function mostrarOpiniones() {
+        $('#opiniones-usuarios-imagenes').css('display', 'block');
+        const offset = $('.navbar').outerHeight();
+        $('html, body').animate({
+            scrollTop: $('#opiniones-usuarios-imagenes').offset().top - offset
+        }, 800);
+    }
+
+    // Función para ocultar la sección de opiniones
+    function ocultarOpiniones() {
+        $('#opiniones-usuarios-imagenes').css('display', 'none');
+        const offset = $('.navbar').outerHeight();
+        $('html, body').animate({
+            scrollTop: $('#datos-y-encuestas').offset().top - offset
+        }, 800); // Vuelve a la sección de Datos y Encuestas
+    }
 
     // --- Script para los Gráficos de Chart.js ---
     // Asegúrate de que este script se ejecute después de que el DOM esté cargado.
