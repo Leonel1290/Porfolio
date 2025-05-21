@@ -181,7 +181,8 @@
         }
         /* Estilos para los contenedores de gráficos */
         .chart-container {
-            width: 80%;
+            width: 80%; /* Original size */
+            max-width: 800px; /* Added: Limit max width for larger screens */
             margin: 40px auto;
             background-color: #213B42; /* Darker background for depth */
             padding: 20px;
@@ -231,6 +232,14 @@
                 margin-left: auto;
                 margin-right: auto;
                 display: block; /* Para centrar imágenes con max-width */
+            }
+        }
+
+        /* Responsive adjustments for charts on smaller screens */
+        @media (max-width: 768px) {
+            .chart-container {
+                width: 95%; /* Make charts take more width on smaller screens */
+                padding: 10px;
             }
         }
 
