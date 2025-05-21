@@ -640,10 +640,95 @@
         }, 800);
     }
 
-    // --- Script para los Gráficos de Chart.js ---
-    // Asegúrate de que este script se ejecute después de que el DOM esté cargado.
-    // Aunque está al final del body, si hay problemas, podrías envolverlo en un
-    // document.addEventListener('DOMContentLoaded', function() { ... });
+    // Paleta de colores más agradable y consistente
+    const primaryColor = 'rgba(105, 129, 128, 0.8)'; // Color principal (teal/grisáceo)
+    const secondaryColor = 'rgba(45, 74, 83, 0.8)'; // Color secundario (azul oscuro/grisáceo)
+    const accentColor1 = 'rgba(255, 99, 132, 0.8)'; // Rosa para énfasis/alertas
+    const accentColor2 = 'rgba(255, 159, 64, 0.8)'; // Naranja
+    const accentColor3 = 'rgba(75, 192, 192, 0.8)'; // Otro tono de teal
+    const tertiaryColor = 'rgba(175, 179, 183, 0.8)'; // Gris claro para contraste
+
+    const borderPrimary = 'rgba(105, 129, 128, 1)';
+    const borderSecondary = 'rgba(45, 74, 83, 1)';
+    const borderAccent1 = 'rgba(255, 99, 132, 1)';
+    const borderAccent2 = 'rgba(255, 159, 64, 1)';
+    const borderAccent3 = 'rgba(75, 192, 192, 1)';
+    const borderTertiary = 'rgba(175, 179, 183, 1)';
+
+
+    // Configuración base para títulos de gráficos
+    const titleOptions = {
+        display: true,
+        font: {
+            size: 18,
+            weight: 'bold',
+            family: 'Poppins, sans-serif'
+        },
+        color: '#333' // Color oscuro para contraste con el fondo blanco del chart-container
+    };
+
+    // Configuración base para escalas (ejes)
+    const scalesOptions = {
+        y: {
+            beginAtZero: true,
+            grid: {
+                color: 'rgba(0, 0, 0, 0.1)', // Líneas de cuadrícula sutiles
+                drawBorder: false
+            },
+            ticks: {
+                color: '#666',
+                font: {
+                    family: 'Poppins, sans-serif'
+                }
+            },
+            title: {
+                display: true,
+                color: '#555',
+                font: {
+                    size: 14,
+                    weight: 'bold',
+                    family: 'Poppins, sans-serif'
+                }
+            }
+        },
+        x: {
+            grid: {
+                display: false, // Ocultar líneas de cuadrícula verticales
+                drawBorder: false
+            },
+            ticks: {
+                color: '#666',
+                font: {
+                    family: 'Poppins, sans-serif'
+                }
+            },
+            title: {
+                display: true,
+                color: '#555',
+                font: {
+                    size: 14,
+                    weight: 'bold',
+                    family: 'Poppins, sans-serif'
+                }
+            }
+        }
+    };
+
+    // Configuración base para tooltips
+    const tooltipOptions = {
+        backgroundColor: secondaryColor,
+        titleFont: {
+            size: 14,
+            weight: 'bold',
+            family: 'Poppins, sans-serif'
+        },
+        bodyFont: {
+            size: 12,
+            family: 'Poppins, sans-serif'
+        },
+        padding: 10,
+        cornerRadius: 4
+    };
 
     // --- Gráfico 1: Incidentes en Propiedades Privadas (2022 vs. 2023) ---
     const ctx1 = document.getElementById('chart1').getContext('2d');
@@ -654,40 +739,28 @@
             datasets: [{
                 label: 'Número de Incidentes',
                 data: [216, 253],
-                backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)'],
-                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+                backgroundColor: [primaryColor, secondaryColor],
+                borderColor: [borderPrimary, borderSecondary],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            animation: {
+                duration: 1000,
+                easing: 'easeOutQuart'
+            },
             plugins: {
                 title: {
-                    display: true,
-                    text: 'Incidentes en Propiedades Privadas en Argentina\n2022-2023',
-                    font: {
-                        size: 18
-                    }
+                    ...titleOptions,
+                    text: '1. Incidentes en Propiedades Privadas en Argentina (2022-2023)'
                 },
                 legend: {
                     display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Incidentes'
-                    }
                 },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Año'
-                    }
-                }
-            }
+                tooltip: tooltipOptions
+            },
+            scales: scalesOptions
         }
     });
 
@@ -700,40 +773,28 @@
             datasets: [{
                 label: 'Número de Conexiones Detectadas',
                 data: [424, 636, 544, 1599],
-                backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: primaryColor,
+                borderColor: borderPrimary,
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            animation: {
+                duration: 1000,
+                easing: 'easeOutQuart'
+            },
             plugins: {
                 title: {
-                    display: true,
-                    text: 'Conexiones Clandestinas de Gas en AMBA\n2019-2023',
-                    font: {
-                        size: 18
-                    }
+                    ...titleOptions,
+                    text: '2. Conexiones Clandestinas de Gas en AMBA (2019-2023)'
                 },
                 legend: {
                     display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Conexiones Detectadas'
-                    }
                 },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Año'
-                    }
-                }
-            }
+                tooltip: tooltipOptions
+            },
+            scales: scalesOptions
         }
     });
 
@@ -746,38 +807,31 @@
             datasets: [{
                 label: 'Número de Incidentes',
                 data: [55, 35, 30],
-                backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(255, 159, 64, 0.6)', 'rgba(75, 192, 192, 0.6)'],
-                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 159, 64, 1)', 'rgba(75, 192, 192, 1)'],
+                backgroundColor: [primaryColor, secondaryColor, accentColor3],
+                borderColor: [borderPrimary, borderSecondary, borderAccent3],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            animation: {
+                duration: 1000,
+                easing: 'easeOutQuart'
+            },
             plugins: {
                 title: {
-                    display: true,
-                    text: 'Incidentes de Intoxicación por CO por Distribuidora (2023)',
-                    font: {
-                        size: 18
-                    }
+                    ...titleOptions,
+                    text: '3. Incidentes de Intoxicación por CO por Distribuidora (2023)'
                 },
                 legend: {
                     display: false
-                }
+                },
+                tooltip: tooltipOptions
             },
             scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Incidentes'
-                    }
-                },
+                y: scalesOptions.y,
                 x: {
-                    title: {
-                        display: true,
-                        text: 'Distribuidora'
-                    },
+                    ...scalesOptions.x,
                     ticks: {
                         autoSkip: false,
                         maxRotation: 45,
@@ -797,40 +851,28 @@
             datasets: [{
                 label: 'Número de Casos',
                 data: [284, 465],
-                backgroundColor: ['rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)'],
-                borderColor: ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
+                backgroundColor: [accentColor2, accentColor3],
+                borderColor: [borderAccent2, borderAccent3],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            animation: {
+                duration: 1000,
+                easing: 'easeOutQuart'
+            },
             plugins: {
                 title: {
-                    display: true,
-                    text: 'Casos de Intoxicación por CO en Argentina\nEnero-Mayo 2023 vs 2024',
-                    font: {
-                        size: 18
-                    }
+                    ...titleOptions,
+                    text: '4. Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024)'
                 },
                 legend: {
                     display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Casos'
-                    }
                 },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Período'
-                    }
-                }
-            }
+                tooltip: tooltipOptions
+            },
+            scales: scalesOptions
         }
     });
 
@@ -847,38 +889,31 @@
             datasets: [{
                 label: 'Número de Muertes',
                 data: [225, 22, 34], // 225 es el promedio del rango 200-250
-                backgroundColor: ['rgba(153, 102, 255, 0.6)', 'rgba(201, 203, 207, 0.6)', 'rgba(255, 99, 132, 0.6)'],
-                borderColor: ['rgba(153, 102, 255, 1)', 'rgba(201, 203, 207, 1)', 'rgba(255, 99, 132, 1)'],
+                backgroundColor: [accentColor1, tertiaryColor, primaryColor],
+                borderColor: [borderAccent1, borderTertiary, borderPrimary],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            animation: {
+                duration: 1000,
+                easing: 'easeOutQuart'
+            },
             plugins: {
                 title: {
-                    display: true,
-                    text: 'Comparación de Fatalidades por Monóxido de Carbono en Argentina',
-                    font: {
-                        size: 18
-                    }
+                    ...titleOptions,
+                    text: '5. Comparación de Fatalidades por Monóxido de Carbono en Argentina'
                 },
                 legend: {
                     display: false
-                }
+                },
+                tooltip: tooltipOptions
             },
             scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Muertes'
-                    }
-                },
+                y: scalesOptions.y,
                 x: {
-                    title: {
-                        display: true,
-                        text: 'Fuente / Tipo de Dato'
-                    },
+                    ...scalesOptions.x,
                     ticks: {
                         autoSkip: false,
                         maxRotation: 20,
@@ -898,33 +933,35 @@
             datasets: [{
                 data: [24.4, 21.3, 21.3, 20.5, 15.4],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)'
+                    accentColor1,
+                    primaryColor,
+                    accentColor2,
+                    accentColor3,
+                    secondaryColor
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)'
+                    borderAccent1,
+                    borderPrimary,
+                    borderAccent2,
+                    borderAccent3,
+                    borderSecondary
                 ],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            animation: {
+                duration: 1000,
+                easing: 'easeOutQuart'
+            },
             plugins: {
                 title: {
-                    display: true,
-                    text: 'Factores Contribuyentes a Incidentes de CO (2023)',
-                    font: {
-                        size: 18
-                    }
+                    ...titleOptions,
+                    text: '6. Factores Contribuyentes a Incidentes de CO (2023)'
                 },
                 tooltip: {
+                    ...tooltipOptions,
                     callbacks: {
                         label: function(context) {
                             let label = context.label || '';
