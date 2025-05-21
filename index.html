@@ -270,7 +270,7 @@
         /* Media query for larger screens to make charts smaller */
         @media (min-width: 992px) {
             .chart-container {
-                width: 60%; /* Smaller width for PCs */
+                width: 50%; /* Smaller width for PCs, reduced from 60% */
             }
         }
     </style>
@@ -466,7 +466,7 @@
                 <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
                     <img src="Captura de pantalla 2025-05-21 010814.png" alt="Captura de opinión 3" class="img-fluid">
                 </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content="center">
                     <img src="Captura de pantalla 2025-05-21 005329.png" alt="Captura de opinión 4" class="img-fluid">
                 </div>
                 <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
@@ -640,27 +640,35 @@
         }, 800);
     }
 
-    // Paleta de colores más agradable y consistente
-    const primaryColor = 'rgba(105, 129, 128, 0.8)'; // Color principal (teal/grisáceo)
-    const secondaryColor = 'rgba(45, 74, 83, 0.8)'; // Color secundario (azul oscuro/grisáceo)
-    const accentColor1 = 'rgba(255, 99, 132, 0.8)'; // Rosa para énfasis/alertas
-    const accentColor2 = 'rgba(255, 159, 64, 0.8)'; // Naranja
-    const accentColor3 = 'rgba(75, 192, 192, 0.8)'; // Otro tono de teal
-    const tertiaryColor = 'rgba(175, 179, 183, 0.8)'; // Gris claro para contraste
+    // Paleta de colores más vibrante y consistente
+    const colors = {
+        blue: 'rgba(54, 162, 235, 0.8)',      // Azul
+        green: 'rgba(75, 192, 192, 0.8)',     // Verde azulado
+        purple: 'rgba(153, 102, 255, 0.8)',    // Morado
+        orange: 'rgba(255, 159, 64, 0.8)',     // Naranja
+        red: 'rgba(255, 99, 132, 0.8)',        // Rojo/Rosa
+        yellow: 'rgba(255, 206, 86, 0.8)',    // Amarillo
+        darkBlue: 'rgba(45, 74, 83, 0.8)',    // Azul oscuro (de tu tema)
+        lightGray: 'rgba(175, 179, 183, 0.8)' // Gris claro (de tu tema)
+    };
 
-    const borderPrimary = 'rgba(105, 129, 128, 1)';
-    const borderSecondary = 'rgba(45, 74, 83, 1)';
-    const borderAccent1 = 'rgba(255, 99, 132, 1)';
-    const borderAccent2 = 'rgba(255, 159, 64, 1)';
-    const borderAccent3 = 'rgba(75, 192, 192, 1)';
-    const borderTertiary = 'rgba(175, 179, 183, 1)';
+    const borderColors = {
+        blue: 'rgba(54, 162, 235, 1)',
+        green: 'rgba(75, 192, 192, 1)',
+        purple: 'rgba(153, 102, 255, 1)',
+        orange: 'rgba(255, 159, 64, 1)',
+        red: 'rgba(255, 99, 132, 1)',
+        yellow: 'rgba(255, 206, 86, 1)',
+        darkBlue: 'rgba(45, 74, 83, 1)',
+        lightGray: 'rgba(175, 179, 183, 1)'
+    };
 
 
     // Configuración base para títulos de gráficos
     const titleOptions = {
         display: true,
         font: {
-            size: 18,
+            size: 16, // Ligeramente más pequeño
             weight: 'bold',
             family: 'Poppins, sans-serif'
         },
@@ -672,7 +680,7 @@
         y: {
             beginAtZero: true,
             grid: {
-                color: 'rgba(0, 0, 0, 0.1)', // Líneas de cuadrícula sutiles
+                color: 'rgba(0, 0, 0, 0.08)', // Líneas de cuadrícula más sutiles
                 drawBorder: false
             },
             ticks: {
@@ -685,7 +693,7 @@
                 display: true,
                 color: '#555',
                 font: {
-                    size: 14,
+                    size: 12, // Ligeramente más pequeño
                     weight: 'bold',
                     family: 'Poppins, sans-serif'
                 }
@@ -706,7 +714,7 @@
                 display: true,
                 color: '#555',
                 font: {
-                    size: 14,
+                    size: 12, // Ligeramente más pequeño
                     weight: 'bold',
                     family: 'Poppins, sans-serif'
                 }
@@ -716,14 +724,14 @@
 
     // Configuración base para tooltips
     const tooltipOptions = {
-        backgroundColor: secondaryColor,
+        backgroundColor: colors.darkBlue, // Usar un color oscuro del tema
         titleFont: {
-            size: 14,
+            size: 13, // Ligeramente más pequeño
             weight: 'bold',
             family: 'Poppins, sans-serif'
         },
         bodyFont: {
-            size: 12,
+            size: 11, // Ligeramente más pequeño
             family: 'Poppins, sans-serif'
         },
         padding: 10,
@@ -739,13 +747,14 @@
             datasets: [{
                 label: 'Número de Incidentes',
                 data: [216, 253],
-                backgroundColor: [primaryColor, secondaryColor],
-                borderColor: [borderPrimary, borderSecondary],
+                backgroundColor: [colors.green, colors.purple],
+                borderColor: [borderColors.green, borderColors.purple],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: true, // Mantener aspecto para hacerlos más pequeños consistentemente
             animation: {
                 duration: 1000,
                 easing: 'easeOutQuart'
@@ -773,13 +782,14 @@
             datasets: [{
                 label: 'Número de Conexiones Detectadas',
                 data: [424, 636, 544, 1599],
-                backgroundColor: primaryColor,
-                borderColor: borderPrimary,
+                backgroundColor: [colors.blue, colors.orange, colors.red, colors.green],
+                borderColor: [borderColors.blue, borderColors.orange, borderColors.red, borderColors.green],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: true,
             animation: {
                 duration: 1000,
                 easing: 'easeOutQuart'
@@ -807,13 +817,14 @@
             datasets: [{
                 label: 'Número de Incidentes',
                 data: [55, 35, 30],
-                backgroundColor: [primaryColor, secondaryColor, accentColor3],
-                borderColor: [borderPrimary, borderSecondary, borderAccent3],
+                backgroundColor: [colors.red, colors.yellow, colors.purple],
+                borderColor: [borderColors.red, borderColors.yellow, borderColors.purple],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: true,
             animation: {
                 duration: 1000,
                 easing: 'easeOutQuart'
@@ -851,13 +862,14 @@
             datasets: [{
                 label: 'Número de Casos',
                 data: [284, 465],
-                backgroundColor: [accentColor2, accentColor3],
-                borderColor: [borderAccent2, borderAccent3],
+                backgroundColor: [colors.orange, colors.blue],
+                borderColor: [borderColors.orange, borderColors.blue],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: true,
             animation: {
                 duration: 1000,
                 easing: 'easeOutQuart'
@@ -889,13 +901,14 @@
             datasets: [{
                 label: 'Número de Muertes',
                 data: [225, 22, 34], // 225 es el promedio del rango 200-250
-                backgroundColor: [accentColor1, tertiaryColor, primaryColor],
-                borderColor: [borderAccent1, borderTertiary, borderPrimary],
+                backgroundColor: [colors.red, colors.lightGray, colors.green],
+                borderColor: [borderColors.red, borderColors.lightGray, borderColors.green],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: true,
             animation: {
                 duration: 1000,
                 easing: 'easeOutQuart'
@@ -933,24 +946,25 @@
             datasets: [{
                 data: [24.4, 21.3, 21.3, 20.5, 15.4],
                 backgroundColor: [
-                    accentColor1,
-                    primaryColor,
-                    accentColor2,
-                    accentColor3,
-                    secondaryColor
+                    colors.red,
+                    colors.blue,
+                    colors.orange,
+                    colors.green,
+                    colors.purple
                 ],
                 borderColor: [
-                    borderAccent1,
-                    borderPrimary,
-                    borderAccent2,
-                    borderAccent3,
-                    borderSecondary
+                    borderColors.red,
+                    borderColors.blue,
+                    borderColors.orange,
+                    borderColors.green,
+                    borderColors.purple
                 ],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: true,
             animation: {
                 duration: 1000,
                 easing: 'easeOutQuart'
