@@ -193,16 +193,29 @@
             text-align: center;
         }
 
+        #opiniones-usuarios-imagenes .row {
+            justify-content: center; /* Centra las imágenes si no llenan la fila */
+        }
+
         #opiniones-usuarios-imagenes img {
-            max-width: 100%;
+            width: 100%; /* Las imágenes ocuparán el 100% de su columna */
             height: auto;
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* Espacio entre imágenes */
             border-radius: 4px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            /* Puedes ajustar el tamaño si las imágenes son muy grandes */
-            max-height: 500px; /* Ejemplo: limita la altura máxima */
-            object-fit: contain; /* Asegura que la imagen se ajuste sin cortarse */
+            object-fit: contain;
         }
+
+        /* Ajustes para pantallas pequeñas si es necesario */
+        @media (max-width: 767.98px) {
+            #opiniones-usuarios-imagenes img {
+                max-width: 80%; /* Para que en móviles las imágenes no se vean tan grandes */
+                margin-left: auto;
+                margin-right: auto;
+                display: block; /* Para centrar imágenes con max-width */
+            }
+        }
+
 
         #opiniones-usuarios-imagenes button {
             background-color: #698180;
@@ -265,9 +278,9 @@
                 </div>
                 <div class="col-md-6 text-center mt-4 mt-md-0">
                     <img src="https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp"
-                             alt="Ilustración de fuga de gas"
-                             class="hero-img img-fluid"
-                             loading="lazy">
+                                 alt="Ilustración de fuga de gas"
+                                 class="hero-img img-fluid"
+                                 loading="lazy">
                 </div>
             </div>
         </div>
@@ -386,12 +399,26 @@
     <section class="py-5" id="opiniones-usuarios-imagenes">
         <div class="container">
             <h2 class="section-title">Opiniones de Usuarios</h2>
-            <img src="Captura de pantalla 2025-05-21 005305.png" alt="Captura de opinión 1">
-            <img src="Captura de pantalla 2025-05-21 005313.png" alt="Captura de opinión 2">
-            <img src="Captura de pantalla 2025-05-21 010814.png" alt="Captura de opinión 3">
-            <img src="Captura de pantalla 2025-05-21 005329.png" alt="Captura de opinión 4">
-            <img src="Captura de pantalla 2025-05-21 005337.png" alt="Captura de opinión 5">
-            <img src="Captura de pantalla 2025-05-21 005355.png" alt="Captura de opinión 6">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 005305.png" alt="Captura de opinión 1" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 005313.png" alt="Captura de opinión 2" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 010814.png" alt="Captura de opinión 3" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 005329.png" alt="Captura de opinión 4" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 005337.png" alt="Captura de opinión 5" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 005355.png" alt="Captura de opinión 6" class="img-fluid">
+                </div>
+            </div>
             <button onclick="ocultarOpiniones()" class="btn btn-custom">Ocultar Opiniones</button>
         </div>
     </section>
