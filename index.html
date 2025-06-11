@@ -564,7 +564,7 @@
                     <p><strong>Email:</strong> <a href="mailto:againsafegas.ascii@gmail.com" class="text-light">againsafegas.ascii@gmail.com</a></p>
                     <p><strong>Sitio Web:</strong> <a href="https://www.gassafe.com" target="_blank" class="text-light">www.AgainSafeGas.com</a></p>
                 </address>
-                <a href="#" class="btn btn-custom mt-3">Adquiere tu ASG hoy mismo</a>
+                <a href="portfolio.php" class="btn btn-custom mt-3">Adquiere tu ASG hoy mismo</a>
             </div>
         </div>
     </section>
@@ -580,7 +580,8 @@
     $(document).ready(function(){
         // Smooth scroll para enlaces internos
         $('a.nav-link').on('click', function(e) {
-            if (this.hash !== "") {
+            // Asegura que no se active el smooth scroll si el href es externo o un JS handler
+            if (this.hash !== "" && !$(this).attr('href').startsWith('http') && $(this).attr('onclick') === undefined) {
                 e.preventDefault();
                 const hash = this.hash;
                 const offset = $('.navbar').outerHeight();
@@ -595,6 +596,7 @@
         $('a.btn-custom').on('click', function(e) {
             // Solo para los botones custom que apuntan a una sección de la página.
             // Excluye enlaces externos o los que llaman funciones JS directamente.
+            // Y ahora, excluye enlaces a portfolio.php para que se realice la redirección directa.
             if (this.hash !== "" && $(this).attr('href').startsWith('#') && $(this).attr('onclick') === undefined) {
                 e.preventDefault();
                 const hash = this.hash;
