@@ -312,6 +312,9 @@
                         <a class="nav-link" href="#datos-y-encuestas">Datos y Encuestas</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="portfolio.html">Análisis de Producto</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
                 </ul>
@@ -580,8 +583,9 @@
     $(document).ready(function(){
         // Smooth scroll para enlaces internos
         $('a.nav-link').on('click', function(e) {
-            // Asegura que no se active el smooth scroll si el href es externo o un JS handler
-            if (this.hash !== "" && !$(this).attr('href').startsWith('http') && $(this).attr('onclick') === undefined) {
+            // Asegura que no se active el smooth scroll si el href es externo o si es el enlace a portfolio.html
+            // Modificado para excluir el enlace a 'portfolio.html' del smooth scroll interno
+            if (this.hash !== "" && !$(this).attr('href').startsWith('http') && $(this).attr('onclick') === undefined && $(this).attr('href') !== 'portfolio.html') {
                 e.preventDefault();
                 const hash = this.hash;
                 const offset = $('.navbar').outerHeight();
