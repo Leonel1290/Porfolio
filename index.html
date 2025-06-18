@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portafolio ASG - Seguridad en tu Hogar</title>
+    <title>Portafolio ASG - Tu Hogar Seguro</title>
 
     <link rel="shortcut icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp">
 
@@ -15,10 +15,19 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <style>
+        :root {
+            --color-primary-dark: #001f3f; /* Azul muy oscuro, casi negro */
+            --color-secondary-dark: #002c5c; /* Un azul oscuro intermedio */
+            --color-accent: #007bff; /* Un azul vibrante para acentos (botones, iconos) */
+            --color-text-light: #e0e6ef; /* Blanco azulado para texto */
+            --color-text-muted: #a0a6b0; /* Gris azulado para texto secundario */
+            --color-card-bg: #003a72; /* Un azul oscuro para fondos de cajas */
+        }
+
         body {
-            background: linear-gradient(135deg, #0D1F23, #132E35);
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-secondary-dark));
             font-family: 'Poppins', sans-serif;
-            color: #AFB3B7;
+            color: var(--color-text-light);
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -27,7 +36,7 @@
 
         .navbar {
             backdrop-filter: blur(10px);
-            background-color: rgba(13, 31, 35, 0.8);
+            background-color: rgba(0, 31, 63, 0.8); /* Usar --color-primary-dark con transparencia */
             position: fixed;
             top: 0;
             width: 100%;
@@ -35,24 +44,25 @@
         }
 
         .navbar-brand, .nav-link {
-            color: #AFB3B7;
+            color: var(--color-text-light);
         }
 
         .navbar-brand:hover, .nav-link:hover {
-            color: #698180;
+            color: var(--color-accent);
         }
 
         .btn-custom {
-            background-color: #698180;
+            background-color: var(--color-accent);
             border: none;
             color: #fff;
             font-weight: 600;
             border-radius: 30px;
             padding: 0.6rem 1.6rem;
+            transition: background-color 0.3s ease;
         }
 
         .btn-custom:hover {
-            background-color: #2D4A53;
+            background-color: #0056b3; /* Un azul un poco más oscuro al hacer hover */
         }
 
         .hero {
@@ -70,7 +80,7 @@
         .hero-line {
             width: 80px;
             height: 4px;
-            background-color: #698180;
+            background-color: var(--color-accent);
             margin: 1rem 0 1.5rem;
         }
 
@@ -92,7 +102,7 @@
 
         .features i {
             font-size: 3rem;
-            color: #698180;
+            color: var(--color-accent);
         }
 
         .features h3 {
@@ -100,10 +110,13 @@
         }
 
         .company-info {
-            background-color: #2D4A53;
+            background-color: var(--color-card-bg);
             border-radius: 10px;
             padding: 2rem;
-            color: #fff;
+            color: var(--color-text-light);
+        }
+        .company-info p {
+            color: var(--color-text-light);
         }
 
         .section-title {
@@ -115,7 +128,7 @@
         }
 
         footer {
-            background-color: #0D1F23;
+            background-color: var(--color-primary-dark);
             text-align: center;
             padding: 1rem;
             font-size: 0.9rem;
@@ -124,6 +137,10 @@
 
         a {
             text-decoration: none;
+            color: var(--color-text-light); /* Asegurar que los enlaces tengan color */
+        }
+        a:hover {
+            color: var(--color-accent);
         }
 
         .explosion-animation-overlay {
@@ -132,7 +149,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #0D1F23;
+            background-color: var(--color-primary-dark);
             z-index: 1001;
             display: flex;
             justify-content: center;
@@ -150,11 +167,11 @@
             flex-grow: 1;
         }
 
-        /* Estilos específicos para la sección de gráficos */
+        /* Estilos específicos para la sección de gráficos y análisis */
         .graphs-section .card {
-            background-color: #132E35;
-            border: 1px solid #2D4A53;
-            color: #AFB3B7;
+            background-color: var(--color-secondary-dark);
+            border: 1px solid var(--color-card-bg);
+            color: var(--color-text-light);
             text-align: center;
         }
         .graphs-section .card-title {
@@ -162,21 +179,23 @@
         }
         .graphs-section .card-body i {
             font-size: 4rem;
-            color: #698180;
+            color: var(--color-accent);
             margin-bottom: 1rem;
         }
-        /* Estilos para los contenedores de gráficos */
+
+        /* Contenedores de gráficos individuales */
         .chart-container {
-            width: 80%; /* Default for smaller screens */
+            width: 80%;
             margin: 40px auto;
-            background-color: #fff;
+            background-color: #fff; /* Fondo blanco para los gráficos */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .chart-container h2 {
             text-align: center;
-            color: #0056b3; /* Un color que contraste o sea parte de tu paleta */
+            color: #333; /* Color oscuro para títulos de gráficos */
+            font-size: 1.5rem;
         }
         .chart-note {
             font-size: 0.9em;
@@ -185,58 +204,48 @@
             margin-top: 10px;
         }
 
-        /* Estilos para la sección de opiniones (imágenes) */
-        #opiniones-usuarios-imagenes {
+        /* Estilos para la sección de opiniones (imágenes) y conclusiones */
+        #opiniones-usuarios-imagenes, #conclusion-encuestas, #analisis-producto, #pruebas-resultados, #casos-uso {
             display: none; /* Inicialmente oculto */
-            background-color: #132E35;
-            padding: 20px;
+            background-color: var(--color-secondary-dark);
+            padding: 30px;
             margin: 20px auto;
-            border-radius: 8px;
-            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            max-width: 1000px; /* Ancho máximo para el contenido principal */
         }
 
         #opiniones-usuarios-imagenes .row {
-            justify-content: center; /* Centra las imágenes si no llenan la fila */
+            justify-content: center;
         }
 
         #opiniones-usuarios-imagenes img {
-            width: 100%; /* Las imágenes ocuparán el 100% de su columna */
+            width: 100%;
             height: auto;
-            margin-bottom: 15px; /* Espacio entre imágenes */
+            margin-bottom: 15px;
             border-radius: 4px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             object-fit: contain;
         }
 
-        /* Ajustes para pantallas pequeñas si es necesario */
+        /* Ajustes para pantallas pequeñas para imágenes */
         @media (max-width: 767.98px) {
             #opiniones-usuarios-imagenes img {
-                max-width: 80%; /* Para que en móviles las imágenes no se vean tan grandes */
+                max-width: 90%;
                 margin-left: auto;
                 margin-right: auto;
-                display: block; /* Para centrar imágenes con max-width */
+                display: block;
             }
         }
 
-
-        #opiniones-usuarios-imagenes button {
-            background-color: #698180;
-            border: none;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        #opiniones-usuarios-imagenes button:hover {
-            background-color: #2D4A53;
+        #opiniones-usuarios-imagenes button, #conclusion-encuestas button, #analisis-producto button, #pruebas-resultados button, #casos-uso button {
+            margin-top: 20px;
         }
 
         /* Estilos para el modelo 3D */
         .model-container {
             width: 100%;
-            height: 400px; /* Ajusta la altura según sea necesario */
+            height: 400px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -244,70 +253,81 @@
         model-viewer {
             width: 100%;
             height: 100%;
-            background-color: #2D4A53; /* Color de fondo para el visor del modelo */
+            background-color: var(--color-card-bg);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
-        /* Estilos para la nueva sección de conclusión */
-        #conclusion-encuestas {
-            display: none; /* Inicialmente oculto */
-            background-color: #132E35;
-            padding: 20px;
-            margin: 20px auto;
-            border-radius: 8px;
-        }
-        #conclusion-encuestas h3 {
-            color: #fff;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        #conclusion-encuestas p {
-            color: #AFB3B7;
-            line-height: 1.6;
-        }
-
         /* Estilos para la sección de FAQ y Nuestra Historia */
         .faq-section .accordion-item, .history-section .company-info {
-            background-color: #132E35;
-            border: 1px solid #2D4A53;
-            color: #AFB3B7;
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-accent);
+            color: var(--color-text-light);
         }
         .faq-section .accordion-button {
-            background-color: #2D4A53;
+            background-color: var(--color-accent);
             color: #fff;
             font-weight: 600;
         }
         .faq-section .accordion-button:not(.collapsed) {
-            color: #698180;
-            background-color: #132E35;
+            color: #fff;
+            background-color: var(--color-secondary-dark);
             box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
         }
         .faq-section .accordion-body {
-            color: #AFB3B7;
-            background-color: #132E35;
+            color: var(--color-text-light);
+            background-color: var(--color-card-bg);
         }
         .faq-section .accordion-button::after {
-            filter: invert(100%); /* Para que el icono sea blanco o visible */
+            filter: invert(100%);
         }
         .faq-section .accordion-button:not(.collapsed)::after {
-            filter: invert(50%) sepia(100%) saturate(2000%) hue-rotate(160deg) brightness(80%); /* Para que el icono cambie de color al expandir */
+            filter: invert(0%); /* Vuelve a normal al expandir para contraste */
+        }
+
+        /* Estilos para tabla comparativa */
+        .comparison-table-img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Estilos para métricas de prueba */
+        .metric-card {
+            background-color: var(--color-card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .metric-card h4 {
+            color: var(--color-accent);
+            margin-bottom: 10px;
+        }
+        .metric-card p {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0;
         }
 
         /* Media query for larger screens to make charts smaller */
         @media (min-width: 992px) {
             .chart-container {
-                width: 50%; /* Smaller width for PCs, reduced from 60% */
+                width: 50%;
             }
         }
         /* Media query for smaller screens specifically for chart axis labels */
         @media (max-width: 768px) {
             .chart-container h2 {
-                font-size: 1.1em; /* Make chart titles slightly smaller on mobile */
+                font-size: 1.1em;
             }
-            /* Specific adjustments for problematic chart (chart5) */
             #chart5 {
-                font-size: 0.7em; /* Reduce font size of labels inside chart if needed */
+                font-size: 0.7em;
             }
         }
     </style>
@@ -323,7 +343,7 @@
 <header>
     <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">ASG</a>
+            <a class="navbar-brand fw-bold" href="#inicio">ASG</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -338,11 +358,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#datos-y-encuestas">Datos y Encuestas</a>
                     </li>
-                     <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="#preguntas-frecuentes">Preguntas Frecuentes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="portfolio.html">Análisis de Producto</a>
+                        <a class="nav-link" href="#" onclick="mostrarSeccion('analisis-producto')">Análisis de Producto</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
@@ -404,7 +424,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="company-info mx-auto text-start">
-                        <p>En ASG, nuestra misión es redefinir la seguridad del hogar. Nucestro equipo se inspiró en la necesidad crítica de prevenir accidentes por fugas de gas, a menudo con consecuencias devastadoras. Nos propusimos crear una solución innovadora que no solo alertara, sino que actuara proactivamente para proteger a las familias.</p>
+                        <p>En ASG, nuestra misión es redefinir la seguridad del hogar. Nuestro equipo se inspiró en la necesidad crítica de prevenir accidentes por fugas de gas, a menudo con consecuencias devastadoras. Nos propusimos crear una solución innovadora que no solo alertara, sino que actuara proactivamente para proteger a las familias.</p>
                         <p>Desde nuestros inicios en Río Tercero, Córdoba, hemos estado comprometidos con la excelencia y la tranquilidad de nuestros usuarios. Cada dispositivo ASG es el resultado de investigación, desarrollo y un profundo entendimiento de las necesidades de seguridad en el hogar moderno. Estamos orgullosos de ofrecer una tecnología que pone la seguridad de tu familia en primer lugar, con soluciones inteligentes y accesibles.</p>
                     </div>
                 </div>
@@ -463,7 +483,7 @@
                             <i class="fas fa-chart-pie mb-3"></i>
                             <h4 class="card-title">Estadísticas Clave</h4>
                             <p class="card-text">Descubre la importancia de la seguridad en el hogar con datos y gráficos sobre incidentes por fugas de gas en Argentina.</p>
-                            <a href="#charts-section" class="btn btn-custom mt-3">Ver Gráficos de Impacto</a>
+                            <a href="#" class="btn btn-custom mt-3" onclick="mostrarSeccion('charts-section')">Ver Gráficos de Impacto</a>
                         </div>
                     </div>
                 </div>
@@ -485,7 +505,7 @@
                             <i class="fas fa-chart-bar mb-3"></i>
                             <h4 class="card-title">Conclusión de Encuestas</h4>
                             <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta, y un resumen de nuestras encuestas de mercado.</p>
-                            <a href="#conclusion-encuestas" class="btn btn-custom mt-3" onclick="mostrarConclusionEncuestas()">Ver Conclusión</a>
+                            <a href="#" class="btn btn-custom mt-3" onclick="mostrarSeccion('conclusion-encuestas')">Ver Conclusión</a>
                         </div>
                     </div>
                 </div>
@@ -495,7 +515,7 @@
                             <i class="fas fa-comments mb-3"></i>
                             <h4 class="card-title">Opiniones de Usuarios (Imágenes)</h4>
                             <p class="card-text">Visualiza las respuestas clave de los participantes en nuestro formulario de encuestas.</p>
-                            <a href="#opiniones-usuarios-imagenes" onclick="mostrarOpiniones()" class="btn btn-custom mt-3">Ver Imágenes de Encuestas</a>
+                            <a href="#" onclick="mostrarSeccion('opiniones-usuarios-imagenes')" class="btn btn-custom mt-3">Ver Imágenes de Encuestas</a>
                         </div>
                     </div>
                 </div>
@@ -503,56 +523,7 @@
         </div>
     </section>
 
-    <section class="py-5" id="opiniones-usuarios-imagenes">
-        <div class="container">
-            <h2 class="section-title">Análisis del Mercado: Respuestas de Encuesta en Imágenes</h2>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 005305.png" alt="Captura de opinión 1" class="img-fluid">
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 005313.png" alt="Captura de opinión 2" class="img-fluid">
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 010814.png" alt="Captura de opinión 3" class="img-fluid">
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content="center">
-                    <img src="Captura de pantalla 2025-05-21 005329.png" alt="Captura de opinión 4" class="img-fluid">
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 005337.png" alt="Captura de opinión 5" class="img-fluid">
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 005355.png" alt="Captura de opinión 6" class="img-fluid">
-                </div>
-            </div>
-            <button onclick="ocultarOpiniones()" class="btn btn-custom mt-3">Ocultar Sección</button>
-        </div>
-    </section>
-
-    <section class="py-5" id="conclusion-encuestas">
-        <div class="container">
-            <h2 class="section-title">Conclusión de Encuestas de Mercado</h2>
-            <div class="company-info mx-auto text-start">
-                <h3>Sobre el Producto y su Utilidad:</h3>
-                <p>La mayoría de los encuestados considera que el producto es útil, con un 41.7% que lo ve como tal y un 8.3% que además lo usaría en su vida cotidiana. Sin embargo, un 16.7% lo considera útil pero no lo utilizaría, y otro 16.7% cree que el producto necesita mejoras. Existe también una pequeña porción (8.3%) que no lo considera útil o que propone añadirle conectividad 4G. Esto sugiere que, si bien hay una base de aceptación, hay aspectos importantes a mejorar para aumentar la adopción y satisfacción general.</p>
-
-                <h3>Preferencias de Notificación:</h3>
-                <p>Existe una clara preferencia por recibir notificaciones del dispositivo en una aplicación móvil, con un abrumador 91.7% de los encuestados que respondieron afirmativamente a esta opción. Solo un 8.3% prefiere no recibirlas en una app móvil. Esto indica que el desarrollo de una aplicación móvil para las notificaciones sería altamente valorado.</p>
-
-                <h3>Disposición a Pagar:</h3>
-                <p>La mitad de los encuestados (50%) estaría dispuesto a pagar entre 100 y 200 USD por el dispositivo. Un 41.7% pagaría menos de 100 USD, mientras que solo un 8.3% estaría dispuesto a pagar más de 200 USD. Esto sugiere que el rango de precio óptimo para el dispositivo se encuentra entre los 100 y 200 USD.</p>
-
-                <h3>Perfil del Encuestado (Ubicación y Edad):</h3>
-                <p>La mayoría de los encuestados (83.3%) reside en casas, mientras que un 8.3% vive en departamentos y otro 8.3% en pensiones. En cuanto a la edad, el grupo demográfico más grande (66.7%) tiene entre 18 y 25 años. Otros rangos de edad representados son menos de 18 años (16.7%), 26 a 40 años (8.3%) y más de 60 años (8.3%). Este dato es crucial para orientar las estrategias de marketing y desarrollo del producto hacia el público objetivo principal.</p>
-
-                <p class="lead mt-4">En resumen, el producto tiene un buen potencial de utilidad, pero requiere mejoras y una fuerte integración con una aplicación móvil. El precio ideal se encuentra en el rango de 100 a 200 USD, y el público objetivo principal se sitúa entre los 18 y 25 años, mayoritariamente residentes en casas.</p>
-                <button onclick="ocultarConclusionEncuestas()" class="btn btn-custom mt-3">Ocultar Conclusión</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="charts-section">
+    <section class="py-5 charts-section-full" id="charts-section">
         <div class="container">
             <h2 class="section-title">Gráficos sobre Incidentes de Gas</h2>
 
@@ -586,7 +557,172 @@
                 <h2>6. Factores Contribuyentes a Incidentes de CO (2023)</h2>
                 <canvas id="chart6"></canvas>
             </div>
+            <div class="text-center">
+                <button onclick="ocultarSeccion('charts-section')" class="btn btn-custom mt-3">Ocultar Gráficos</button>
+            </div>
+        </div>
+    </section>
 
+    <section class="py-5" id="opiniones-usuarios-imagenes">
+        <div class="container">
+            <h2 class="section-title">Análisis del Mercado: Respuestas de Encuesta en Imágenes</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 005305.png" alt="Captura de opinión 1" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 005313.png" alt="Captura de opinión 2" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 010814.png" alt="Captura de opinión 3" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 005329.png" alt="Captura de opinión 4" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 005337.png" alt="Captura de opinión 5" class="img-fluid">
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
+                    <img src="Captura de pantalla 2025-05-21 005355.png" alt="Captura de opinión 6" class="img-fluid">
+                </div>
+            </div>
+            <div class="text-center">
+                <button onclick="ocultarSeccion('opiniones-usuarios-imagenes')" class="btn btn-custom mt-3">Ocultar Sección</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="conclusion-encuestas">
+        <div class="container">
+            <h2 class="section-title">Conclusión de Encuestas de Mercado</h2>
+            <div class="company-info mx-auto text-start">
+                <h3>Sobre el Producto y su Utilidad:</h3>
+                <p>La mayoría de los encuestados considera que el producto es útil, con un 41.7% que lo ve como tal y un 8.3% que además lo usaría en su vida cotidiana. Sin embargo, un 16.7% lo considera útil pero no lo utilizaría, y otro 16.7% cree que el producto necesita mejoras. Existe también una pequeña porción (8.3%) que no lo considera útil o que propone añadirle conectividad 4G. Esto sugiere que, si bien hay una base de aceptación, hay aspectos importantes a mejorar para aumentar la adopción y satisfacción general.</p>
+
+                <h3>Preferencias de Notificación:</h3>
+                <p>Existe una clara preferencia por recibir notificaciones del dispositivo en una aplicación móvil, con un abrumador 91.7% de los encuestados que respondieron afirmativamente a esta opción. Solo un 8.3% prefiere no recibirlas en una app móvil. Esto indica que el desarrollo de una aplicación móvil para las notificaciones sería altamente valorado.</p>
+
+                <h3>Disposición a Pagar:</h3>
+                <p>La mitad de los encuestados (50%) estaría dispuesto a pagar entre 100 y 200 USD por el dispositivo. Un 41.7% pagaría menos de 100 USD, mientras que solo un 8.3% estaría dispuesto a pagar más de 200 USD. Esto sugiere que el rango de precio óptimo para el dispositivo se encuentra entre los 100 y 200 USD.</p>
+
+                <h3>Perfil del Encuestado (Ubicación y Edad):</h3>
+                <p>La mayoría de los encuestados (83.3%) reside en casas, mientras que un 8.3% vive en departamentos y otro 8.3% en pensiones. En cuanto a la edad, el grupo demográfico más grande (66.7%) tiene entre 18 y 25 años. Otros rangos de edad representados son menos de 18 años (16.7%), 26 a 40 años (8.3%) y más de 60 años (8.3%). Este dato es crucial para orientar las estrategias de marketing y desarrollo del producto hacia el público objetivo principal.</p>
+
+                <p class="lead mt-4">En resumen, el producto tiene un buen potencial de utilidad, pero requiere mejoras y una fuerte integración con una aplicación móvil. El precio ideal se encuentra en el rango de 100 a 200 USD, y el público objetivo principal se sitúa entre los 18 y 25 años, mayoritariamente residentes en casas.</p>
+            </div>
+            <div class="text-center">
+                <button onclick="ocultarSeccion('conclusion-encuestas')" class="btn btn-custom mt-3">Ocultar Conclusión</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="analisis-producto">
+        <div class="container">
+            <h2 class="section-title">Análisis Detallado y Conclusiones del Producto</h2>
+            <div class="company-info mx-auto text-start">
+                <h3 class="text-center mb-4">Tabla de Comparación con la Competencia</h3>
+                <div class="text-center mb-5">
+                    <img src="Captura de pantalla 2025-06-11 095451.jpg" alt="Tabla comparativa de la competencia" class="img-fluid comparison-table-img">
+                </div>
+
+                <h3>1) ¿En qué se diferencia nuestro producto de la competencia?</h3>
+                <p>Nuestro detector de gas ASG integra funciones únicas y esenciales en un solo sistema, ofreciendo una protección superior:</p>
+                <ul>
+                    <li>**Detección de gas en tiempo real:** Sensores de alta precisión que identifican rápidamente la presencia de gas.</li>
+                    <li>**Activación de alarma sonora inmediata:** Alerta audible potente para notificar a los ocupantes del hogar.</li>
+                    <li>**Sistema automático de cierre de válvula:** Característica clave que previene fugas prolongadas al cortar el suministro de gas de forma instantánea.</li>
+                    <li>**Control y monitoreo remoto desde una aplicación móvil:** Ofrece tranquilidad al usuario, permitiendo gestionar y verificar el estado del sistema desde cualquier lugar.</li>
+                </ul>
+                <p>A diferencia de muchas soluciones en el mercado, ASG no se limita a solo detectar una fuga, sino que actúa proactivamente para mitigar el peligro, ofreciendo una seguridad integral.</p>
+
+                <h3>2) ¿Por qué los clientes elegirán nuestro producto en lugar de la competencia?</h3>
+                <ul>
+                    <li>**Costo-Beneficio Superior:** Ofrecemos una solución más completa (detección + prevención activa) a un costo competitivo, especialmente frente a marcas importadas que suelen carecer de la función de corte automático.</li>
+                    <li>**Soporte Local y Personalizado:** Brindamos atención directa y soporte técnico en Argentina, adaptándonos a las necesidades y normativas locales.</li>
+                    <li>**Seguridad Proactiva para el Hogar:** Ideal para familias preocupadas por la seguridad que buscan no solo ser alertadas, sino que el sistema tome medidas inmediatas.</li>
+                    <li>**Tecnología Adaptada al Contexto Local:** Desarrollado con un entendimiento profundo del mercado argentino, ofreciendo tecnología útil sin sobreprecios.</li>
+                </ul>
+
+                <h3>3) ¿Qué características de nuestro producto ofrecen ventajas competitivas?</h3>
+                <ul>
+                    <li>**Cierre Automático de Válvula:** Esta es nuestra principal ventaja, ya que pocas o ninguna opción económica del mercado incluye esta función crítica de forma integrada.</li>
+                    <li>**Conectividad con Aplicación Móvil (IoT):** Permite control remoto, visualización de niveles de gas y recepción de alertas en el celular, brindando tranquilidad incluso fuera de casa.</li>
+                    <li>**Facilidad de Instalación y Mantenimiento:** Diseñado para una implementación sencilla y un mantenimiento mínimo.</li>
+                    <li>**Potencial de Integración:** Capacidad de futura integración con otros sistemas de hogar inteligente.</li>
+                    <li>**Opciones de Personalización:** Posibilidad de adaptar el embalaje y la marca para distribuidores y alianzas estratégicas.</li>
+                </ul>
+
+                <h3>4) ¿Qué beneficios ofreceremos que actualmente no tiene el cliente con otras soluciones?</h3>
+                <ul>
+                    <li>**Prevención Activa Inmediata:** La principal ventaja es que el sistema no solo detecta el gas, sino que corta la fuga automáticamente y sin intervención humana.</li>
+                    <li>**Tranquilidad Absoluta:** Recibe alertas en tu celular al instante, permitiéndote estar informado y tomar acción, incluso si estás lejos de casa.</li>
+                    <li>**Protección Inteligente y Proactiva:** El sistema toma decisiones por sí mismo para proteger a tu familia, minimizando el tiempo de exposición a una fuga.</li>
+                    <li>**Monitoreo Unificado:** Posible expansión futura para controlar múltiples sensores y dispositivos de seguridad desde una única aplicación.</li>
+                    <li>**Atención al Cliente Directa:** Acceso rápido y eficiente a soporte local para cualquier duda o inconveniente.</li>
+                </ul>
+            </div>
+            <div class="text-center mt-5">
+                <button onclick="mostrarSeccion('pruebas-resultados')" class="btn btn-custom mx-2">Ver Pruebas y Resultados</button>
+                <button onclick="mostrarSeccion('casos-uso')" class="btn btn-custom mx-2">Ver Casos de Uso</button>
+                <button onclick="ocultarSeccion('analisis-producto')" class="btn btn-custom mt-3">Ocultar Análisis de Producto</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="pruebas-resultados">
+        <div class="container">
+            <h2 class="section-title">Resultados de Pruebas y Rendimiento</h2>
+            <div class="company-info mx-auto text-start">
+                <p>Hemos realizado pruebas exhaustivas para asegurar la fiabilidad y eficacia de ASG. A continuación, se presentan algunas métricas clave:</p>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="metric-card">
+                            <h4>Tiempo de Detección Promedio</h4>
+                            <p>~3 segundos</p>
+                            <small>Desde la detección hasta la alerta</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric-card">
+                            <h4>Tiempo de Cierre de Válvula</h4>
+                            <p>~5 segundos</p>
+                            <small>Una vez detectada la fuga crítica</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric-card">
+                            <h4>Precisión del Sensor</h4>
+                            <p>99.5%</p>
+                            <small>En condiciones de laboratorio</small>
+                        </div>
+                    </div>
+                </div>
+                <p>Estas métricas demuestran la rápida respuesta y alta fiabilidad de ASG para proteger tu hogar.</p>
+            </div>
+            <div class="text-center mt-5">
+                <button onclick="ocultarSeccion('pruebas-resultados')" class="btn btn-custom mt-3">Ocultar Pruebas y Resultados</button>
+                <button onclick="mostrarSeccion('analisis-producto')" class="btn btn-custom mt-3">Volver al Análisis de Producto</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="casos-uso">
+        <div class="container">
+            <h2 class="section-title">Casos de Uso de ASG: ¿Quién se Beneficia?</h2>
+            <div class="company-info mx-auto text-start">
+                <p>ASG es una solución de seguridad indispensable para diversos perfiles de hogares y situaciones:</p>
+                <ul>
+                    <li>**Familias con niños pequeños:** Proporciona una capa adicional de seguridad, reaccionando rápidamente ante cualquier incidente.</li>
+                    <li>**Adultos mayores viviendo solos:** Ofrece tranquilidad a ellos y a sus familiares, sabiendo que hay un sistema automático de protección.</li>
+                    <li>**Propiedades de alquiler o vacacionales:** Permite a los propietarios monitorear la seguridad del gas de forma remota y actuar ante cualquier evento.</li>
+                    <li>**Hogares con electrodomésticos a gas antiguos:** Donde el riesgo de fugas puede ser mayor.</li>
+                    <li>**Personas que pasan mucho tiempo fuera de casa:** La alerta y el control remoto brindan una paz mental invaluable.</li>
+                </ul>
+            </div>
+            <div class="text-center mt-5">
+                <button onclick="ocultarSeccion('casos-uso')" class="btn btn-custom mt-3">Ocultar Casos de Uso</button>
+                <button onclick="mostrarSeccion('analisis-producto')" class="btn btn-custom mt-3">Volver al Análisis de Producto</button>
+            </div>
         </div>
     </section>
 
@@ -658,7 +794,6 @@
                     <p><strong>Email:</strong> <a href="mailto:againsafegas.ascii@gmail.com" class="text-light">againsafegas.ascii@gmail.com</a></p>
                     <p><strong>Sitio Web:</strong> <a href="https://www.gassafe.com" target="_blank" class="text-light">www.AgainSafeGas.com</a></p>
                 </address>
-                <a href="portfolio.html" class="btn btn-custom mt-3">Descubre el Análisis de Producto</a>
             </div>
         </div>
     </section>
@@ -671,11 +806,52 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    // Array de IDs de todas las secciones que deben ser manejadas por la visibilidad
+    const controlableSections = [
+        'charts-section',
+        'opiniones-usuarios-imagenes',
+        'conclusion-encuestas',
+        'analisis-producto',
+        'pruebas-resultados',
+        'casos-uso'
+    ];
+
+    // Función para mostrar una sección y ocultar las demás (si es necesario)
+    function mostrarSeccion(sectionIdToShow) {
+        controlableSections.forEach(id => {
+            const section = document.getElementById(id);
+            if (section) {
+                if (id === sectionIdToShow) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            }
+        });
+
+        // Desplazamiento suave a la sección mostrada
+        const offset = $('.navbar').outerHeight();
+        $('html, body').animate({
+            scrollTop: $('#' + sectionIdToShow).offset().top - offset
+        }, 800);
+    }
+
+    // Función para ocultar una sección específica
+    function ocultarSeccion(sectionIdToHide) {
+        const section = document.getElementById(sectionIdToHide);
+        if (section) {
+            section.style.display = 'none';
+        }
+        // Puedes elegir a dónde volver después de ocultar. Por ejemplo, al inicio de "Datos y Encuestas".
+        const offset = $('.navbar').outerHeight();
+        $('html, body').animate({
+            scrollTop: $('#datos-y-encuestas').offset().top - offset
+        }, 800);
+    }
+
     $(document).ready(function(){
-        // Smooth scroll para enlaces internos
+        // Smooth scroll para enlaces internos (excluye los que tienen onclick para las secciones ocultas)
         $('a.nav-link, a.btn-custom').on('click', function(e) {
-            // Asegura que no se active el smooth scroll si el href es externo o si es el enlace a portfolio.html
-            // Modificado para excluir el enlace a 'portfolio.html' del smooth scroll interno
             const href = $(this).attr('href');
             if (href && href.startsWith('#') && $(this).attr('onclick') === undefined) {
                 e.preventDefault();
@@ -683,9 +859,7 @@
                 const offset = $('.navbar').outerHeight();
                 $('html, body').animate({
                     scrollTop: $(hash).offset().top - offset
-                }, 800, function(){
-                    // window.location.hash = hash; // Opcional: para actualizar la URL
-                });
+                }, 800);
             }
         });
 
@@ -693,65 +867,38 @@
         $(window).on('load', function() {
             $('#explosionOverlay').addClass('fade-out');
         });
+
+        // Inicializar todas las secciones controlables como ocultas al cargar
+        controlableSections.forEach(id => {
+            const section = document.getElementById(id);
+            if (section) {
+                section.style.display = 'none';
+            }
+        });
     });
 
-    // Función para mostrar la sección de opiniones (imágenes)
-    function mostrarOpiniones() {
-        $('#opiniones-usuarios-imagenes').css('display', 'block');
-        const offset = $('.navbar').outerHeight();
-        $('html, body').animate({
-            scrollTop: $('#opiniones-usuarios-imagenes').offset().top - offset
-        }, 800);
-    }
 
-    // Función para ocultar la sección de opiniones (imágenes)
-    function ocultarOpiniones() {
-        $('#opiniones-usuarios-imagenes').css('display', 'none');
-        const offset = $('.navbar').outerHeight();
-        $('html, body').animate({
-            scrollTop: $('#datos-y-encuestas').offset().top - offset
-        }, 800); // Vuelve a la sección de Datos y Encuestas
-    }
-
-    // Función para mostrar la sección de la conclusión de encuestas
-    function mostrarConclusionEncuestas() {
-        $('#conclusion-encuestas').css('display', 'block');
-        const offset = $('.navbar').outerHeight();
-        $('html, body').animate({
-            scrollTop: $('#conclusion-encuestas').offset().top - offset
-        }, 800);
-    }
-
-    // Función para ocultar la sección de la conclusión de encuestas
-    function ocultarConclusionEncuestas() {
-        $('#conclusion-encuestas').css('display', 'none');
-        const offset = $('.navbar').outerHeight();
-        $('html, body').animate({
-            scrollTop: $('#datos-y-encuestas').offset().top - offset
-        }, 800);
-    }
-
-    // Paleta de colores más vibrante y consistente
-    const colors = {
-        blue: 'rgba(54, 162, 235, 0.8)',      // Azul
-        green: 'rgba(75, 192, 192, 0.8)',     // Verde azulado
-        purple: 'rgba(153, 102, 255, 0.8)',    // Morado
-        orange: 'rgba(255, 159, 64, 0.8)',     // Naranja
-        red: 'rgba(255, 99, 132, 0.8)',        // Rojo/Rosa
-        yellow: 'rgba(255, 206, 86, 0.8)',    // Amarillo
-        darkBlue: 'rgba(45, 74, 83, 0.8)',    // Azul oscuro (de tu tema)
-        lightGray: 'rgba(175, 179, 183, 0.8)' // Gris claro (de tu tema)
+    // Paleta de colores para Chart.js (ajustada a los nuevos tonos azules)
+    const chartColors = {
+        blue: 'rgba(0, 123, 255, 0.8)',      // Accent blue
+        green: 'rgba(40, 167, 69, 0.8)',     // Darker green
+        purple: 'rgba(102, 16, 242, 0.8)',    // Darker purple
+        orange: 'rgba(253, 126, 20, 0.8)',     // Darker orange
+        red: 'rgba(220, 53, 69, 0.8)',        // Darker red
+        yellow: 'rgba(255, 193, 7, 0.8)',    // Darker yellow
+        darkBlue: 'rgba(0, 44, 92, 0.8)',    // var(--color-secondary-dark)
+        lightGray: 'rgba(160, 166, 176, 0.8)' // var(--color-text-muted)
     };
 
-    const borderColors = {
-        blue: 'rgba(54, 162, 235, 1)',
-        green: 'rgba(75, 192, 192, 1)',
-        purple: 'rgba(153, 102, 255, 1)',
-        orange: 'rgba(255, 159, 64, 1)',
-        red: 'rgba(255, 99, 132, 1)',
-        yellow: 'rgba(255, 206, 86, 1)',
-        darkBlue: 'rgba(45, 74, 83, 1)',
-        lightGray: 'rgba(175, 179, 183, 1)'
+    const chartBorderColors = {
+        blue: 'rgba(0, 123, 255, 1)',
+        green: 'rgba(40, 167, 69, 1)',
+        purple: 'rgba(102, 16, 242, 1)',
+        orange: 'rgba(253, 126, 20, 1)',
+        red: 'rgba(220, 53, 69, 1)',
+        yellow: 'rgba(255, 193, 7, 1)',
+        darkBlue: 'rgba(0, 44, 92, 1)',
+        lightGray: 'rgba(160, 166, 176, 1)'
     };
 
 
@@ -759,7 +906,7 @@
     const titleOptions = {
         display: true,
         font: {
-            size: 16, // Ligeramente más pequeño
+            size: 16,
             weight: 'bold',
             family: 'Poppins, sans-serif'
         },
@@ -771,7 +918,7 @@
         y: {
             beginAtZero: true,
             grid: {
-                color: 'rgba(0, 0, 0, 0.08)', // Líneas de cuadrícula más sutiles
+                color: 'rgba(0, 0, 0, 0.08)',
                 drawBorder: false
             },
             ticks: {
@@ -784,7 +931,7 @@
                 display: true,
                 color: '#555',
                 font: {
-                    size: 12, // Ligeramente más pequeño
+                    size: 12,
                     weight: 'bold',
                     family: 'Poppins, sans-serif'
                 }
@@ -792,7 +939,7 @@
         },
         x: {
             grid: {
-                display: false, // Ocultar líneas de cuadrícula verticales
+                display: false,
                 drawBorder: false
             },
             ticks: {
@@ -805,7 +952,7 @@
                 display: true,
                 color: '#555',
                 font: {
-                    size: 12, // Ligeramente más pequeño
+                    size: 12,
                     weight: 'bold',
                     family: 'Poppins, sans-serif'
                 }
@@ -815,14 +962,14 @@
 
     // Configuración base para tooltips
     const tooltipOptions = {
-        backgroundColor: colors.darkBlue, // Usar un color oscuro del tema
+        backgroundColor: chartColors.darkBlue,
         titleFont: {
-            size: 13, // Ligeramente más pequeño
+            size: 13,
             weight: 'bold',
             family: 'Poppins, sans-serif'
         },
         bodyFont: {
-            size: 11, // Ligeramente más pequeño
+            size: 11,
             family: 'Poppins, sans-serif'
         },
         padding: 10,
@@ -838,14 +985,14 @@
             datasets: [{
                 label: 'Número de Incidentes',
                 data: [216, 253],
-                backgroundColor: [colors.green, colors.purple],
-                borderColor: [borderColors.green, borderColors.purple],
+                backgroundColor: [chartColors.green, chartColors.purple],
+                borderColor: [chartBorderColors.green, chartBorderColors.purple],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: true, // Mantener aspecto para hacerlos más pequeños consistentemente
+            maintainAspectRatio: true,
             animation: {
                 duration: 1000,
                 easing: 'easeOutQuart'
@@ -873,8 +1020,8 @@
             datasets: [{
                 label: 'Número de Conexiones Detectadas',
                 data: [424, 636, 544, 1599],
-                backgroundColor: [colors.blue, colors.orange, colors.red, colors.green],
-                borderColor: [borderColors.blue, borderColors.orange, borderColors.red, borderColors.green],
+                backgroundColor: [chartColors.blue, chartColors.orange, chartColors.red, chartColors.green],
+                borderColor: [chartBorderColors.blue, chartBorderColors.orange, chartBorderColors.red, chartBorderColors.green],
                 borderWidth: 1
             }]
         },
@@ -908,8 +1055,8 @@
             datasets: [{
                 label: 'Número de Incidentes',
                 data: [55, 35, 30],
-                backgroundColor: [colors.red, colors.yellow, colors.purple],
-                borderColor: [borderColors.red, borderColors.yellow, borderColors.purple],
+                backgroundColor: [chartColors.red, chartColors.yellow, chartColors.purple],
+                borderColor: [chartBorderColors.red, chartBorderColors.yellow, chartBorderColors.purple],
                 borderWidth: 1
             }]
         },
@@ -953,8 +1100,8 @@
             datasets: [{
                 label: 'Número de Casos',
                 data: [284, 465],
-                backgroundColor: [colors.orange, colors.blue],
-                borderColor: [borderColors.orange, borderColors.blue],
+                backgroundColor: [chartColors.orange, chartColors.blue],
+                borderColor: [chartBorderColors.orange, chartBorderColors.blue],
                 borderWidth: 1
             }]
         },
@@ -985,15 +1132,15 @@
         type: 'bar',
         data: {
             labels: [
-                'Est. anual (Min. Salud/Prensa)', // Versión más corta para móvil
-                'Prom. anual (Morgue Judicial 2018-2021)', // Versión más corta para móvil
-                'Total acum. 2019-May 2024 (Min. Salud)' // Versión más corta para móvil
+                'Est. anual (Min. Salud/Prensa)',
+                'Prom. anual (Morgue Judicial 2018-2021)',
+                'Total acum. 2019-May 2024 (Min. Salud)'
             ],
             datasets: [{
                 label: 'Número de Muertes',
-                data: [225, 22, 34], // 225 es el promedio del rango 200-250
-                backgroundColor: [colors.red, colors.lightGray, colors.green],
-                borderColor: [borderColors.red, borderColors.lightGray, borderColors.green],
+                data: [225, 22, 34],
+                backgroundColor: [chartColors.red, chartColors.lightGray, chartColors.green],
+                borderColor: [chartBorderColors.red, chartBorderColors.lightGray, chartBorderColors.green],
                 borderWidth: 1
             }]
         },
@@ -1019,11 +1166,11 @@
                 x: {
                     ...scalesOptions.x,
                     ticks: {
-                        autoSkip: false, // Permitir que Chart.js decida si salta etiquetas
-                        maxRotation: 45, // Rotación máxima permitida
-                        minRotation: 0, // Rotación mínima (puede ser 0 si hay espacio)
+                        autoSkip: false,
+                        maxRotation: 45,
+                        minRotation: 0,
                         font: {
-                            size: 10 // Tamaño de fuente más pequeño para etiquetas del eje X
+                            size: 10
                         }
                     }
                 }
@@ -1036,22 +1183,22 @@
     new Chart(ctx6, {
         type: 'pie',
         data: {
-            labels: ['Ventilación Inexistente', 'Calefones', 'Calefactores', 'Conductos Evac. Defectuosos', 'Ventilación Insuficiente'], // Etiquetas un poco más cortas
+            labels: ['Ventilación Inexistente', 'Calefones', 'Calefactores', 'Conductos Evac. Defectuosos', 'Ventilación Insuficiente'],
             datasets: [{
                 data: [24.4, 21.3, 21.3, 20.5, 15.4],
                 backgroundColor: [
-                    colors.red,
-                    colors.blue,
-                    colors.orange,
-                    colors.green,
-                    colors.purple
+                    chartColors.red,
+                    chartColors.blue,
+                    chartColors.orange,
+                    chartColors.green,
+                    chartColors.purple
                 ],
                 borderColor: [
-                    borderColors.red,
-                    borderColors.blue,
-                    borderColors.orange,
-                    borderColors.green,
-                    borderColors.purple
+                    chartBorderColors.red,
+                    chartBorderColors.blue,
+                    chartBorderColors.orange,
+                    chartBorderColors.green,
+                    chartBorderColors.purple
                 ],
                 borderWidth: 1
             }]
@@ -1084,10 +1231,10 @@
                     }
                 },
                 legend: {
-                    position: 'bottom', // Mover la leyenda a la parte inferior para más espacio
+                    position: 'bottom',
                     labels: {
                         font: {
-                            size: 10 // Tamaño de fuente más pequeño para la leyenda
+                            size: 10
                         }
                     }
                 }
