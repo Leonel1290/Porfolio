@@ -3,7 +3,7 @@
     --color-primary-dark: #1a1a1a;   /* Negro casi puro para fondos principales */
     --color-secondary-dark: #333333; /* Gris oscuro para fondos de secciones */
     --color-tertiary-dark: #4d4d4d;  /* Gris medio-oscuro */
-    --color-light: #ce0000;          /* Gris muy claro para texto principal y fondos claros */
+    --color-light: #f0f0f0;          /* Gris muy claro para texto principal y fondos claros */
     --color-dark-text: #1a1a1a;      /* Negro para texto en fondos claros */
     --color-muted-text: #b3b3b3;     /* Gris para texto secundario */
     --color-accent: #666666;        /* Gris medio para acentos, botones */
