@@ -11,332 +11,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
-    <style>
-        :root {
-            --color-primary-dark: #001f3f; /* Azul muy oscuro, casi negro */
-            --color-secondary-dark: #002c5c; /* Un azul oscuro intermedio */
-            --color-accent: #007bff; /* Un azul vibrante para acentos (botones, iconos) */
-            --color-text-light: #e0e6ef; /* Blanco azulado para texto */
-            --color-text-muted: #a0a6b0; /* Gris azulado para texto secundario */
-            --color-card-bg: #003a72; /* Un azul oscuro para fondos de cajas */
-        }
 
-        body {
-            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-secondary-dark));
-            font-family: 'Poppins', sans-serif;
-            color: var(--color-text-light);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .navbar {
-            backdrop-filter: blur(10px);
-            background-color: rgba(0, 31, 63, 0.8); /* Usar --color-primary-dark con transparencia */
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .navbar-brand, .nav-link {
-            color: var(--color-text-light);
-        }
-
-        .navbar-brand:hover, .nav-link:hover {
-            color: var(--color-accent);
-        }
-
-        .btn-custom {
-            background-color: var(--color-accent);
-            border: none;
-            color: #fff;
-            font-weight: 600;
-            border-radius: 30px;
-            padding: 0.6rem 1.6rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-custom:hover {
-            background-color: #0056b3; /* Un azul un poco más oscuro al hacer hover */
-        }
-
-        .hero {
-            padding: 6rem 0;
-            position: relative;
-            padding-top: 80px;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            color: #fff;
-            font-weight: 700;
-        }
-
-        .hero-line {
-            width: 80px;
-            height: 4px;
-            background-color: var(--color-accent);
-            margin: 1rem 0 1.5rem;
-        }
-
-        .hero-img {
-            max-width: 100%;
-            height: auto;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .features {
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-        }
-
-        .features i {
-            font-size: 3rem;
-            color: var(--color-accent);
-        }
-
-        .features h3 {
-            color: #fff;
-        }
-
-        .company-info {
-            background-color: var(--color-card-bg);
-            border-radius: 10px;
-            padding: 2rem;
-            color: var(--color-text-light);
-        }
-        .company-info p {
-            color: var(--color-text-light);
-        }
-
-        .section-title {
-            color: #fff;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        footer {
-            background-color: var(--color-primary-dark);
-            text-align: center;
-            padding: 1rem;
-            font-size: 0.9rem;
-            margin-top: auto;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--color-text-light); /* Asegurar que los enlaces tengan color */
-        }
-        a:hover {
-            color: var(--color-accent);
-        }
-
-        .explosion-animation-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--color-primary-dark);
-            z-index: 1001;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 1;
-            transition: opacity 1s ease-out 1.5s;
-        }
-
-        .explosion-animation-overlay.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        main {
-            flex-grow: 1;
-        }
-
-        /* Estilos específicos para la sección de gráficos y análisis */
-        .graphs-section .card {
-            background-color: var(--color-secondary-dark);
-            border: 1px solid var(--color-card-bg);
-            color: var(--color-text-light);
-            text-align: center;
-        }
-        .graphs-section .card-title {
-            color: #fff;
-        }
-        .graphs-section .card-body i {
-            font-size: 4rem;
-            color: var(--color-accent);
-            margin-bottom: 1rem;
-        }
-
-        /* Contenedores de gráficos individuales */
-        .chart-container {
-            width: 80%;
-            margin: 40px auto;
-            background-color: #fff; /* Fondo blanco para los gráficos */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .chart-container h2 {
-            text-align: center;
-            color: #333; /* Color oscuro para títulos de gráficos */
-            font-size: 1.5rem;
-        }
-        .chart-note {
-            font-size: 0.9em;
-            color: #666;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        /* Estilos para la sección de opiniones (imágenes) y conclusiones */
-        #opiniones-usuarios-imagenes, #conclusion-encuestas, #analisis-producto, #pruebas-resultados, #casos-uso {
-            display: none; /* Inicialmente oculto */
-            background-color: var(--color-secondary-dark);
-            padding: 30px;
-            margin: 20px auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            max-width: 1000px; /* Ancho máximo para el contenido principal */
-        }
-
-        #opiniones-usuarios-imagenes .row {
-            justify-content: center;
-        }
-
-        #opiniones-usuarios-imagenes img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            object-fit: contain;
-        }
-
-        /* Ajustes para pantallas pequeñas para imágenes */
-        @media (max-width: 767.98px) {
-            #opiniones-usuarios-imagenes img {
-                max-width: 90%;
-                margin-left: auto;
-                margin-right: auto;
-                display: block;
-            }
-        }
-
-        #opiniones-usuarios-imagenes button, #conclusion-encuestas button, #analisis-producto button, #pruebas-resultados button, #casos-uso button {
-            margin-top: 20px;
-        }
-
-        /* Estilos para el modelo 3D */
-        .model-container {
-            width: 100%;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        model-viewer {
-            width: 100%;
-            height: 100%;
-            background-color: var(--color-card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        /* Estilos para la sección de FAQ y Nuestra Historia */
-        .faq-section .accordion-item, .history-section .company-info {
-            background-color: var(--color-card-bg);
-            border: 1px solid var(--color-accent);
-            color: var(--color-text-light);
-        }
-        .faq-section .accordion-button {
-            background-color: var(--color-accent);
-            color: #fff;
-            font-weight: 600;
-        }
-        .faq-section .accordion-button:not(.collapsed) {
-            color: #fff;
-            background-color: var(--color-secondary-dark);
-            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
-        }
-        .faq-section .accordion-body {
-            color: var(--color-text-light);
-            background-color: var(--color-card-bg);
-        }
-        .faq-section .accordion-button::after {
-            filter: invert(100%);
-        }
-        .faq-section .accordion-button:not(.collapsed)::after {
-            filter: invert(0%); /* Vuelve a normal al expandir para contraste */
-        }
-
-        /* Estilos para tabla comparativa */
-        .comparison-table-img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        /* Estilos para métricas de prueba */
-        .metric-card {
-            background-color: var(--color-card-bg);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .metric-card h4 {
-            color: var(--color-accent);
-            margin-bottom: 10px;
-        }
-        .metric-card p {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0;
-        }
-
-        /* Media query for larger screens to make charts smaller */
-        @media (min-width: 992px) {
-            .chart-container {
-                width: 50%;
-            }
-        }
-        /* Media query for smaller screens specifically for chart axis labels */
-        @media (max-width: 768px) {
-            .chart-container h2 {
-                font-size: 1.1em;
-            }
-            #chart5 {
-                font-size: 0.7em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="explosionOverlay" class="explosion-animation-overlay">
     <div class="explosion-image-container">
-        <p class="text-white">Cargando Portafolio ASG...</p>
+        <p class="text-light">Cargando Portafolio ASG...</p>
     </div>
 </div>
 
@@ -344,7 +28,7 @@
     <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#inicio">ASG</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -362,7 +46,7 @@
                         <a class="nav-link" href="#preguntas-frecuentes">Preguntas Frecuentes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="mostrarSeccion('analisis-producto')">Análisis de Producto</a>
+                        <a class="nav-link" href="#" onclick="mostrarSeccion('analisis-producto'); return false;">Análisis de Producto</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
@@ -374,7 +58,7 @@
 </header>
 
 <main>
-    <section class="hero" id="inicio">
+    <section class="hero d-flex align-items-center" id="inicio">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-start">
@@ -483,7 +167,7 @@
                             <i class="fas fa-chart-pie mb-3"></i>
                             <h4 class="card-title">Estadísticas Clave</h4>
                             <p class="card-text">Descubre la importancia de la seguridad en el hogar con datos y gráficos sobre incidentes por fugas de gas en Argentina.</p>
-                            <a href="#" class="btn btn-custom mt-3" onclick="mostrarSeccion('charts-section')">Ver Gráficos de Impacto</a>
+                            <a href="#" class="btn btn-primary btn-custom mt-3" onclick="mostrarSeccion('charts-section'); return false;">Ver Gráficos de Impacto</a>
                         </div>
                     </div>
                 </div>
@@ -493,7 +177,7 @@
                             <i class="fas fa-poll-h mb-3"></i>
                             <h4 class="card-title">Tu Opinión Importa</h4>
                             <p class="card-text">Ayúdanos a mejorar ASG participando en nuestras breves encuestas de satisfacción y sugerencias.</p>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nht_vAaWD5Uv3bZz2vhHqWbIlkj9GoHlcHy89J7Kn6EYDg/viewform?usp=header" target="_blank" class="btn btn-custom mt-3">Ir a la Encuesta (Formulario)</a>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nht_vAaWD5Uv3bZz2vhHqWbIlkj9GoHlcHy89J7Kn6EYDg/viewform?usp=header" target="_blank" class="btn btn-primary btn-custom mt-3">Ir a la Encuesta (Formulario)</a>
                         </div>
                     </div>
                 </div>
@@ -505,7 +189,7 @@
                             <i class="fas fa-chart-bar mb-3"></i>
                             <h4 class="card-title">Conclusión de Encuestas</h4>
                             <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta, y un resumen de nuestras encuestas de mercado.</p>
-                            <a href="#" class="btn btn-custom mt-3" onclick="mostrarSeccion('conclusion-encuestas')">Ver Conclusión</a>
+                            <a href="#" class="btn btn-primary btn-custom mt-3" onclick="mostrarSeccion('conclusion-encuestas'); return false;">Ver Conclusión</a>
                         </div>
                     </div>
                 </div>
@@ -515,7 +199,7 @@
                             <i class="fas fa-comments mb-3"></i>
                             <h4 class="card-title">Opiniones de Usuarios (Imágenes)</h4>
                             <p class="card-text">Visualiza las respuestas clave de los participantes en nuestro formulario de encuestas.</p>
-                            <a href="#" onclick="mostrarSeccion('opiniones-usuarios-imagenes')" class="btn btn-custom mt-3">Ver Imágenes de Encuestas</a>
+                            <a href="#" onclick="mostrarSeccion('opiniones-usuarios-imagenes'); return false;" class="btn btn-primary btn-custom mt-3">Ver Imágenes de Encuestas</a>
                         </div>
                     </div>
                 </div>
@@ -558,7 +242,7 @@
                 <canvas id="chart6"></canvas>
             </div>
             <div class="text-center">
-                <button onclick="ocultarSeccion('charts-section')" class="btn btn-custom mt-3">Ocultar Gráficos</button>
+                <button onclick="ocultarSeccion('charts-section'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Gráficos</button>
             </div>
         </div>
     </section>
@@ -587,7 +271,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <button onclick="ocultarSeccion('opiniones-usuarios-imagenes')" class="btn btn-custom mt-3">Ocultar Sección</button>
+                <button onclick="ocultarSeccion('opiniones-usuarios-imagenes'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Sección</button>
             </div>
         </div>
     </section>
@@ -611,7 +295,7 @@
                 <p class="lead mt-4">En resumen, el producto tiene un buen potencial de utilidad, pero requiere mejoras y una fuerte integración con una aplicación móvil. El precio ideal se encuentra en el rango de 100 a 200 USD, y el público objetivo principal se sitúa entre los 18 y 25 años, mayoritariamente residentes en casas.</p>
             </div>
             <div class="text-center">
-                <button onclick="ocultarSeccion('conclusion-encuestas')" class="btn btn-custom mt-3">Ocultar Conclusión</button>
+                <button onclick="ocultarSeccion('conclusion-encuestas'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Conclusión</button>
             </div>
         </div>
     </section>
@@ -662,9 +346,9 @@
                 </ul>
             </div>
             <div class="text-center mt-5">
-                <button onclick="mostrarSeccion('pruebas-resultados')" class="btn btn-custom mx-2">Ver Pruebas y Resultados</button>
-                <button onclick="mostrarSeccion('casos-uso')" class="btn btn-custom mx-2">Ver Casos de Uso</button>
-                <button onclick="ocultarSeccion('analisis-producto')" class="btn btn-custom mt-3">Ocultar Análisis de Producto</button>
+                <button onclick="mostrarSeccion('pruebas-resultados'); return false;" class="btn btn-primary btn-custom mx-2">Ver Pruebas y Resultados</button>
+                <button onclick="mostrarSeccion('casos-uso'); return false;" class="btn btn-primary btn-custom mx-2">Ver Casos de Uso</button>
+                <button onclick="ocultarSeccion('analisis-producto'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Análisis de Producto</button>
             </div>
         </div>
     </section>
@@ -700,8 +384,8 @@
                 <p>Estas métricas demuestran la rápida respuesta y alta fiabilidad de ASG para proteger tu hogar.</p>
             </div>
             <div class="text-center mt-5">
-                <button onclick="ocultarSeccion('pruebas-resultados')" class="btn btn-custom mt-3">Ocultar Pruebas y Resultados</button>
-                <button onclick="mostrarSeccion('analisis-producto')" class="btn btn-custom mt-3">Volver al Análisis de Producto</button>
+                <button onclick="ocultarSeccion('pruebas-resultados'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Pruebas y Resultados</button>
+                <button onclick="mostrarSeccion('analisis-producto'); return false;" class="btn btn-primary btn-custom mt-3">Volver al Análisis de Producto</button>
             </div>
         </div>
     </section>
@@ -720,8 +404,8 @@
                 </ul>
             </div>
             <div class="text-center mt-5">
-                <button onclick="ocultarSeccion('casos-uso')" class="btn btn-custom mt-3">Ocultar Casos de Uso</button>
-                <button onclick="mostrarSeccion('analisis-producto')" class="btn btn-custom mt-3">Volver al Análisis de Producto</button>
+                <button onclick="ocultarSeccion('casos-uso'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Casos de Uso</button>
+                <button onclick="mostrarSeccion('analisis-producto'); return false;" class="btn btn-primary btn-custom mt-3">Volver al Análisis de Producto</button>
             </div>
         </div>
     </section>
@@ -842,7 +526,7 @@
         if (section) {
             section.style.display = 'none';
         }
-        // Puedes elegir a dónde volver después de ocultar. Por ejemplo, al inicio de "Datos y Encuestas".
+        // Vuelve al inicio de "Datos y Encuestas" o a la sección principal de datos
         const offset = $('.navbar').outerHeight();
         $('html, body').animate({
             scrollTop: $('#datos-y-encuestas').offset().top - offset
@@ -851,10 +535,11 @@
 
     $(document).ready(function(){
         // Smooth scroll para enlaces internos (excluye los que tienen onclick para las secciones ocultas)
-        $('a.nav-link, a.btn-custom').on('click', function(e) {
+        $('a.nav-link, a.btn-primary').on('click', function(e) {
             const href = $(this).attr('href');
+            // Check if it's an internal link and not handled by 'onclick'
             if (href && href.startsWith('#') && $(this).attr('onclick') === undefined) {
-                e.preventDefault();
+                e.preventDefault(); // Prevent default anchor click behavior
                 const hash = href;
                 const offset = $('.navbar').outerHeight();
                 $('html, body').animate({
@@ -878,29 +563,24 @@
     });
 
 
-    // Paleta de colores para Chart.js (ajustada a los nuevos tonos azules)
+    // Paleta de colores para Chart.js (ajustada a la escala de grises con acentos sutiles)
     const chartColors = {
-        blue: 'rgba(0, 123, 255, 0.8)',      // Accent blue
-        green: 'rgba(40, 167, 69, 0.8)',     // Darker green
-        purple: 'rgba(102, 16, 242, 0.8)',    // Darker purple
-        orange: 'rgba(253, 126, 20, 0.8)',     // Darker orange
-        red: 'rgba(220, 53, 69, 0.8)',        // Darker red
-        yellow: 'rgba(255, 193, 7, 0.8)',    // Darker yellow
-        darkBlue: 'rgba(0, 44, 92, 0.8)',    // var(--color-secondary-dark)
-        lightGray: 'rgba(160, 166, 176, 0.8)' // var(--color-text-muted)
+        primary: 'rgba(0, 0, 0, 0.8)',      // Negro oscuro
+        secondary: 'rgba(51, 51, 51, 0.8)', // Gris oscuro
+        accentLight: 'rgba(102, 102, 102, 0.8)', // Gris medio
+        accentDark: 'rgba(153, 153, 153, 0.8)',  // Gris claro
+        white: 'rgba(255, 255, 255, 0.8)',  // Blanco
+        black: 'rgba(0, 0, 0, 0.8)'
     };
 
     const chartBorderColors = {
-        blue: 'rgba(0, 123, 255, 1)',
-        green: 'rgba(40, 167, 69, 1)',
-        purple: 'rgba(102, 16, 242, 1)',
-        orange: 'rgba(253, 126, 20, 1)',
-        red: 'rgba(220, 53, 69, 1)',
-        yellow: 'rgba(255, 193, 7, 1)',
-        darkBlue: 'rgba(0, 44, 92, 1)',
-        lightGray: 'rgba(160, 166, 176, 1)'
+        primary: 'rgba(0, 0, 0, 1)',
+        secondary: 'rgba(51, 51, 51, 1)',
+        accentLight: 'rgba(102, 102, 102, 1)',
+        accentDark: 'rgba(153, 153, 153, 1)',
+        white: 'rgba(255, 255, 255, 1)',
+        black: 'rgba(0, 0, 0, 1)'
     };
-
 
     // Configuración base para títulos de gráficos
     const titleOptions = {
@@ -962,7 +642,7 @@
 
     // Configuración base para tooltips
     const tooltipOptions = {
-        backgroundColor: chartColors.darkBlue,
+        backgroundColor: chartColors.primary,
         titleFont: {
             size: 13,
             weight: 'bold',
@@ -985,8 +665,8 @@
             datasets: [{
                 label: 'Número de Incidentes',
                 data: [216, 253],
-                backgroundColor: [chartColors.green, chartColors.purple],
-                borderColor: [chartBorderColors.green, chartBorderColors.purple],
+                backgroundColor: [chartColors.accentLight, chartColors.secondary],
+                borderColor: [chartBorderColors.accentLight, chartBorderColors.secondary],
                 borderWidth: 1
             }]
         },
@@ -1020,8 +700,8 @@
             datasets: [{
                 label: 'Número de Conexiones Detectadas',
                 data: [424, 636, 544, 1599],
-                backgroundColor: [chartColors.blue, chartColors.orange, chartColors.red, chartColors.green],
-                borderColor: [chartBorderColors.blue, chartBorderColors.orange, chartBorderColors.red, chartBorderColors.green],
+                backgroundColor: [chartColors.secondary, chartColors.accentLight, chartColors.primary, chartColors.secondary],
+                borderColor: [chartBorderColors.secondary, chartBorderColors.accentLight, chartBorderColors.primary, chartBorderColors.secondary],
                 borderWidth: 1
             }]
         },
@@ -1055,8 +735,8 @@
             datasets: [{
                 label: 'Número de Incidentes',
                 data: [55, 35, 30],
-                backgroundColor: [chartColors.red, chartColors.yellow, chartColors.purple],
-                borderColor: [chartBorderColors.red, chartBorderColors.yellow, chartBorderColors.purple],
+                backgroundColor: [chartColors.primary, chartColors.accentLight, chartColors.secondary],
+                borderColor: [chartBorderColors.primary, chartBorderColors.accentLight, chartBorderColors.secondary],
                 borderWidth: 1
             }]
         },
@@ -1100,8 +780,8 @@
             datasets: [{
                 label: 'Número de Casos',
                 data: [284, 465],
-                backgroundColor: [chartColors.orange, chartColors.blue],
-                borderColor: [chartBorderColors.orange, chartBorderColors.blue],
+                backgroundColor: [chartColors.accentLight, chartColors.primary],
+                borderColor: [chartBorderColors.accentLight, chartBorderColors.primary],
                 borderWidth: 1
             }]
         },
@@ -1139,8 +819,8 @@
             datasets: [{
                 label: 'Número de Muertes',
                 data: [225, 22, 34],
-                backgroundColor: [chartColors.red, chartColors.lightGray, chartColors.green],
-                borderColor: [chartBorderColors.red, chartBorderColors.lightGray, chartBorderColors.green],
+                backgroundColor: [chartColors.primary, chartColors.accentLight, chartColors.secondary],
+                borderColor: [chartBorderColors.primary, chartBorderColors.accentLight, chartBorderColors.secondary],
                 borderWidth: 1
             }]
         },
@@ -1187,18 +867,18 @@
             datasets: [{
                 data: [24.4, 21.3, 21.3, 20.5, 15.4],
                 backgroundColor: [
-                    chartColors.red,
-                    chartColors.blue,
-                    chartColors.orange,
-                    chartColors.green,
-                    chartColors.purple
+                    chartColors.primary,
+                    chartColors.secondary,
+                    chartColors.accentLight,
+                    chartColors.accentDark,
+                    chartColors.white
                 ],
                 borderColor: [
-                    chartBorderColors.red,
-                    chartBorderColors.blue,
-                    chartBorderColors.orange,
-                    chartBorderColors.green,
-                    chartBorderColors.purple
+                    chartBorderColors.primary,
+                    chartBorderColors.secondary,
+                    chartBorderColors.accentLight,
+                    chartBorderColors.accentDark,
+                    chartBorderColors.white
                 ],
                 borderWidth: 1
             }]
@@ -1235,7 +915,8 @@
                     labels: {
                         font: {
                             size: 10
-                        }
+                        },
+                        color: '#333' // Ajustar color de leyenda para el fondo blanco del gráfico
                     }
                 }
             }
