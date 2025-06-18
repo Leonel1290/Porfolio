@@ -1,135 +1,50 @@
-/* Variables de color */
+/* Variables de color para tema blanco y negro */
 :root {
-    --color-primary: #000000; /* Negro principal */
-    --color-secondary: #333333; /* Gris oscuro */
-    --color-accent: #666666; /* Gris medio (para acentos) */
-    --color-light: #f8f9fa; /* Blanco para fondos claros */
-    --color-dark-text: #212529; /* Texto oscuro */
-    --color-light-text: #ffffff; /* Texto claro */
-    --color-border: #e0e0e0; /* Color de borde claro */
-    --color-primary-dark: #1a1a1a; /* Negro más oscuro para elementos como el footer */
+    --color-primary-dark: #1a1a1a;   /* Negro casi puro para fondos principales */
+    --color-secondary-dark: #333333; /* Gris oscuro para fondos de secciones */
+    --color-tertiary-dark: #4d4d4d;  /* Gris medio-oscuro */
+    --color-light: #f0f0f0;          /* Gris muy claro para texto principal y fondos claros */
+    --color-dark-text: #1a1a1a;      /* Negro para texto en fondos claros */
+    --color-muted-text: #b3b3b3;     /* Gris para texto secundario */
+    --color-accent: #666666;        /* Gris medio para acentos, botones */
+    --color-accent-hover: #808080;  /* Gris un poco más claro para hover */
+    --color-border: #666666;        /* Gris para bordes */
+    --color-card-bg: #262626;        /* Gris oscuro para fondos de tarjetas */
 }
 
+/* Base Body Styles */
 body {
+    background: var(--color-primary-dark);
     font-family: 'Poppins', sans-serif;
-    color: var(--color-dark-text);
-    background-color: var(--color-light);
+    color: var(--color-light); /* Color de texto por defecto para el body */
     margin: 0;
-    padding-top: 56px; /* Para compensar la altura del navbar fijo */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* --- Reusable Styles --- */
-.section-title {
-    text-align: center;
-    margin-bottom: 4rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    position: relative;
-    padding-bottom: 10px;
+main {
+    flex-grow: 1; /* Permite que el contenido principal ocupe el espacio disponible */
 }
 
-.section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    height: 3px;
-    width: 60px;
-    background-color: var(--color-secondary);
-    border-radius: 5px;
-}
-
-.btn-custom {
-    background-color: var(--color-secondary);
-    border-color: var(--color-secondary);
-    color: var(--color-light-text);
-    padding: 10px 25px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-custom:hover {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-light-text);
-}
-
-.company-info {
-    max-width: 800px;
-    margin-top: 2rem;
-    padding: 2rem;
-    background-color: var(--color-light);
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--color-border);
-}
-
-.company-info h3 {
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.company-info p,
-.company-info ul {
-    color: var(--color-dark-text);
-    line-height: 1.8;
-}
-
-.company-info ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin-bottom: 1rem;
-}
-
-.company-info ul li {
-    margin-bottom: 0.5rem;
-}
-
-/* --- Navbar --- */
-.custom-navbar {
-    background-color: var(--color-light); /* Fondo claro para el navbar */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.navbar-brand {
-    color: var(--color-primary) !important;
-    font-size: 1.8rem;
-    transition: color 0.3s ease;
-}
-
-.navbar-brand:hover {
-    color: var(--color-secondary) !important;
-}
-
-.nav-link {
-    color: var(--color-dark-text) !important;
-    font-weight: 600;
-    margin: 0 10px;
-    transition: color 0.3s ease, transform 0.2s ease;
-    position: relative;
-    text-decoration: none;
-}
-
-.nav-link:hover {
-    color: var(--color-secondary) !important;
-    transform: translateY(-2px);
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--color-secondary);
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
+/* Navbar */
+.navbar {
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.8); /* Negro con transparencia */
+    position: fixed;
+    top: 0;
     width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--color-light) !important; /* Asegurar que sean blancos */
+    font-weight: 600;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: var(--color-accent) !important; /* Acento gris al pasar el ratón */
 }
 
 .navbar-toggler {
@@ -137,422 +52,434 @@ body {
 }
 
 .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28240, 240, 240, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
-/* --- Hero Section --- */
+/* Custom Buttons */
+.btn-custom {
+    background-color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    color: var(--color-light);
+    font-weight: 600;
+    border-radius: 5px; /* Bordes ligeramente redondeados */
+    padding: 0.6rem 1.6rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-dark-text); /* Texto oscuro en hover para contraste */
+}
+
+/* Hero Section */
 .hero {
-    background: var(--color-primary); /* Fondo oscuro para el hero */
-    color: var(--color-light-text);
-    min-height: 100vh;
-    padding-top: 56px; /* Offset para el navbar */
+    padding: 6rem 0;
+    position: relative;
+    padding-top: 100px; /* Espacio para el navbar fijo */
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-secondary-dark));
+    min-height: 80vh; /* Asegura que tenga una altura mínima */
 }
 
 .hero h1 {
     font-size: 3.5rem;
+    color: var(--color-light);
     font-weight: 700;
-    margin-bottom: 20px;
     line-height: 1.2;
 }
 
 .hero-line {
-    width: 80px;
-    height: 4px;
-    background-color: var(--color-light);
-    margin-bottom: 20px;
+    width: 100px;
+    height: 3px;
+    background-color: var(--color-accent);
+    margin: 1rem 0 1.5rem;
 }
 
 .hero p.lead {
-    font-size: 1.25rem;
-    max-width: 500px;
+    color: var(--color-muted-text);
 }
 
+.hero-img {
+    max-width: 100%;
+    height: auto;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* General Section Titles */
+.section-title {
+    color: var(--color-light);
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--color-accent);
+}
+
+/* Feature Cards (Characteristics) */
+.features {
+    background-color: var(--color-secondary-dark);
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.features i {
+    font-size: 3.5rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+}
+
+.features h3 {
+    color: var(--color-light);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.features p {
+    color: var(--color-muted-text);
+}
+
+/* Company Info / Generic Text Blocks */
+.company-info {
+    background-color: var(--color-card-bg);
+    border-radius: 10px;
+    padding: 2.5rem;
+    color: var(--color-light);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.company-info p, .company-info ul {
+    color: var(--color-muted-text);
+    line-height: 1.8;
+}
+.company-info h3 {
+    color: var(--color-light);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.company-info ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Model Viewer */
 .model-container {
     width: 100%;
     height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
-    background-color: var(--color-secondary); /* Fondo para el visor 3D */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
-
 model-viewer {
     width: 100%;
     height: 100%;
-    --poster-color: transparent; /* Hace el poster transparente si no quieres uno */
+    background-color: var(--color-card-bg); /* Fondo oscuro para el modelo 3D */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* --- Vision General & Nuestra Historia --- */
-#vision-general,
-#nuestra-historia,
-#aspectos-tecnicos {
-    background-color: var(--color-light);
-    color: var(--color-dark-text);
-}
-
-.history-section {
-    background-color: var(--color-light);
-}
-
-
-/* --- Features Section --- */
-.features {
-    background-color: var(--color-light);
-    padding: 6rem 0;
-}
-
-.features i {
-    font-size: 3.5rem;
-    color: var(--color-secondary);
-    margin-bottom: 1rem;
-}
-
-.features h3 {
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-}
-
-.features p {
-    color: var(--color-dark-text);
-    font-size: 1.05rem;
-}
-
-.features .col-md-4 {
-    padding: 20px;
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.features .col-md-4:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-}
-
-
-/* --- Datos y Encuestas Section --- */
-.graphs-section {
-    background-color: var(--color-light);
-}
-
+/* Data and Survey Section Cards */
 .graphs-section .card {
+    background-color: var(--color-card-bg);
     border: 1px solid var(--color-border);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    background-color: var(--color-light);
+    color: var(--color-light);
+    text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .graphs-section .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.graphs-section .card-body i {
-    font-size: 3rem;
-    color: var(--color-secondary);
-    margin-bottom: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .graphs-section .card-title {
+    color: var(--color-light);
     font-weight: 600;
-    color: var(--color-primary);
 }
-
+.graphs-section .card-body i {
+    font-size: 4.5rem;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+}
 .graphs-section .card-text {
-    color: var(--color-dark-text);
+    color: var(--color-muted-text);
 }
 
-/* --- Secciones Ocultas (Gráficos, Conclusión, Imágenes, Análisis, Pruebas, Casos) --- */
+
+/* Hidden Sections (Graphs, Opinions, Conclusion, Analysis, Tests, Use Cases) */
 #charts-section,
-#conclusion-encuestas,
 #opiniones-usuarios-imagenes,
+#conclusion-encuestas,
 #analisis-producto,
 #pruebas-resultados,
 #casos-uso {
-    display: none; /* Oculto por defecto */
-    background-color: var(--color-light); /* Asegura que el fondo sea claro */
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    display: none; /* Inicialmente oculto */
+    background-color: var(--color-secondary-dark); /* Fondo para estas secciones */
+    padding: 40px;
+    margin: 40px auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    max-width: 1200px; /* Ancho máximo para el contenido principal */
 }
 
+/* Chart Containers */
 .chart-container {
-    background-color: #ffffff; /* Fondo blanco para los contenedores de gráficos */
-    padding: 30px;
+    width: 90%;
+    margin: 40px auto;
+    background-color: var(--color-light); /* Fondo blanco para los gráficos */
+    padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 40px;
-    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
-
 .chart-container h2 {
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    margin-bottom: 25px;
     text-align: center;
-    font-weight: 600;
+    color: var(--color-dark-text); /* Color oscuro para títulos de gráficos */
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
 }
-
 .chart-note {
-    font-size: 0.9rem;
-    color: var(--color-accent);
+    font-size: 0.9em;
+    color: var(--color-muted-text); /* Color para notas de gráfico */
     text-align: center;
     margin-top: 15px;
 }
 
+/* Opinions Images */
 #opiniones-usuarios-imagenes .row {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; /* Espacio entre imágenes */
 }
 
 #opiniones-usuarios-imagenes img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    object-fit: contain;
+}
+
+/* Accordion (FAQ Section) */
+.faq-section .accordion-item {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    margin-bottom: 10px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    overflow: hidden; /* Para que el border-radius se aplique bien */
+}
+.faq-section .accordion-header {
+    margin-bottom: 0;
+}
+.faq-section .accordion-button {
+    background-color: var(--color-accent);
+    color: var(--color-light);
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    border-radius: 8px 8px 0 0; /* Solo arriba */
+    transition: background-color 0.3s ease;
+}
+.faq-section .accordion-button:not(.collapsed) {
+    background-color: var(--color-secondary-dark); /* Color más oscuro al expandir */
+    color: var(--color-light);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .2);
+    border-bottom: 1px solid var(--color-border);
+}
+.faq-section .accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(102, 102, 102, 0.25); /* Sutil focus */
+}
+.faq-section .accordion-body {
+    color: var(--color-muted-text);
+    background-color: var(--color-card-bg);
+    padding: 1.5rem;
+}
+.faq-section .accordion-button::after {
+    filter: invert(100%) grayscale(100%); /* Icono blanco */
+}
+.faq-section .accordion-button:not(.collapsed)::after {
+    filter: invert(0%) grayscale(0%); /* Icono original (negro) al expandir para contraste */
 }
 
-#opiniones-usuarios-imagenes img:hover {
-    transform: scale(1.02);
-}
-
+/* Comparison Table Image */
 .comparison-table-img {
     max-width: 100%;
     height: auto;
+    margin-bottom: 3rem;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+/* Metric Cards (Tests & Results) */
 .metric-card {
-    background-color: #ffffff;
-    padding: 20px;
+    background-color: var(--color-card-bg);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
-    border: 1px solid var(--color-border);
+    padding: 30px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: var(--color-light);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .metric-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
-
 .metric-card h4 {
-    color: var(--color-secondary);
-    font-weight: 600;
+    color: var(--color-accent);
     margin-bottom: 10px;
+    font-weight: 600;
 }
-
 .metric-card p {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    color: var(--color-primary);
-    margin-bottom: 5px;
+    color: var(--color-light);
+    margin-bottom: 0;
+}
+.metric-card small {
+    color: var(--color-muted-text);
 }
 
-.metric-card small {
+/* Footer */
+footer {
+    background-color: var(--color-primary-dark);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    margin-top: auto;
+    color: var(--color-muted-text);
+    border-top: 1px solid var(--color-border);
+}
+
+footer a {
+    color: var(--color-muted-text);
+    text-decoration: none;
+}
+footer a:hover {
     color: var(--color-accent);
 }
 
-/* --- Cómo Funciona Section (New) --- */
-#como-funciona {
-    background-color: var(--color-light);
-    padding: 6rem 0;
-}
-
-.how-it-works-img {
-    max-width: 90%; /* Ajusta el tamaño de la imagen */
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    margin-top: 2rem;
-}
-
-
-/* --- FAQ Section --- */
-.faq-section {
-    background-color: var(--color-primary); /* Fondo oscuro para FAQ */
-    color: var(--color-light-text);
-    padding: 6rem 0;
-}
-
-.faq-section .section-title {
-    color: var(--color-light-text);
-}
-
-.faq-section .section-title::after {
-    background-color: var(--color-accent);
-}
-
-.accordion-item {
-    background-color: var(--color-secondary);
-    border: 1px solid var(--color-accent);
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.accordion-button {
-    background-color: var(--color-secondary) !important;
-    color: var(--color-light-text) !important;
-    font-weight: 600;
-    border-bottom: 1px solid var(--color-accent) !important;
-    box-shadow: none !important; /* Elimina el box-shadow al expandir */
-}
-
-.accordion-button:not(.collapsed) {
-    color: var(--color-light-text) !important;
-    background-color: var(--color-primary) !important;
-}
-
-.accordion-body {
-    background-color: var(--color-secondary);
-    color: var(--color-light-text);
-    border-top: none;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-/* Color del icono de flecha del acordeón */
-.accordion-button::after {
-    filter: invert(1); /* Invierte el color del icono para que sea blanco */
-}
-
-
-/* --- Contact Section --- */
-#contacto {
-    background-color: var(--color-light);
-    padding: 6rem 0;
-}
-
-#contacto address {
-    margin-top: 2rem;
-    color: var(--color-dark-text);
-    font-style: normal;
-}
-
-#contacto address p {
-    margin-bottom: 0.5rem;
-}
-
-#contacto address a {
-    color: var(--color-secondary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-#contacto address a:hover {
-    color: var(--color-primary);
-}
-
-.social-icons a {
-    color: var(--color-secondary);
-    transition: color 0.3s ease, transform 0.2s ease;
-    display: inline-block;
-}
-
-.social-icons a:hover {
-    color: var(--color-primary);
-    transform: translateY(-3px);
-}
-
-/* --- Footer --- */
-.custom-footer {
-    background-color: var(--color-primary-dark); /* Fondo muy oscuro para el footer */
-    color: var(--color-light-text);
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.9rem;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* --- Loader/Overlay --- */
+/* Explosion Overlay */
 .explosion-animation-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--color-primary-dark); /* Fondo oscuro */
-    z-index: 1001; /* Asegura que esté por encima de todo */
+    background-color: var(--color-primary-dark);
+    z-index: 1001;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 1s ease-out 1.5s; /* Transición para desvanecerse, con un delay */
     opacity: 1;
+    transition: opacity 1s ease-out 1.5s; /* Animación de fade-out */
 }
 
 .explosion-animation-overlay.fade-out {
     opacity: 0;
-    pointer-events: none; /* Permite hacer clic a través una vez que se desvanece */
+    pointer-events: none; /* Desactiva eventos de ratón una vez oculto */
 }
 
-.explosion-image-container {
-    text-align: center;
-}
-
-.explosion-image-container p {
+.explosion-animation-overlay p {
     font-size: 1.5rem;
     font-weight: 600;
-    animation: pulse 1.5s infinite alternate; /* Animación de pulso para el texto */
+    color: var(--color-light);
 }
 
-@keyframes pulse {
-    from {
-        transform: scale(1);
-        opacity: 0.8;
-    }
-    to {
-        transform: scale(1.05);
-        opacity: 1;
-    }
+/* Global Link Styling */
+a {
+    text-decoration: none;
+    color: var(--color-accent); /* Todos los enlaces por defecto tendrán un color de acento */
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--color-accent-hover);
 }
 
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
+/* Media Queries for Responsiveness */
+@media (max-width: 991.98px) {
     .hero h1 {
         font-size: 2.5rem;
     }
-
-    .hero p.lead {
-        font-size: 1rem;
-    }
-
     .section-title {
         font-size: 2rem;
     }
-
-    .navbar-brand {
-        font-size: 1.5rem;
-    }
-
-    .nav-link {
-        margin: 5px 0;
-    }
-
-    .graphs-section .card {
-        margin-bottom: 20px;
-    }
-}
-
-@media (max-width: 576px) {
     .hero {
-        text-align: center;
-    }
-    .hero-line {
-        margin-left: auto;
-        margin-right: auto;
+        padding-top: 90px; /* Ajuste para el navbar en pantallas más pequeñas */
     }
     .model-container {
         height: 300px;
     }
-    .explosion-image-container p {
-        font-size: 1.2rem;
+}
+
+@media (max-width: 767.98px) {
+    .hero {
+        text-align: center;
+    }
+    .hero-line {
+        margin: 1rem auto 1.5rem; /* Centrar línea en móviles */
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .features i {
+        font-size: 3rem;
+    }
+    .company-info {
+        padding: 1.5rem;
+    }
+    .chart-container {
+        width: 100%;
+        padding: 15px;
+    }
+    .chart-container h2 {
+        font-size: 1.3rem;
+    }
+    #opiniones-usuarios-imagenes img {
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    .metric-card {
+        padding: 20px;
+    }
+    .metric-card p {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    .hero {
+        padding-top: 80px;
+    }
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+    }
+    .btn-custom {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
     }
 }
