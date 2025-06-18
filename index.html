@@ -267,6 +267,33 @@
             line-height: 1.6;
         }
 
+        /* Estilos para la sección de FAQ y Nuestra Historia */
+        .faq-section .accordion-item, .history-section .company-info {
+            background-color: #132E35;
+            border: 1px solid #2D4A53;
+            color: #AFB3B7;
+        }
+        .faq-section .accordion-button {
+            background-color: #2D4A53;
+            color: #fff;
+            font-weight: 600;
+        }
+        .faq-section .accordion-button:not(.collapsed) {
+            color: #698180;
+            background-color: #132E35;
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
+        }
+        .faq-section .accordion-body {
+            color: #AFB3B7;
+            background-color: #132E35;
+        }
+        .faq-section .accordion-button::after {
+            filter: invert(100%); /* Para que el icono sea blanco o visible */
+        }
+        .faq-section .accordion-button:not(.collapsed)::after {
+            filter: invert(50%) sepia(100%) saturate(2000%) hue-rotate(160deg) brightness(80%); /* Para que el icono cambie de color al expandir */
+        }
+
         /* Media query for larger screens to make charts smaller */
         @media (min-width: 992px) {
             .chart-container {
@@ -311,6 +338,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#datos-y-encuestas">Datos y Encuestas</a>
                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#preguntas-frecuentes">Preguntas Frecuentes</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="portfolio.html">Análisis de Producto</a>
                     </li>
@@ -331,6 +361,7 @@
                     <h1>Tu Hogar, Siempre Seguro</h1>
                     <div class="hero-line"></div>
                     <p class="lead">ASG: Detección precisa de fugas de gas y protección activa para tu tranquilidad.</p>
+                    <p class="lead fw-bold mt-3">Protección inteligente para tu familia y tu hogar.</p>
                 </div>
                 <div class="col-md-6 text-center mt-4 mt-md-0">
                     <div class="model-container">
@@ -356,11 +387,9 @@
         </div>
     </section>
 
-
-
     <section class="py-5" id="vision-general">
         <div class="container">
-            <h2 class="section-title">Visión General</h2>
+            <h2 class="section-title">Visión General de ASG</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <p class="lead">ASG nace para solucionar un problema crítico: las fugas de gas no detectadas en el hogar. Nuestro sistema ofrece una protección integral, no solo alertando, sino también actuando automáticamente para cerrar la fuente de gas y proteger a tu familia.</p>
@@ -369,54 +398,62 @@
         </div>
     </section>
 
-
-
-    <section class="features py-5 text-center" id="caracteristicas">
+    <section class="py-5 history-section" id="nuestra-historia">
         <div class="container">
-            <h2 class="section-title">Características Clave</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <i class="fas fa-shield-alt mb-3"></i>
-                    <h3>Seguridad Activa</h3>
-                    <p>Cierre automático de válvulas para respuesta instantánea ante fugas.</p>
-                </div>
-                <div class="col-md-4">
-                    <i class="fas fa-mobile-alt mb-3"></i>
-                    <h3>Control Total</h3>
-                    <p>Monitorea y gestiona tu sistema desde cualquier lugar con nuestra app.</p>
-                </div>
-                <div class="col-md-4">
-                    <i class="fas fa-bell mb-3"></i>
-                    <h3>Alertas Instantáneas</h3>
-                    <p>Recibe notificaciones en tiempo real ante cualquier incidencia.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section class="py-5" id="aspectos-tecnicos">
-        <div class="container">
-            <h2 class="section-title">Tecnología de ASG</h2>
+            <h2 class="section-title">Nuestra Historia y Misión</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="company-info mx-auto text-start">
-                        <p>ASG integra sensores de alta precisión con un sistema de actuadores inteligentes para el cierre de válvulas. La conectividad IoT garantiza el monitoreo constante y la interacción remota a través de una aplicación móvil intuitiva. Desarrollado con robustez y escalabilidad en mente.</p>
+                        <p>En ASG, nuestra misión es redefinir la seguridad del hogar. Nucestro equipo se inspiró en la necesidad crítica de prevenir accidentes por fugas de gas, a menudo con consecuencias devastadoras. Nos propusimos crear una solución innovadora que no solo alertara, sino que actuara proactivamente para proteger a las familias.</p>
+                        <p>Desde nuestros inicios en Río Tercero, Córdoba, hemos estado comprometidos con la excelencia y la tranquilidad de nuestros usuarios. Cada dispositivo ASG es el resultado de investigación, desarrollo y un profundo entendimiento de las necesidades de seguridad en el hogar moderno. Estamos orgullosos de ofrecer una tecnología que pone la seguridad de tu familia en primer lugar, con soluciones inteligentes y accesibles.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="features py-5 text-center" id="caracteristicas">
+        <div class="container">
+            <h2 class="section-title">Características Clave de ASG</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <i class="fas fa-shield-alt mb-3"></i>
+                    <h3>Seguridad Activa</h3>
+                    <p>Cierre automático de válvulas para una respuesta instantánea ante fugas detectadas.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-mobile-alt mb-3"></i>
+                    <h3>Control Inteligente</h3>
+                    <p>Monitorea y gestiona tu sistema ASG desde cualquier lugar con nuestra aplicación móvil intuitiva.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-bell mb-3"></i>
+                    <h3>Alertas Instantáneas</h3>
+                    <p>Recibe notificaciones en tiempo real en tu dispositivo ante cualquier incidencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="py-5" id="aspectos-tecnicos">
+        <div class="container">
+            <h2 class="section-title">Tecnología Detrás de ASG</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="company-info mx-auto text-start">
+                        <p>ASG integra sensores de alta precisión con un sistema de actuadores inteligentes para el cierre automático de válvulas. La conectividad IoT (Internet de las Cosas) garantiza el monitoreo constante y la interacción remota a través de una aplicación móvil intuitiva. Nuestro sistema está desarrollado con robustez y escalabilidad en mente, asegurando un rendimiento fiable y la posibilidad de futuras integraciones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="py-5 graphs-section" id="datos-y-encuestas">
         <div class="container">
-            <h2 class="section-title">Datos y Encuestas</h2>
+            <h2 class="section-title">Datos y Encuestas de Mercado</h2>
             <div class="row justify-content-center text-center">
                 <div class="col-lg-8">
-                    <p class="lead mb-5">Creemos en la mejora continua y en la opinión de nuestros usuarios. Te invitamos a explorar algunos datos relevantes de nuestro proyecto y a participar en nuestras encuestas para ayudarnos a crecer.</p>
+                    <p class="lead mb-5">Creemos en la mejora continua y en la opinión de nuestros usuarios. Te invitamos a explorar algunos datos relevantes sobre la seguridad en el hogar y a participar en nuestras encuestas para ayudarnos a crecer y perfeccionar ASG.</p>
                 </div>
             </div>
             <div class="row g-4 justify-content-center">
@@ -425,8 +462,8 @@
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <i class="fas fa-chart-pie mb-3"></i>
                             <h4 class="card-title">Estadísticas Clave</h4>
-                            <p class="card-text">Descubre la importancia de la seguridad en el hogar con datos y gráficos sobre incidentes por fugas de gas.</p>
-                            <a href="#charts-section" class="btn btn-custom mt-3">Ver Gráfico de Impacto</a>
+                            <p class="card-text">Descubre la importancia de la seguridad en el hogar con datos y gráficos sobre incidentes por fugas de gas en Argentina.</p>
+                            <a href="#charts-section" class="btn btn-custom mt-3">Ver Gráficos de Impacto</a>
                         </div>
                     </div>
                 </div>
@@ -446,9 +483,9 @@
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <i class="fas fa-chart-bar mb-3"></i>
-                            <h4 class="card-title">Análisis del Mercado (Conclusión)</h4>
-                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta, y una conclusión de encuestas.</p>
-                            <a href="#conclusion-encuestas" class="btn btn-custom mt-3" onclick="mostrarConclusionEncuestas()">Ver Conclusión de Encuestas</a>
+                            <h4 class="card-title">Conclusión de Encuestas</h4>
+                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta, y un resumen de nuestras encuestas de mercado.</p>
+                            <a href="#conclusion-encuestas" class="btn btn-custom mt-3" onclick="mostrarConclusionEncuestas()">Ver Conclusión</a>
                         </div>
                     </div>
                 </div>
@@ -456,9 +493,9 @@
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <i class="fas fa-comments mb-3"></i>
-                            <h4 class="card-title">Análisis del Mercado (Imágenes)</h4>
-                            <p class="card-text">Estas son las recolecciones de opiniones que hicimos a partir de sus participaciones en nuestro formulario</p>
-                            <a href="#opiniones-usuarios-imagenes" onclick="mostrarOpiniones()" class="btn btn-custom mt-3">Ver Opiniones (Imágenes)</a>
+                            <h4 class="card-title">Opiniones de Usuarios (Imágenes)</h4>
+                            <p class="card-text">Visualiza las respuestas clave de los participantes en nuestro formulario de encuestas.</p>
+                            <a href="#opiniones-usuarios-imagenes" onclick="mostrarOpiniones()" class="btn btn-custom mt-3">Ver Imágenes de Encuestas</a>
                         </div>
                     </div>
                 </div>
@@ -468,7 +505,7 @@
 
     <section class="py-5" id="opiniones-usuarios-imagenes">
         <div class="container">
-            <h2 class="section-title">Análisis del Mercado (Imágenes de Encuesta)</h2>
+            <h2 class="section-title">Análisis del Mercado: Respuestas de Encuesta en Imágenes</h2>
             <div class="row">
                 <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
                     <img src="Captura de pantalla 2025-05-21 005305.png" alt="Captura de opinión 1" class="img-fluid">
@@ -489,7 +526,7 @@
                     <img src="Captura de pantalla 2025-05-21 005355.png" alt="Captura de opinión 6" class="img-fluid">
                 </div>
             </div>
-            <button onclick="ocultarOpiniones()" class="btn btn-custom">Ocultar Opiniones (Imágenes)</button>
+            <button onclick="ocultarOpiniones()" class="btn btn-custom mt-3">Ocultar Sección</button>
         </div>
     </section>
 
@@ -514,7 +551,6 @@
             </div>
         </div>
     </section>
-
 
     <section class="py-5" id="charts-section">
         <div class="container">
@@ -554,20 +590,75 @@
         </div>
     </section>
 
+    <section class="py-5 faq-section" id="preguntas-frecuentes">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            ¿Cómo funciona el sistema de cierre automático de válvula?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Cuando el sensor de ASG detecta una fuga de gas a niveles peligrosos, activa automáticamente un actuador conectado a la válvula principal de gas de tu hogar, cerrándola de inmediato para detener el flujo y prevenir riesgos mayores.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            ¿Necesito instalar algo adicional o es un sistema todo en uno?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            ASG es un sistema integrado. Incluye el sensor de detección de gas, el actuador para la válvula y la conectividad para la aplicación móvil. Para la instalación, se requiere un punto de conexión de gas compatible y acceso a la red Wi-Fi de tu hogar. Recomendamos que la instalación de la parte del actuador sea realizada por un gasista matriculado.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Qué tipo de gases detecta ASG?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            ASG está diseñado para detectar principalmente gas natural (metano) y gas licuado de petróleo (GLP), que son los tipos de gas más comunes en hogares. Los sensores son de alta precisión para asegurar una detección temprana.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            ¿Qué sucede si se corta la electricidad o la conexión a internet?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            El sistema ASG cuenta con una batería de respaldo para asegurar que la detección de fugas y el cierre automático de la válvula sigan funcionando incluso durante un corte de energía. Si la conexión a internet se interrumpe, las alertas a la aplicación móvil podrían no enviarse, pero el sistema local seguirá operativo para la detección y el cierre de la válvula. Una vez restablecida la conexión, las notificaciones se reanudarán.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="py-5" id="contacto">
         <div class="container">
-            <h2 class="section-title">Contacto</h2>
+            <h2 class="section-title">Contáctanos</h2>
             <div class="company-info mx-auto text-center">
                 <h2 class="mb-3">¡Hablemos de Seguridad!</h2>
                 <address>
-                    <p><strong>Empresa:</strong> AgainSafeGas</p>
+                    <p><strong>Empresa:</strong> AgainSafeGas Solutions</p>
                     <p><strong>Ubicación:</strong> Río Tercero, Córdoba, Argentina</p>
                     <p><strong>Teléfono:</strong> <a href="tel:+543571623889" class="text-light">3571-623889</a></p>
                     <p><strong>Email:</strong> <a href="mailto:againsafegas.ascii@gmail.com" class="text-light">againsafegas.ascii@gmail.com</a></p>
                     <p><strong>Sitio Web:</strong> <a href="https://www.gassafe.com" target="_blank" class="text-light">www.AgainSafeGas.com</a></p>
                 </address>
-                <a href="portfolio.html" class="btn btn-custom mt-3">Adquiere tu ASG hoy mismo</a>
+                <a href="portfolio.html" class="btn btn-custom mt-3">Descubre el Análisis de Producto</a>
             </div>
         </div>
     </section>
@@ -582,37 +673,21 @@
 <script>
     $(document).ready(function(){
         // Smooth scroll para enlaces internos
-        $('a.nav-link').on('click', function(e) {
+        $('a.nav-link, a.btn-custom').on('click', function(e) {
             // Asegura que no se active el smooth scroll si el href es externo o si es el enlace a portfolio.html
             // Modificado para excluir el enlace a 'portfolio.html' del smooth scroll interno
-            if (this.hash !== "" && !$(this).attr('href').startsWith('http') && $(this).attr('onclick') === undefined && $(this).attr('href') !== 'portfolio.html') {
+            const href = $(this).attr('href');
+            if (href && href.startsWith('#') && $(this).attr('onclick') === undefined) {
                 e.preventDefault();
-                const hash = this.hash;
+                const hash = href;
                 const offset = $('.navbar').outerHeight();
                 $('html, body').animate({
                     scrollTop: $(hash).offset().top - offset
                 }, 800, function(){
-                    window.location.hash = hash;
+                    // window.location.hash = hash; // Opcional: para actualizar la URL
                 });
             }
         });
-
-        $('a.btn-custom').on('click', function(e) {
-            // Solo para los botones custom que apuntan a una sección de la página.
-            // Excluye enlaces externos o los que llaman funciones JS directamente.
-            // Y ahora, excluye enlaces a portfolio.html para que se realice la redirección directa.
-            if (this.hash !== "" && $(this).attr('href').startsWith('#') && $(this).attr('onclick') === undefined) {
-                e.preventDefault();
-                const hash = this.hash;
-                const offset = $('.navbar').outerHeight();
-                $('html, body').animate({
-                    scrollTop: $(hash).offset().top - offset
-                }, 800, function(){
-                    window.location.hash = hash;
-                });
-            }
-        });
-
 
         // Ocultar overlay de animación al cargar la página
         $(window).on('load', function() {
