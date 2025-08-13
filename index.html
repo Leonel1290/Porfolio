@@ -14,7 +14,518 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Variables de color para tema blanco y negro */
+        :root {
+            --color-primary-dark: #1a1a1a;   /* Negro casi puro para fondos principales */
+            --color-secondary-dark: #333333; /* Gris oscuro para fondos de secciones */
+            --color-tertiary-dark: #4d4d4d;  /* Gris medio-oscuro */
+            --color-light: #f0f0f0;          /* Gris muy claro para texto principal y fondos claros */
+            --color-dark-text: #1a1a1a;      /* Negro para texto en fondos claros */
+            --color-muted-text: #b3b3b3;     /* Gris para texto secundario */
+            --color-accent: #666666;        /* Gris medio para acentos, botones */
+            --color-accent-hover: #808080;  /* Gris un poco más claro para hover */
+            --color-border: #666666;        /* Gris para bordes */
+            --color-card-bg: #262626;        /* Gris oscuro para fondos de tarjetas */
+        }
+
+        /* Base Body Styles */
+        body {
+            background: var(--color-primary-dark);
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-light); /* Color de texto por defecto para el body */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex-grow: 1; /* Permite que el contenido principal ocupe el espacio disponible */
+        }
+
+        /* Navbar */
+        .navbar {
+            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.8); /* Negro con transparencia */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--color-light) !important; /* Asegurar que sean blancos */
+            font-weight: 600;
+        }
+
+        .navbar-brand:hover, .nav-link:hover {
+            color: var(--color-accent) !important; /* Acento gris al pasar el ratón */
+        }
+
+        .navbar-toggler {
+            border-color: var(--color-border);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28240, 240, 240, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        }
+
+        /* Custom Buttons */
+        .btn-custom {
+            background-color: var(--color-accent);
+            border: 1px solid var(--color-accent);
+            color: var(--color-light);
+            font-weight: 600;
+            border-radius: 5px; /* Bordes ligeramente redondeados */
+            padding: 0.6rem 1.6rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--color-accent-hover);
+            border-color: var(--color-accent-hover);
+            color: var(--color-dark-text); /* Texto oscuro en hover para contraste */
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
+            position: relative;
+            padding-top: 100px; /* Espacio para el navbar fijo */
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-secondary-dark));
+            min-height: 80vh; /* Asegura que tenga una altura mínima */
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--color-light);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-line {
+            width: 100px;
+            height: 3px;
+            background-color: var(--color-accent);
+            margin: 1rem 0 1.5rem;
+        }
+
+        .hero p.lead {
+            color: var(--color-muted-text);
+        }
+
+        .hero-img {
+            max-width: 100%;
+            height: auto;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* General Section Titles */
+        .section-title {
+            color: var(--color-light);
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--color-accent);
+        }
+
+        /* Feature Cards (Characteristics) */
+        .features {
+            background-color: var(--color-secondary-dark);
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .features i {
+            font-size: 3.5rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        .features h3 {
+            color: var(--color-light);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .features p {
+            color: var(--color-muted-text);
+        }
+
+        /* Company Info / Generic Text Blocks */
+        .company-info {
+            background-color: var(--color-card-bg);
+            border-radius: 10px;
+            padding: 2.5rem;
+            color: var(--color-light);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .company-info p, .company-info ul {
+            color: var(--color-muted-text);
+            line-height: 1.8;
+        }
+        .company-info h3 {
+            color: var(--color-light);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .company-info ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Model Viewer */
+        .model-container {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-card-bg); /* Fondo oscuro para el modelo 3D */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Data and Survey Section Cards */
+        .graphs-section .card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            color: var(--color-light);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .graphs-section .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .graphs-section .card-title {
+            color: var(--color-light);
+            font-weight: 600;
+        }
+        .graphs-section .card-body i {
+            font-size: 4.5rem;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+        .graphs-section .card-text {
+            color: var(--color-muted-text);
+        }
+
+
+        /* Hidden Sections (Graphs, Opinions, Conclusion, Analysis, Tests, Use Cases) */
+        #imagen-corporativa,
+        #analisis-mercado,
+        #analisis-competencia {
+            display: none; /* Inicialmente oculto */
+            background-color: var(--color-secondary-dark); /* Fondo para estas secciones */
+            padding: 40px;
+            margin: 40px auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            max-width: 1200px; /* Ancho máximo para el contenido principal */
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .ad-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        #imagen-corporativa img,
+        #analisis-mercado img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Chart Containers */
+        .chart-container {
+            width: 90%;
+            margin: 40px auto;
+            background-color: var(--color-light); /* Fondo blanco para los gráficos */
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .chart-container h2 {
+            text-align: center;
+            color: var(--color-dark-text); /* Color oscuro para títulos de gráficos */
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .chart-note {
+            font-size: 0.9em;
+            color: var(--color-muted-text); /* Color para notas de gráfico */
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Opinions Images */
+        #opiniones-usuarios-imagenes .row {
+            justify-content: center;
+        }
+
+        #opiniones-usuarios-imagenes img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            object-fit: contain;
+        }
+
+        /* Accordion (FAQ Section) */
+        .faq-section .accordion-item {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            margin-bottom: 10px;
+            border-radius: 8px;
+            overflow: hidden; /* Para que el border-radius se aplique bien */
+        }
+        .faq-section .accordion-header {
+            margin-bottom: 0;
+        }
+        .faq-section .accordion-button {
+            background-color: var(--color-accent);
+            color: var(--color-light);
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            border-radius: 8px 8px 0 0; /* Solo arriba */
+            transition: background-color 0.3s ease;
+        }
+        .faq-section .accordion-button:not(.collapsed) {
+            background-color: var(--color-secondary-dark); /* Color más oscuro al expandir */
+            color: var(--color-light);
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .2);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .faq-section .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(102, 102, 102, 0.25); /* Sutil focus */
+        }
+        .faq-section .accordion-body {
+            color: var(--color-muted-text);
+            background-color: var(--color-card-bg);
+            padding: 1.5rem;
+        }
+        .faq-section .accordion-button::after {
+            filter: invert(100%) grayscale(100%); /* Icono blanco */
+        }
+        .faq-section .accordion-button:not(.collapsed)::after {
+            filter: invert(0%) grayscale(0%); /* Icono original (negro) al expandir para contraste */
+        }
+
+        /* Comparison Table Image */
+        .comparison-table-img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Metric Cards (Tests & Results) */
+        .metric-card {
+            background-color: var(--color-card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+            color: var(--color-light);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .metric-card h4 {
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .metric-card p {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-light);
+            margin-bottom: 0;
+        }
+        .metric-card small {
+            color: var(--color-muted-text);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-primary-dark);
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            margin-top: auto;
+            color: var(--color-muted-text);
+            border-top: 1px solid var(--color-border);
+        }
+
+        footer a {
+            color: var(--color-muted-text);
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Explosion Overlay */
+        .explosion-animation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-primary-dark);
+            z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 1s ease-out 1.5s; /* Animación de fade-out */
+        }
+
+        .explosion-animation-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none; /* Desactiva eventos de ratón una vez oculto */
+        }
+
+        .explosion-animation-overlay p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-light);
+        }
+
+        /* Global Link Styling */
+        a {
+            text-decoration: none;
+            color: var(--color-accent); /* Todos los enlaces por defecto tendrán un color de acento */
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--color-accent-hover);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 991.98px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .hero {
+                padding-top: 90px; /* Ajuste para el navbar en pantallas más pequeñas */
+            }
+            .model-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .hero {
+                text-align: center;
+            }
+            .hero-line {
+                margin: 1rem auto 1.5rem; /* Centrar línea en móviles */
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .features i {
+                font-size: 3rem;
+            }
+            .company-info {
+                padding: 1.5rem;
+            }
+            .chart-container {
+                width: 100%;
+                padding: 15px;
+            }
+            .chart-container h2 {
+                font-size: 1.3rem;
+            }
+            #opiniones-usuarios-imagenes img {
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+            .metric-card {
+                padding: 20px;
+            }
+            .metric-card p {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            .hero {
+                padding-top: 80px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .btn-custom {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -34,22 +545,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#caracteristicas">Características</a>
+                        <a class="nav-link" href="#" onclick="mostrarSeccion('imagen-corporativa'); return false;">Imagen Corporativa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#aspectos-tecnicos">Tecnología</a>
+                        <a class="nav-link" href="#" onclick="mostrarSeccion('analisis-mercado'); return false;">Análisis de Mercado</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#datos-y-encuestas">Datos y Encuestas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#preguntas-frecuentes">Preguntas Frecuentes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="mostrarSeccion('analisis-producto'); return false;">Análisis de Producto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
+                        <a class="nav-link" href="#" onclick="mostrarSeccion('analisis-competencia'); return false;">Análisis de la Competencia</a>
                     </li>
                 </ul>
             </div>
@@ -116,141 +618,62 @@
         </div>
     </section>
 
-    <section class="features py-5 text-center" id="caracteristicas">
+    <section class="py-5" id="imagen-corporativa">
         <div class="container">
-            <h2 class="section-title">Características Clave de ASG</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <i class="fas fa-shield-alt mb-3"></i>
-                    <h3>Seguridad Activa</h3>
-                    <p>Cierre automático de válvulas para una respuesta instantánea ante fugas detectadas.</p>
+            <h2 class="section-title">Imagen Corporativa</h2>
+            <div class="company-info mx-auto text-center">
+                <h3>Tríptico</h3>
+                <img src="triptico_placeholder.jpg" alt="Tríptico" class="img-fluid mb-4">
+                
+                <h3>Tarjeta Personal</h3>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center">
+                        <p>Frente</p>
+                        <img src="tarjeta_frente_placeholder.jpg" alt="Tarjeta Personal Frente" class="img-fluid mb-3">
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <p>Dorso</p>
+                        <img src="tarjeta_dorso_placeholder.jpg" alt="Tarjeta Personal Dorso" class="img-fluid mb-4">
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <i class="fas fa-mobile-alt mb-3"></i>
-                    <h3>Control Inteligente</h3>
-                    <p>Monitorea y gestiona tu sistema ASG desde cualquier lugar con nuestra aplicación móvil intuitiva.</p>
+                
+                <h3>Aviso Publicitario (Imagen)</h3>
+                <img src="ad_image_placeholder.jpg" alt="Aviso Publicitario Imagen" class="img-fluid mb-4">
+
+                <h3>Aviso Publicitario (Video)</h3>
+                <div class="video-container">
+                    <video controls class="ad-video">
+                        <source src="ad_video_placeholder.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
                 </div>
-                <div class="col-md-4">
-                    <i class="fas fa-bell mb-3"></i>
-                    <h3>Alertas Instantáneas</h3>
-                    <p>Recibe notificaciones en tiempo real en tu dispositivo ante cualquier incidencia.</p>
-                </div>
+            </div>
+            <div class="text-center mt-5">
+                <button onclick="ocultarSeccion('imagen-corporativa'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Sección</button>
             </div>
         </div>
     </section>
 
-    <section class="py-5" id="aspectos-tecnicos">
+    <section class="py-5" id="analisis-mercado">
         <div class="container">
-            <h2 class="section-title">Tecnología Detrás de ASG</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="company-info mx-auto text-start">
-                        <p>ASG integra sensores de alta precisión con un sistema de actuadores inteligentes para el cierre automático de válvulas. La conectividad IoT (Internet de las Cosas) garantiza el monitoreo constante y la interacción remota a través de una aplicación móvil intuitiva. Nuestro sistema está desarrollado con robustez y escalabilidad en mente, asegurando un rendimiento fiable y la posibilidad de futuras integraciones.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <h2 class="section-title">Análisis de Mercado</h2>
+            <div class="company-info mx-auto text-start">
+                <h3>Conclusión de Encuestas de Mercado</h3>
+                <p>La mayoría de los encuestados considera que el producto es útil, con un 41.7% que lo ve como tal y un 8.3% que además lo usaría en su vida cotidiana. Sin embargo, un 16.7% lo considera útil pero no lo utilizaría, y otro 16.7% cree que el producto necesita mejoras. Existe también una pequeña porción (8.3%) que no lo considera útil o que propone añadirle conectividad 4G. Esto sugiere que, si bien hay una base de aceptación, hay aspectos importantes a mejorar para aumentar la adopción y satisfacción general.</p>
 
-    <section class="py-5 graphs-section" id="datos-y-encuestas">
-        <div class="container">
-            <h2 class="section-title">Datos y Encuestas de Mercado</h2>
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <p class="lead mb-5">Creemos en la mejora continua y en la opinión de nuestros usuarios. Te invitamos a explorar algunos datos relevantes sobre la seguridad en el hogar y a participar en nuestras encuestas para ayudarnos a crecer y perfeccionar ASG.</p>
-                </div>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-5">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="fas fa-chart-pie mb-3"></i>
-                            <h4 class="card-title">Estadísticas Clave</h4>
-                            <p class="card-text">Descubre la importancia de la seguridad en el hogar con datos y gráficos sobre incidentes por fugas de gas en Argentina.</p>
-                            <a href="#" class="btn btn-primary btn-custom mt-3" onclick="mostrarSeccion('charts-section'); return false;">Ver Gráficos de Impacto</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="fas fa-poll-h mb-3"></i>
-                            <h4 class="card-title">Tu Opinión Importa</h4>
-                            <p class="card-text">Ayúdanos a mejorar ASG participando en nuestras breves encuestas de satisfacción y sugerencias.</p>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nht_vAaWD5Uv3bZz2vhHqWbIlkj9GoHlcHy89J7Kn6EYDg/viewform?usp=header" target="_blank" class="btn btn-primary btn-custom mt-3">Ir a la Encuesta (Formulario)</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-4 justify-content-center mt-4">
-                <div class="col-md-5">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="fas fa-chart-bar mb-3"></i>
-                            <h4 class="card-title">Conclusión de Encuestas</h4>
-                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta, y un resumen de nuestras encuestas de mercado.</p>
-                            <a href="#" class="btn btn-primary btn-custom mt-3" onclick="mostrarSeccion('conclusion-encuestas'); return false;">Ver Conclusión</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="fas fa-comments mb-3"></i>
-                            <h4 class="card-title">Opiniones de Usuarios (Imágenes)</h4>
-                            <p class="card-text">Visualiza las respuestas clave de los participantes en nuestro formulario de encuestas.</p>
-                            <a href="#" onclick="mostrarSeccion('opiniones-usuarios-imagenes'); return false;" class="btn btn-primary btn-custom mt-3">Ver Imágenes de Encuestas</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                <h3>Preferencias de Notificación:</h3>
+                <p>Existe una clara preferencia por recibir notificaciones del dispositivo en una aplicación móvil, con un abrumador 91.7% de los encuestados que respondieron afirmativamente a esta opción. Solo un 8.3% prefiere no recibirlas en una app móvil. Esto indica que el desarrollo de una aplicación móvil para las notificaciones sería altamente valorado.</p>
 
-    <section class="py-5 charts-section-full" id="charts-section">
-        <div class="container">
-            <h2 class="section-title">Gráficos sobre Incidentes de Gas</h2>
+                <h3>Disposición a Pagar:</h3>
+                <p>La mitad de los encuestados (50%) estaría dispuesto a pagar entre 100 y 200 USD por el dispositivo. Un 41.7% pagaría menos de 100 USD, mientras que solo un 8.3% estaría dispuesto a pagar más de 200 USD. Esto sugiere que el rango de precio óptimo para el dispositivo se encuentra entre los 100 y 200 USD.</p>
 
-            <div class="chart-container">
-                <h2>1. Incidentes en Propiedades Privadas en Argentina (2022-2023)</h2>
-                <canvas id="chart1"></canvas>
+                <h3>Perfil del Encuestado (Ubicación y Edad):</h3>
+                <p>La mayoría de los encuestados (83.3%) reside en casas, mientras que un 8.3% vive en departamentos y otro 8.3% en pensiones. En cuanto a la edad, el grupo demográfico más grande (66.7%) tiene entre 18 y 25 años. Otros rangos de edad representados son menos de 18 años (16.7%), 26 a 40 años (8.3%) y más de 60 años (8.3%). Este dato es crucial para orientar las estrategias de marketing y desarrollo del producto hacia el público objetivo principal.</p>
+                <p class="lead mt-4">En resumen, el producto tiene un buen potencial de utilidad, pero requiere mejoras y una fuerte integración con una aplicación móvil. El precio ideal se encuentra en el rango de 100 a 200 USD, y el público objetivo principal se sitúa entre los 18 y 25 años, mayoritariamente residentes en casas.</p>
             </div>
-
-            <div class="chart-container">
-                <h2>2. Conexiones Clandestinas de Gas en AMBA (2019-2023)</h2>
-                <canvas id="chart2"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>3. Incidentes de Intoxicación por CO por Distribuidora (2023)</h2>
-                <canvas id="chart3"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>4. Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024)</h2>
-                <canvas id="chart4"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>5. Comparación de Fatalidades por Monóxido de Carbono en Argentina</h2>
-                <canvas id="chart5"></canvas>
-                <p class="chart-note">Nota: El total acumulado corresponde a 2019-mayo 2024, no es anual.</p>
-            </div>
-
-            <div class="chart-container">
-                <h2>6. Factores Contribuyentes a Incidentes de CO (2023)</h2>
-                <canvas id="chart6"></canvas>
-            </div>
-            <div class="text-center">
-                <button onclick="ocultarSeccion('charts-section'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Gráficos</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="opiniones-usuarios-imagenes">
-        <div class="container">
-            <h2 class="section-title">Análisis del Mercado: Respuestas de Encuesta en Imágenes</h2>
-            <div class="row">
+            
+            <h3 class="mt-5 text-center">Respuestas de Encuesta en Imágenes</h3>
+            <div class="row mt-4">
                 <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
                     <img src="Captura de pantalla 2025-05-21 005305.png" alt="Captura de opinión 1" class="img-fluid">
                 </div>
@@ -270,39 +693,43 @@
                     <img src="Captura de pantalla 2025-05-21 005355.png" alt="Captura de opinión 6" class="img-fluid">
                 </div>
             </div>
-            <div class="text-center">
-                <button onclick="ocultarSeccion('opiniones-usuarios-imagenes'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Sección</button>
+
+            <h3 class="mt-5 text-center">Gráficos sobre Incidentes de Gas</h3>
+            <div class="chart-container">
+                <h2>1. Incidentes en Propiedades Privadas en Argentina (2022-2023)</h2>
+                <canvas id="chart1"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>2. Conexiones Clandestinas de Gas en AMBA (2019-2023)</h2>
+                <canvas id="chart2"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>3. Incidentes de Intoxicación por CO por Distribuidora (2023)</h2>
+                <canvas id="chart3"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>4. Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024)</h2>
+                <canvas id="chart4"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>5. Comparación de Fatalidades por Monóxido de Carbono en Argentina</h2>
+                <canvas id="chart5"></canvas>
+                <p class="chart-note">Nota: El total acumulado corresponde a 2019-mayo 2024, no es anual.</p>
+            </div>
+            <div class="chart-container">
+                <h2>6. Factores Contribuyentes a Incidentes de CO (2023)</h2>
+                <canvas id="chart6"></canvas>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button onclick="ocultarSeccion('analisis-mercado'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Sección</button>
             </div>
         </div>
     </section>
 
-    <section class="py-5" id="conclusion-encuestas">
+    <section class="py-5" id="analisis-competencia">
         <div class="container">
-            <h2 class="section-title">Conclusión de Encuestas de Mercado</h2>
-            <div class="company-info mx-auto text-start">
-                <h3>Sobre el Producto y su Utilidad:</h3>
-                <p>La mayoría de los encuestados considera que el producto es útil, con un 41.7% que lo ve como tal y un 8.3% que además lo usaría en su vida cotidiana. Sin embargo, un 16.7% lo considera útil pero no lo utilizaría, y otro 16.7% cree que el producto necesita mejoras. Existe también una pequeña porción (8.3%) que no lo considera útil o que propone añadirle conectividad 4G. Esto sugiere que, si bien hay una base de aceptación, hay aspectos importantes a mejorar para aumentar la adopción y satisfacción general.</p>
-
-                <h3>Preferencias de Notificación:</h3>
-                <p>Existe una clara preferencia por recibir notificaciones del dispositivo en una aplicación móvil, con un abrumador 91.7% de los encuestados que respondieron afirmativamente a esta opción. Solo un 8.3% prefiere no recibirlas en una app móvil. Esto indica que el desarrollo de una aplicación móvil para las notificaciones sería altamente valorado.</p>
-
-                <h3>Disposición a Pagar:</h3>
-                <p>La mitad de los encuestados (50%) estaría dispuesto a pagar entre 100 y 200 USD por el dispositivo. Un 41.7% pagaría menos de 100 USD, mientras que solo un 8.3% estaría dispuesto a pagar más de 200 USD. Esto sugiere que el rango de precio óptimo para el dispositivo se encuentra entre los 100 y 200 USD.</p>
-
-                <h3>Perfil del Encuestado (Ubicación y Edad):</h3>
-                <p>La mayoría de los encuestados (83.3%) reside en casas, mientras que un 8.3% vive en departamentos y otro 8.3% en pensiones. En cuanto a la edad, el grupo demográfico más grande (66.7%) tiene entre 18 y 25 años. Otros rangos de edad representados son menos de 18 años (16.7%), 26 a 40 años (8.3%) y más de 60 años (8.3%). Este dato es crucial para orientar las estrategias de marketing y desarrollo del producto hacia el público objetivo principal.</p>
-
-                <p class="lead mt-4">En resumen, el producto tiene un buen potencial de utilidad, pero requiere mejoras y una fuerte integración con una aplicación móvil. El precio ideal se encuentra en el rango de 100 a 200 USD, y el público objetivo principal se sitúa entre los 18 y 25 años, mayoritariamente residentes en casas.</p>
-            </div>
-            <div class="text-center">
-                <button onclick="ocultarSeccion('conclusion-encuestas'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Conclusión</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="analisis-producto">
-        <div class="container">
-            <h2 class="section-title">Análisis Detallado y Conclusiones del Producto</h2>
+            <h2 class="section-title">Análisis de la Competencia</h2>
             <div class="company-info mx-auto text-start">
                 <h3 class="text-center mb-4">Tabla de Comparación con la Competencia</h3>
                 <div class="text-center mb-5">
@@ -344,19 +771,8 @@
                     <li>**Monitoreo Unificado:** Posible expansión futura para controlar múltiples sensores y dispositivos de seguridad desde una única aplicación.</li>
                     <li>**Atención al Cliente Directa:** Acceso rápido y eficiente a soporte local para cualquier duda o inconveniente.</li>
                 </ul>
-            </div>
-            <div class="text-center mt-5">
-                <button onclick="mostrarSeccion('pruebas-resultados'); return false;" class="btn btn-primary btn-custom mx-2">Ver Pruebas y Resultados</button>
-                <button onclick="mostrarSeccion('casos-uso'); return false;" class="btn btn-primary btn-custom mx-2">Ver Casos de Uso</button>
-                <button onclick="ocultarSeccion('analisis-producto'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Análisis de Producto</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="pruebas-resultados">
-        <div class="container">
-            <h2 class="section-title">Resultados de Pruebas y Rendimiento</h2>
-            <div class="company-info mx-auto text-start">
+                
+                <h3 class="mt-5 text-center">Resultados de Pruebas y Rendimiento</h3>
                 <p>Hemos realizado pruebas exhaustivas para asegurar la fiabilidad y eficacia de ASG. A continuación, se presentan algunas métricas clave:</p>
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -382,18 +798,8 @@
                     </div>
                 </div>
                 <p>Estas métricas demuestran la rápida respuesta y alta fiabilidad de ASG para proteger tu hogar.</p>
-            </div>
-            <div class="text-center mt-5">
-                <button onclick="ocultarSeccion('pruebas-resultados'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Pruebas y Resultados</button>
-                <button onclick="mostrarSeccion('analisis-producto'); return false;" class="btn btn-primary btn-custom mt-3">Volver al Análisis de Producto</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="casos-uso">
-        <div class="container">
-            <h2 class="section-title">Casos de Uso de ASG: ¿Quién se Beneficia?</h2>
-            <div class="company-info mx-auto text-start">
+                
+                <h3 class="mt-5 text-center">Casos de Uso de ASG: ¿Quién se Beneficia?</h3>
                 <p>ASG es una solución de seguridad indispensable para diversos perfiles de hogares y situaciones:</p>
                 <ul>
                     <li>**Familias con niños pequeños:** Proporciona una capa adicional de seguridad, reaccionando rápidamente ante cualquier incidente.</li>
@@ -403,13 +809,49 @@
                     <li>**Personas que pasan mucho tiempo fuera de casa:** La alerta y el control remoto brindan una paz mental invaluable.</li>
                 </ul>
             </div>
+            
             <div class="text-center mt-5">
-                <button onclick="ocultarSeccion('casos-uso'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Casos de Uso</button>
-                <button onclick="mostrarSeccion('analisis-producto'); return false;" class="btn btn-primary btn-custom mt-3">Volver al Análisis de Producto</button>
+                <button onclick="ocultarSeccion('analisis-competencia'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Análisis de Producto</button>
             </div>
         </div>
     </section>
 
+    <section class="features py-5 text-center" id="caracteristicas">
+        <div class="container">
+            <h2 class="section-title">Características Clave de ASG</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <i class="fas fa-shield-alt mb-3"></i>
+                    <h3>Seguridad Activa</h3>
+                    <p>Cierre automático de válvulas para una respuesta instantánea ante fugas detectadas.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-mobile-alt mb-3"></i>
+                    <h3>Control Inteligente</h3>
+                    <p>Monitorea y gestiona tu sistema ASG desde cualquier lugar con nuestra aplicación móvil intuitiva.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-bell mb-3"></i>
+                    <h3>Alertas Instantáneas</h3>
+                    <p>Recibe notificaciones en tiempo real en tu dispositivo ante cualquier incidencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="aspectos-tecnicos">
+        <div class="container">
+            <h2 class="section-title">Tecnología Detrás de ASG</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="company-info mx-auto text-start">
+                        <p>ASG integra sensores de alta precisión con un sistema de actuadores inteligentes para el cierre automático de válvulas. La conectividad IoT (Internet de las Cosas) garantiza el monitoreo constante y la interacción remota a través de una aplicación móvil intuitiva. Nuestro sistema está desarrollado con robustez y escalabilidad en mente, asegurando un rendimiento fiable y la posibilidad de futuras integraciones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="py-5 faq-section" id="preguntas-frecuentes">
         <div class="container">
             <h2 class="section-title">Preguntas Frecuentes</h2>
@@ -481,6 +923,7 @@
             </div>
         </div>
     </section>
+
 </main>
 
 <footer>
@@ -490,17 +933,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // Array de IDs de todas las secciones que deben ser manejadas por la visibilidad
     const controlableSections = [
-        'charts-section',
-        'opiniones-usuarios-imagenes',
-        'conclusion-encuestas',
-        'analisis-producto',
-        'pruebas-resultados',
-        'casos-uso'
+        'imagen-corporativa',
+        'analisis-mercado',
+        'analisis-competencia'
     ];
 
-    // Función para mostrar una sección y ocultar las demás (si es necesario)
     function mostrarSeccion(sectionIdToShow) {
         controlableSections.forEach(id => {
             const section = document.getElementById(id);
@@ -512,34 +950,28 @@
                 }
             }
         });
-
-        // Desplazamiento suave a la sección mostrada
         const offset = $('.navbar').outerHeight();
         $('html, body').animate({
             scrollTop: $('#' + sectionIdToShow).offset().top - offset
         }, 800);
     }
 
-    // Función para ocultar una sección específica
     function ocultarSeccion(sectionIdToHide) {
         const section = document.getElementById(sectionIdToHide);
         if (section) {
             section.style.display = 'none';
         }
-        // Vuelve al inicio de "Datos y Encuestas" o a la sección principal de datos
         const offset = $('.navbar').outerHeight();
         $('html, body').animate({
-            scrollTop: $('#datos-y-encuestas').offset().top - offset
+            scrollTop: $('#inicio').offset().top - offset
         }, 800);
     }
 
     $(document).ready(function(){
-        // Smooth scroll para enlaces internos (excluye los que tienen onclick para las secciones ocultas)
         $('a.nav-link, a.btn-primary').on('click', function(e) {
             const href = $(this).attr('href');
-            // Check if it's an internal link and not handled by 'onclick'
             if (href && href.startsWith('#') && $(this).attr('onclick') === undefined) {
-                e.preventDefault(); // Prevent default anchor click behavior
+                e.preventDefault();
                 const hash = href;
                 const offset = $('.navbar').outerHeight();
                 $('html, body').animate({
@@ -548,12 +980,10 @@
             }
         });
 
-        // Ocultar overlay de animación al cargar la página
         $(window).on('load', function() {
             $('#explosionOverlay').addClass('fade-out');
         });
 
-        // Inicializar todas las secciones controlables como ocultas al cargar
         controlableSections.forEach(id => {
             const section = document.getElementById(id);
             if (section) {
@@ -562,14 +992,12 @@
         });
     });
 
-
-    // Paleta de colores para Chart.js (ajustada a la escala de grises con acentos sutiles)
     const chartColors = {
-        primary: 'rgba(0, 0, 0, 0.8)',      // Negro oscuro
-        secondary: 'rgba(51, 51, 51, 0.8)', // Gris oscuro
-        accentLight: 'rgba(102, 102, 102, 0.8)', // Gris medio
-        accentDark: 'rgba(153, 153, 153, 0.8)',  // Gris claro
-        white: 'rgba(255, 255, 255, 0.8)',  // Blanco
+        primary: 'rgba(0, 0, 0, 0.8)',
+        secondary: 'rgba(51, 51, 51, 0.8)',
+        accentLight: 'rgba(102, 102, 102, 0.8)',
+        accentDark: 'rgba(153, 153, 153, 0.8)',
+        white: 'rgba(255, 255, 255, 0.8)',
         black: 'rgba(0, 0, 0, 0.8)'
     };
 
@@ -582,7 +1010,6 @@
         black: 'rgba(0, 0, 0, 1)'
     };
 
-    // Configuración base para títulos de gráficos
     const titleOptions = {
         display: true,
         font: {
@@ -590,10 +1017,9 @@
             weight: 'bold',
             family: 'Poppins, sans-serif'
         },
-        color: '#333' // Color oscuro para contraste con el fondo blanco del chart-container
+        color: '#333'
     };
 
-    // Configuración base para escalas (ejes)
     const scalesOptions = {
         y: {
             beginAtZero: true,
@@ -640,7 +1066,6 @@
         }
     };
 
-    // Configuración base para tooltips
     const tooltipOptions = {
         backgroundColor: chartColors.primary,
         titleFont: {
@@ -656,7 +1081,6 @@
         cornerRadius: 4
     };
 
-    // --- Gráfico 1: Incidentes en Propiedades Privadas (2022 vs. 2023) ---
     const ctx1 = document.getElementById('chart1').getContext('2d');
     new Chart(ctx1, {
         type: 'bar',
@@ -691,7 +1115,6 @@
         }
     });
 
-    // --- Gráfico 2: Detección de Conexiones Clandestinas en AMBA (2019-2023) ---
     const ctx2 = document.getElementById('chart2').getContext('2d');
     new Chart(ctx2, {
         type: 'bar',
@@ -726,7 +1149,6 @@
         }
     });
 
-    // --- Gráfico 3: Incidentes de Intoxicación por CO por Distribuidora (2023) ---
     const ctx3 = document.getElementById('chart3').getContext('2d');
     new Chart(ctx3, {
         type: 'bar',
@@ -771,7 +1193,6 @@
         }
     });
 
-    // --- Gráfico 4: Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024) ---
     const ctx4 = document.getElementById('chart4').getContext('2d');
     new Chart(ctx4, {
         type: 'bar',
@@ -806,7 +1227,6 @@
         }
     });
 
-    // --- Gráfico 5: Fatalidades por Monóxido de Carbono en Argentina (Comparación de Fuentes) ---
     const ctx5 = document.getElementById('chart5').getContext('2d');
     new Chart(ctx5, {
         type: 'bar',
@@ -858,7 +1278,6 @@
         }
     });
 
-    // --- Gráfico 6: Factores Contribuyentes a Intoxicaciones por CO (2023) ---
     const ctx6 = document.getElementById('chart6').getContext('2d');
     new Chart(ctx6, {
         type: 'pie',
@@ -916,7 +1335,7 @@
                         font: {
                             size: 10
                         },
-                        color: '#333' // Ajustar color de leyenda para el fondo blanco del gráfico
+                        color: '#333'
                     }
                 }
             }
