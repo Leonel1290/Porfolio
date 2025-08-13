@@ -167,7 +167,7 @@
                             <i class="fas fa-chart-pie mb-3"></i>
                             <h4 class="card-title">Estadísticas Clave</h4>
                             <p class="card-text">Descubre la importancia de la seguridad en el hogar con datos y gráficos sobre incidentes por fugas de gas en Argentina.</p>
-                            <a href="#" class="btn btn-custom mt-3" onclick="mostrarSeccion('charts-section'); return false;">Ver Gráficos de Impacto</a>
+                            <a href="#" class="btn btn-primary btn-custom mt-3" onclick="mostrarSeccion('charts-section'); return false;">Ver Gráficos de Impacto</a>
                         </div>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
                             <i class="fas fa-poll-h mb-3"></i>
                             <h4 class="card-title">Tu Opinión Importa</h4>
                             <p class="card-text">Ayúdanos a mejorar ASG participando en nuestras breves encuestas de satisfacción y sugerencias.</p>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nht_vAaWD5Uv3bZz2vhHqWbIlkj9GoHlcHy89J7Kn6EYDg/viewform?usp=header" target="_blank" class="btn btn-custom mt-3">Ir a la Encuesta (Formulario)</a>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nht_vAaWD5Uv3bZz2vhHqWbIlkj9GoHlcHy89J7Kn6EYDg/viewform?usp=header" target="_blank" class="btn btn-primary btn-custom mt-3">Ir a la Encuesta (Formulario)</a>
                         </div>
                     </div>
                 </div>
@@ -189,7 +189,7 @@
                             <i class="fas fa-chart-bar mb-3"></i>
                             <h4 class="card-title">Conclusión de Encuestas</h4>
                             <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta, y un resumen de nuestras encuestas de mercado.</p>
-                            <a href="#" class="btn btn-custom mt-3" onclick="mostrarSeccion('conclusion-encuestas'); return false;">Ver Conclusión</a>
+                            <a href="#" class="btn btn-primary btn-custom mt-3" onclick="mostrarSeccion('conclusion-encuestas'); return false;">Ver Conclusión</a>
                         </div>
                     </div>
                 </div>
@@ -199,7 +199,7 @@
                             <i class="fas fa-comments mb-3"></i>
                             <h4 class="card-title">Opiniones de Usuarios (Imágenes)</h4>
                             <p class="card-text">Visualiza las respuestas clave de los participantes en nuestro formulario de encuestas.</p>
-                            <a href="#" onclick="mostrarSeccion('opiniones-usuarios-imagenes'); return false;" class="btn btn-custom mt-3">Ver Imágenes de Encuestas</a>
+                            <a href="#" onclick="mostrarSeccion('opiniones-usuarios-imagenes'); return false;" class="btn btn-primary btn-custom mt-3">Ver Imágenes de Encuestas</a>
                         </div>
                     </div>
                 </div>
@@ -346,8 +346,8 @@
                 </ul>
             </div>
             <div class="text-center mt-5">
-                <button onclick="mostrarSeccion('pruebas-resultados'); return false;" class="btn btn-custom mx-2">Ver Pruebas y Resultados</button>
-                <button onclick="mostrarSeccion('casos-uso'); return false;" class="btn btn-custom mx-2">Ver Casos de Uso</button>
+                <button onclick="mostrarSeccion('pruebas-resultados'); return false;" class="btn btn-primary btn-custom mx-2">Ver Pruebas y Resultados</button>
+                <button onclick="mostrarSeccion('casos-uso'); return false;" class="btn btn-primary btn-custom mx-2">Ver Casos de Uso</button>
                 <button onclick="ocultarSeccion('analisis-producto'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Análisis de Producto</button>
             </div>
         </div>
@@ -385,7 +385,7 @@
             </div>
             <div class="text-center mt-5">
                 <button onclick="ocultarSeccion('pruebas-resultados'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Pruebas y Resultados</button>
-                <button onclick="mostrarSeccion('analisis-producto'); return false;" class="btn btn-custom mt-3">Volver al Análisis de Producto</button>
+                <button onclick="mostrarSeccion('analisis-producto'); return false;" class="btn btn-primary btn-custom mt-3">Volver al Análisis de Producto</button>
             </div>
         </div>
     </section>
@@ -405,7 +405,7 @@
             </div>
             <div class="text-center mt-5">
                 <button onclick="ocultarSeccion('casos-uso'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Casos de Uso</button>
-                <button onclick="mostrarSeccion('analisis-producto'); return false;" class="btn btn-custom mt-3">Volver al Análisis de Producto</button>
+                <button onclick="mostrarSeccion('analisis-producto'); return false;" class="btn btn-primary btn-custom mt-3">Volver al Análisis de Producto</button>
             </div>
         </div>
     </section>
@@ -535,7 +535,7 @@
 
     $(document).ready(function(){
         // Smooth scroll para enlaces internos (excluye los que tienen onclick para las secciones ocultas)
-        $('a.nav-link, a.btn-custom').on('click', function(e) {
+        $('a.nav-link, a.btn-primary').on('click', function(e) {
             const href = $(this).attr('href');
             // Check if it's an internal link and not handled by 'onclick'
             if (href && href.startsWith('#') && $(this).attr('onclick') === undefined) {
@@ -562,23 +562,24 @@
         });
     });
 
-    // Paleta de colores para Chart.js (ajustada a la nueva paleta de azul marino)
+
+    // Paleta de colores para Chart.js (ajustada a la escala de grises con acentos sutiles)
     const chartColors = {
-        primary: 'rgba(37, 117, 252, 0.8)',      // Azul cian para el acento
-        secondary: 'rgba(10, 31, 68, 0.8)',      // Azul marino oscuro
-        accentLight: 'rgba(26, 60, 109, 0.8)',  // Azul medio
-        accentDark: 'rgba(17, 43, 85, 0.8)',    // Azul más oscuro
-        white: 'rgba(240, 244, 248, 0.8)',      // Blanco
-        black: 'rgba(10, 31, 68, 0.8)'
+        primary: 'rgba(0, 0, 0, 0.8)',      // Negro oscuro
+        secondary: 'rgba(51, 51, 51, 0.8)', // Gris oscuro
+        accentLight: 'rgba(102, 102, 102, 0.8)', // Gris medio
+        accentDark: 'rgba(153, 153, 153, 0.8)',  // Gris claro
+        white: 'rgba(255, 255, 255, 0.8)',  // Blanco
+        black: 'rgba(0, 0, 0, 0.8)'
     };
 
     const chartBorderColors = {
-        primary: 'rgba(37, 117, 252, 1)',
-        secondary: 'rgba(10, 31, 68, 1)',
-        accentLight: 'rgba(26, 60, 109, 1)',
-        accentDark: 'rgba(17, 43, 85, 1)',
-        white: 'rgba(240, 244, 248, 1)',
-        black: 'rgba(10, 31, 68, 1)'
+        primary: 'rgba(0, 0, 0, 1)',
+        secondary: 'rgba(51, 51, 51, 1)',
+        accentLight: 'rgba(102, 102, 102, 1)',
+        accentDark: 'rgba(153, 153, 153, 1)',
+        white: 'rgba(255, 255, 255, 1)',
+        black: 'rgba(0, 0, 0, 1)'
     };
 
     // Configuración base para títulos de gráficos
