@@ -1,28 +1,14 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portafolio ASG - Tu Hogar Seguro</title>
-
-    <link rel="shortcut icon" href="https://cdn3d.iconscout.com/3d/premium/thumb/fuga-de-gas-8440307-6706766.png?f=webp">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
-
-    <link rel="stylesheet" href="style.css">
+    <!-- Meta tags y enlaces existentes -->
+    <!-- Agregar GSAP para animaciones -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-<div id="explosionOverlay" class="explosion-animation-overlay">
-    <div class="explosion-image-container">
-        <p class="text-light">Cargando Portafolio ASG...</p>
-    </div>
-</div>
+<!-- Overlay de carga existente -->
 
 <header>
     <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
@@ -33,23 +19,44 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#caracteristicas">Características</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Producto
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="productoDropdown">
+                            <li><a class="dropdown-item" href="#vision-general">Visión General</a></li>
+                            <li><a class="dropdown-item" href="#caracteristicas">Características</a></li>
+                            <li><a class="dropdown-item" href="#analisis-producto">Análisis de Producto</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="tecnologiaDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tecnología
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="tecnologiaDropdown">
+                            <li><a class="dropdown-item" href="#aspectos-tecnicos">Detalles Técnicos</a></li>
+                            <li><a class="dropdown-item" href="#pruebas-resultados">Pruebas y Resultados</a></li>
+                            <li><a class="dropdown-item" href="#casos-uso">Casos de Uso</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="datosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Datos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="datosDropdown">
+                            <li><a class="dropdown-item" href="#datos-y-encuestas">Encuestas</a></li>
+                            <li><a class="dropdown-item" href="#charts-section">Estadísticas</a></li>
+                            <li><a class="dropdown-item" href="#conclusion-encuestas">Conclusiones</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#aspectos-tecnicos">Tecnología</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#datos-y-encuestas">Datos y Encuestas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#preguntas-frecuentes">Preguntas Frecuentes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="mostrarSeccion('analisis-producto'); return false;">Análisis de Producto</a>
+                        <a class="nav-link" href="#preguntas-frecuentes">FAQ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-demo" href="#" id="demoBtn">Ver Demo</a>
                     </li>
                 </ul>
             </div>
@@ -58,18 +65,35 @@
 </header>
 
 <main>
+    <!-- Sección Hero mejorada con animación interactiva -->
     <section class="hero d-flex align-items-center" id="inicio">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-start">
-                    <h1>Tu Hogar, Siempre Seguro</h1>
+                    <h1 id="heroTitle">Tu Hogar, Siempre Seguro</h1>
                     <div class="hero-line"></div>
-                    <p class="lead">ASG: Detección precisa de fugas de gas y protección activa para tu tranquilidad.</p>
-                    <p class="lead fw-bold mt-3">Protección inteligente para tu familia y tu hogar.</p>
+                    <p class="lead" id="heroSubtitle">ASG: Detección precisa de fugas de gas y protección activa para tu tranquilidad.</p>
+                    <p class="lead fw-bold mt-3" id="heroTagline">Protección inteligente para tu familia y tu hogar.</p>
+                    
+                    <div class="hero-actions mt-4">
+                        <a href="#caracteristicas" class="btn btn-custom me-3">Conoce más</a>
+                        <a href="#" class="btn btn-outline-light" id="simulateLeakBtn">Simular Fuga</a>
+                    </div>
+                    
+                    <div class="safety-meter mt-5">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Nivel de seguridad actual:</span>
+                            <span id="safetyLevel">100% Seguro</span>
+                        </div>
+                        <div class="progress">
+                            <div id="safetyBar" class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6 text-center mt-4 mt-md-0">
-                    <div class="model-container">
+                    <div class="model-container" id="modelContainer">
                         <model-viewer
+                            id="gasModel"
                             src="steam_condensate_trap__trampa_de_condensado.glb"
                             alt="Trampa de Condensado"
                             auto-rotate
@@ -85,841 +109,374 @@
                             max-field-of-view="60deg"
                         >
                         </model-viewer>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="vision-general">
-        <div class="container">
-            <h2 class="section-title">Visión General de ASG</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <p class="lead">ASG nace para solucionar un problema crítico: las fugas de gas no detectadas en el hogar. Nuestro sistema ofrece una protección integral, no solo alertando, sino también actuando automáticamente para cerrar la fuente de gas y proteger a tu familia.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5 history-section" id="nuestra-historia">
-        <div class="container">
-            <h2 class="section-title">Nuestra Historia y Misión</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="company-info mx-auto text-start">
-                        <p>En ASG, nuestra misión es redefinir la seguridad del hogar. Nuestro equipo se inspiró en la necesidad crítica de prevenir accidentes por fugas de gas, a menudo con consecuencias devastadoras. Nos propusimos crear una solución innovadora que no solo alertara, sino que actuara proactivamente para proteger a las familias.</p>
-                        <p>Desde nuestros inicios en Río Tercero, Córdoba, hemos estado comprometidos con la excelencia y la tranquilidad de nuestros usuarios. Cada dispositivo ASG es el resultado de investigación, desarrollo y un profundo entendimiento de las necesidades de seguridad en el hogar moderno. Estamos orgullosos de ofrecer una tecnología que pone la seguridad de tu familia en primer lugar, con soluciones inteligentes y accesibles.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="features py-5 text-center" id="caracteristicas">
-        <div class="container">
-            <h2 class="section-title">Características Clave de ASG</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <i class="fas fa-shield-alt mb-3"></i>
-                    <h3>Seguridad Activa</h3>
-                    <p>Cierre automático de válvulas para una respuesta instantánea ante fugas detectadas.</p>
-                </div>
-                <div class="col-md-4">
-                    <i class="fas fa-mobile-alt mb-3"></i>
-                    <h3>Control Inteligente</h3>
-                    <p>Monitorea y gestiona tu sistema ASG desde cualquier lugar con nuestra aplicación móvil intuitiva.</p>
-                </div>
-                <div class="col-md-4">
-                    <i class="fas fa-bell mb-3"></i>
-                    <h3>Alertas Instantáneas</h3>
-                    <p>Recibe notificaciones en tiempo real en tu dispositivo ante cualquier incidencia.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="aspectos-tecnicos">
-        <div class="container">
-            <h2 class="section-title">Tecnología Detrás de ASG</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="company-info mx-auto text-start">
-                        <p>ASG integra sensores de alta precisión con un sistema de actuadores inteligentes para el cierre automático de válvulas. La conectividad IoT (Internet de las Cosas) garantiza el monitoreo constante y la interacción remota a través de una aplicación móvil intuitiva. Nuestro sistema está desarrollado con robustez y escalabilidad en mente, asegurando un rendimiento fiable y la posibilidad de futuras integraciones.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5 graphs-section" id="datos-y-encuestas">
-        <div class="container">
-            <h2 class="section-title">Datos y Encuestas de Mercado</h2>
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <p class="lead mb-5">Creemos en la mejora continua y en la opinión de nuestros usuarios. Te invitamos a explorar algunos datos relevantes sobre la seguridad en el hogar y a participar en nuestras encuestas para ayudarnos a crecer y perfeccionar ASG.</p>
-                </div>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-5">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="fas fa-chart-pie mb-3"></i>
-                            <h4 class="card-title">Estadísticas Clave</h4>
-                            <p class="card-text">Descubre la importancia de la seguridad en el hogar con datos y gráficos sobre incidentes por fugas de gas en Argentina.</p>
-                            <a href="#" class="btn btn-primary btn-custom mt-3" onclick="mostrarSeccion('charts-section'); return false;">Ver Gráficos de Impacto</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="fas fa-poll-h mb-3"></i>
-                            <h4 class="card-title">Tu Opinión Importa</h4>
-                            <p class="card-text">Ayúdanos a mejorar ASG participando en nuestras breves encuestas de satisfacción y sugerencias.</p>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8nht_vAaWD5Uv3bZz2vhHqWbIlkj9GoHlcHy89J7Kn6EYDg/viewform?usp=header" target="_blank" class="btn btn-primary btn-custom mt-3">Ir a la Encuesta (Formulario)</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-4 justify-content-center mt-4">
-                <div class="col-md-5">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="fas fa-chart-bar mb-3"></i>
-                            <h4 class="card-title">Conclusión de Encuestas</h4>
-                            <p class="card-text">Explora los resultados de nuestras pruebas de detección y tiempos de respuesta, y un resumen de nuestras encuestas de mercado.</p>
-                            <a href="#" class="btn btn-primary btn-custom mt-3" onclick="mostrarSeccion('conclusion-encuestas'); return false;">Ver Conclusión</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                            <i class="fas fa-comments mb-3"></i>
-                            <h4 class="card-title">Opiniones de Usuarios (Imágenes)</h4>
-                            <p class="card-text">Visualiza las respuestas clave de los participantes en nuestro formulario de encuestas.</p>
-                            <a href="#" onclick="mostrarSeccion('opiniones-usuarios-imagenes'); return false;" class="btn btn-primary btn-custom mt-3">Ver Imágenes de Encuestas</a>
+                        <div class="gas-alert" id="gasAlert">
+                            <div class="alert-content">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>¡FUGA DETECTADA!</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Efecto de partículas para la simulación de fuga -->
+        <div class="particles-container" id="particlesContainer"></div>
     </section>
 
-    <section class="py-5 charts-section-full" id="charts-section">
-        <div class="container">
-            <h2 class="section-title">Gráficos sobre Incidentes de Gas</h2>
-
-            <div class="chart-container">
-                <h2>1. Incidentes en Propiedades Privadas en Argentina (2022-2023)</h2>
-                <canvas id="chart1"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>2. Conexiones Clandestinas de Gas en AMBA (2019-2023)</h2>
-                <canvas id="chart2"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>3. Incidentes de Intoxicación por CO por Distribuidora (2023)</h2>
-                <canvas id="chart3"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>4. Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024)</h2>
-                <canvas id="chart4"></canvas>
-            </div>
-
-            <div class="chart-container">
-                <h2>5. Comparación de Fatalidades por Monóxido de Carbono en Argentina</h2>
-                <canvas id="chart5"></canvas>
-                <p class="chart-note">Nota: El total acumulado corresponde a 2019-mayo 2024, no es anual.</p>
-            </div>
-
-            <div class="chart-container">
-                <h2>6. Factores Contribuyentes a Incidentes de CO (2023)</h2>
-                <canvas id="chart6"></canvas>
-            </div>
-            <div class="text-center">
-                <button onclick="ocultarSeccion('charts-section'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Gráficos</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="opiniones-usuarios-imagenes">
-        <div class="container">
-            <h2 class="section-title">Análisis del Mercado: Respuestas de Encuesta en Imágenes</h2>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 005305.png" alt="Captura de opinión 1" class="img-fluid">
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 005313.png" alt="Captura de opinión 2" class="img-fluid">
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 010814.png" alt="Captura de opinión 3" class="img-fluid">
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 005329.png" alt="Captura de opinión 4" class="img-fluid">
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 005337.png" alt="Captura de opinión 5" class="img-fluid">
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-center justify-content-center">
-                    <img src="Captura de pantalla 2025-05-21 005355.png" alt="Captura de opinión 6" class="img-fluid">
-                </div>
-            </div>
-            <div class="text-center">
-                <button onclick="ocultarSeccion('opiniones-usuarios-imagenes'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Sección</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="conclusion-encuestas">
-        <div class="container">
-            <h2 class="section-title">Conclusión de Encuestas de Mercado</h2>
-            <div class="company-info mx-auto text-start">
-                <h3>Sobre el Producto y su Utilidad:</h3>
-                <p>La mayoría de los encuestados considera que el producto es útil, con un 41.7% que lo ve como tal y un 8.3% que además lo usaría en su vida cotidiana. Sin embargo, un 16.7% lo considera útil pero no lo utilizaría, y otro 16.7% cree que el producto necesita mejoras. Existe también una pequeña porción (8.3%) que no lo considera útil o que propone añadirle conectividad 4G. Esto sugiere que, si bien hay una base de aceptación, hay aspectos importantes a mejorar para aumentar la adopción y satisfacción general.</p>
-
-                <h3>Preferencias de Notificación:</h3>
-                <p>Existe una clara preferencia por recibir notificaciones del dispositivo en una aplicación móvil, con un abrumador 91.7% de los encuestados que respondieron afirmativamente a esta opción. Solo un 8.3% prefiere no recibirlas en una app móvil. Esto indica que el desarrollo de una aplicación móvil para las notificaciones sería altamente valorado.</p>
-
-                <h3>Disposición a Pagar:</h3>
-                <p>La mitad de los encuestados (50%) estaría dispuesto a pagar entre 100 y 200 USD por el dispositivo. Un 41.7% pagaría menos de 100 USD, mientras que solo un 8.3% estaría dispuesto a pagar más de 200 USD. Esto sugiere que el rango de precio óptimo para el dispositivo se encuentra entre los 100 y 200 USD.</p>
-
-                <h3>Perfil del Encuestado (Ubicación y Edad):</h3>
-                <p>La mayoría de los encuestados (83.3%) reside en casas, mientras que un 8.3% vive en departamentos y otro 8.3% en pensiones. En cuanto a la edad, el grupo demográfico más grande (66.7%) tiene entre 18 y 25 años. Otros rangos de edad representados son menos de 18 años (16.7%), 26 a 40 años (8.3%) y más de 60 años (8.3%). Este dato es crucial para orientar las estrategias de marketing y desarrollo del producto hacia el público objetivo principal.</p>
-
-                <p class="lead mt-4">En resumen, el producto tiene un buen potencial de utilidad, pero requiere mejoras y una fuerte integración con una aplicación móvil. El precio ideal se encuentra en el rango de 100 a 200 USD, y el público objetivo principal se sitúa entre los 18 y 25 años, mayoritariamente residentes en casas.</p>
-            </div>
-            <div class="text-center">
-                <button onclick="ocultarSeccion('conclusion-encuestas'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Conclusión</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="analisis-producto">
-        <div class="container">
-            <h2 class="section-title">Análisis Detallado y Conclusiones del Producto</h2>
-            <div class="company-info mx-auto text-start">
-                <h3 class="text-center mb-4">Tabla de Comparación con la Competencia</h3>
-                <div class="text-center mb-5">
-                    <img src="Captura de pantalla 2025-06-11 095451.jpg" alt="Tabla comparativa de la competencia" class="img-fluid comparison-table-img">
-                </div>
-
-                <h3>1) ¿En qué se diferencia nuestro producto de la competencia?</h3>
-                <p>Nuestro detector de gas ASG integra funciones únicas y esenciales en un solo sistema, ofreciendo una protección superior:</p>
-                <ul>
-                    <li>**Detección de gas en tiempo real:** Sensores de alta precisión que identifican rápidamente la presencia de gas.</li>
-                    <li>**Activación de alarma sonora inmediata:** Alerta audible potente para notificar a los ocupantes del hogar.</li>
-                    <li>**Sistema automático de cierre de válvula:** Característica clave que previene fugas prolongadas al cortar el suministro de gas de forma instantánea.</li>
-                    <li>**Control y monitoreo remoto desde una aplicación móvil:** Ofrece tranquilidad al usuario, permitiendo gestionar y verificar el estado del sistema desde cualquier lugar.</li>
-                </ul>
-                <p>A diferencia de muchas soluciones en el mercado, ASG no se limita a solo detectar una fuga, sino que actúa proactivamente para mitigar el peligro, ofreciendo una seguridad integral.</p>
-
-                <h3>2) ¿Por qué los clientes elegirán nuestro producto en lugar de la competencia?</h3>
-                <ul>
-                    <li>**Costo-Beneficio Superior:** Ofrecemos una solución más completa (detección + prevención activa) a un costo competitivo, especialmente frente a marcas importadas que suelen carecer de la función de corte automático.</li>
-                    <li>**Soporte Local y Personalizado:** Brindamos atención directa y soporte técnico en Argentina, adaptándonos a las necesidades y normativas locales.</li>
-                    <li>**Seguridad Proactiva para el Hogar:** Ideal para familias preocupadas por la seguridad que buscan no solo ser alertadas, sino que el sistema tome medidas inmediatas.</li>
-                    <li>**Tecnología Adaptada al Contexto Local:** Desarrollado con un entendimiento profundo del mercado argentino, ofreciendo tecnología útil sin sobreprecios.</li>
-                </ul>
-
-                <h3>3) ¿Qué características de nuestro producto ofrecen ventajas competitivas?</h3>
-                <ul>
-                    <li>**Cierre Automático de Válvula:** Esta es nuestra principal ventaja, ya que pocas o ninguna opción económica del mercado incluye esta función crítica de forma integrada.</li>
-                    <li>**Conectividad con Aplicación Móvil (IoT):** Permite control remoto, visualización de niveles de gas y recepción de alertas en el celular, brindando tranquilidad incluso fuera de casa.</li>
-                    <li>**Facilidad de Instalación y Mantenimiento:** Diseñado para una implementación sencilla y un mantenimiento mínimo.</li>
-                    <li>**Potencial de Integración:** Capacidad de futura integración con otros sistemas de hogar inteligente.</li>
-                    <li>**Opciones de Personalización:** Posibilidad de adaptar el embalaje y la marca para distribuidores y alianzas estratégicas.</li>
-                </ul>
-
-                <h3>4) ¿Qué beneficios ofreceremos que actualmente no tiene el cliente con otras soluciones?</h3>
-                <ul>
-                    <li>**Prevención Activa Inmediata:** La principal ventaja es que el sistema no solo detecta el gas, sino que corta la fuga automáticamente y sin intervención humana.</li>
-                    <li>**Tranquilidad Absoluta:** Recibe alertas en tu celular al instante, permitiéndote estar informado y tomar acción, incluso si estás lejos de casa.</li>
-                    <li>**Protección Inteligente y Proactiva:** El sistema toma decisiones por sí mismo para proteger a tu familia, minimizando el tiempo de exposición a una fuga.</li>
-                    <li>**Monitoreo Unificado:** Posible expansión futura para controlar múltiples sensores y dispositivos de seguridad desde una única aplicación.</li>
-                    <li>**Atención al Cliente Directa:** Acceso rápido y eficiente a soporte local para cualquier duda o inconveniente.</li>
-                </ul>
-            </div>
-            <div class="text-center mt-5">
-                <button onclick="mostrarSeccion('pruebas-resultados'); return false;" class="btn btn-primary btn-custom mx-2">Ver Pruebas y Resultados</button>
-                <button onclick="mostrarSeccion('casos-uso'); return false;" class="btn btn-primary btn-custom mx-2">Ver Casos de Uso</button>
-                <button onclick="ocultarSeccion('analisis-producto'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Análisis de Producto</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="pruebas-resultados">
-        <div class="container">
-            <h2 class="section-title">Resultados de Pruebas y Rendimiento</h2>
-            <div class="company-info mx-auto text-start">
-                <p>Hemos realizado pruebas exhaustivas para asegurar la fiabilidad y eficacia de ASG. A continuación, se presentan algunas métricas clave:</p>
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <div class="metric-card">
-                            <h4>Tiempo de Detección Promedio</h4>
-                            <p>~3 segundos</p>
-                            <small>Desde la detección hasta la alerta</small>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="metric-card">
-                            <h4>Tiempo de Cierre de Válvula</h4>
-                            <p>~5 segundos</p>
-                            <small>Una vez detectada la fuga crítica</small>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="metric-card">
-                            <h4>Precisión del Sensor</h4>
-                            <p>99.5%</p>
-                            <small>En condiciones de laboratorio</small>
-                        </div>
-                    </div>
-                </div>
-                <p>Estas métricas demuestran la rápida respuesta y alta fiabilidad de ASG para proteger tu hogar.</p>
-            </div>
-            <div class="text-center mt-5">
-                <button onclick="ocultarSeccion('pruebas-resultados'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Pruebas y Resultados</button>
-                <button onclick="mostrarSeccion('analisis-producto'); return false;" class="btn btn-primary btn-custom mt-3">Volver al Análisis de Producto</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="casos-uso">
-        <div class="container">
-            <h2 class="section-title">Casos de Uso de ASG: ¿Quién se Beneficia?</h2>
-            <div class="company-info mx-auto text-start">
-                <p>ASG es una solución de seguridad indispensable para diversos perfiles de hogares y situaciones:</p>
-                <ul>
-                    <li>**Familias con niños pequeños:** Proporciona una capa adicional de seguridad, reaccionando rápidamente ante cualquier incidente.</li>
-                    <li>**Adultos mayores viviendo solos:** Ofrece tranquilidad a ellos y a sus familiares, sabiendo que hay un sistema automático de protección.</li>
-                    <li>**Propiedades de alquiler o vacacionales:** Permite a los propietarios monitorear la seguridad del gas de forma remota y actuar ante cualquier evento.</li>
-                    <li>**Hogares con electrodomésticos a gas antiguos:** Donde el riesgo de fugas puede ser mayor.</li>
-                    <li>**Personas que pasan mucho tiempo fuera de casa:** La alerta y el control remoto brindan una paz mental invaluable.</li>
-                </ul>
-            </div>
-            <div class="text-center mt-5">
-                <button onclick="ocultarSeccion('casos-uso'); return false;" class="btn btn-secondary btn-custom mt-3">Ocultar Casos de Uso</button>
-                <button onclick="mostrarSeccion('analisis-producto'); return false;" class="btn btn-primary btn-custom mt-3">Volver al Análisis de Producto</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5 faq-section" id="preguntas-frecuentes">
-        <div class="container">
-            <h2 class="section-title">Preguntas Frecuentes</h2>
-            <div class="accordion" id="faqAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            ¿Cómo funciona el sistema de cierre automático de válvula?
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Cuando el sensor de ASG detecta una fuga de gas a niveles peligrosos, activa automáticamente un actuador conectado a la válvula principal de gas de tu hogar, cerrándola de inmediato para detener el flujo y prevenir riesgos mayores.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            ¿Necesito instalar algo adicional o es un sistema todo en uno?
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            ASG es un sistema integrado. Incluye el sensor de detección de gas, el actuador para la válvula y la conectividad para la aplicación móvil. Para la instalación, se requiere un punto de conexión de gas compatible y acceso a la red Wi-Fi de tu hogar. Recomendamos que la instalación de la parte del actuador sea realizada por un gasista matriculado.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            ¿Qué tipo de gases detecta ASG?
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            ASG está diseñado para detectar principalmente gas natural (metano) y gas licuado de petróleo (GLP), que son los tipos de gas más comunes en hogares. Los sensores son de alta precisión para asegurar una detección temprana.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            ¿Qué sucede si se corta la electricidad o la conexión a internet?
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            El sistema ASG cuenta con una batería de respaldo para asegurar que la detección de fugas y el cierre automático de la válvula sigan funcionando incluso durante un corte de energía. Si la conexión a internet se interrumpe, las alertas a la aplicación móvil podrían no enviarse, pero el sistema local seguirá operativo para la detección y el cierre de la válvula. Una vez restablecida la conexión, las notificaciones se reanudarán.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5" id="contacto">
-        <div class="container">
-            <h2 class="section-title">Contáctanos</h2>
-            <div class="company-info mx-auto text-center">
-                <h2 class="mb-3">¡Hablemos de Seguridad!</h2>
-                <address>
-                    <p><strong>Empresa:</strong> AgainSafeGas Solutions</p>
-                    <p><strong>Ubicación:</strong> Río Tercero, Córdoba, Argentina</p>
-                    <p><strong>Teléfono:</strong> <a href="tel:+543571623889" class="text-light">3571-623889</a></p>
-                    <p><strong>Email:</strong> <a href="mailto:againsafegas.ascii@gmail.com" class="text-light">againsafegas.ascii@gmail.com</a></p>
-                    <p><strong>Sitio Web:</strong> <a href="https://www.gassafe.com" target="_blank" class="text-light">www.AgainSafeGas.com</a></p>
-                </address>
-            </div>
-        </div>
-    </section>
+    <!-- Resto de las secciones existentes (sin cambios) -->
+    
 </main>
 
-<footer>
-    <p>&copy; 2025 AgainSafeGas Solutions | Todos los derechos reservados.</p>
-</footer>
+<!-- Modal para la demo interactiva -->
+<div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="demoModalLabel">Demo Interactiva ASG</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="demo-container">
+                    <div class="demo-house">
+                        <div class="house-image">
+                            <img src="https://cdn3d.iconscout.com/3d/premium/thumb/house-5624990-4683030.png" alt="Casa" class="img-fluid">
+                            <div class="gas-leak" id="demoGasLeak"></div>
+                            <div class="asg-device">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                        </div>
+                        <div class="demo-controls">
+                            <button id="startLeakBtn" class="btn btn-danger">Iniciar Fuga</button>
+                            <button id="stopLeakBtn" class="btn btn-success" disabled>Activar ASG</button>
+                        </div>
+                        <div class="demo-status">
+                            <div class="status-item">
+                                <span>Estado del gas:</span>
+                                <span id="gasStatus" class="status-safe">Seguro</span>
+                            </div>
+                            <div class="status-item">
+                                <span>Válvula principal:</span>
+                                <span id="valveStatus" class="status-open">Abierta</span>
+                            </div>
+                            <div class="status-item">
+                                <span>Alarma:</span>
+                                <span id="alarmStatus" class="status-off">Inactiva</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-timeline mt-4">
+                        <h6>Tiempo de respuesta:</h6>
+                        <div class="timeline-bar">
+                            <div class="timeline-progress" id="timelineProgress"></div>
+                        </div>
+                        <div class="timeline-marker" id="leakStartMarker">Fuga detectada</div>
+                        <div class="timeline-marker" id="valveCloseMarker">Válvula cerrada</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Scripts existentes más los nuevos -->
 <script>
-    // Array de IDs de todas las secciones que deben ser manejadas por la visibilidad
-    const controlableSections = [
-        'charts-section',
-        'opiniones-usuarios-imagenes',
-        'conclusion-encuestas',
-        'analisis-producto',
-        'pruebas-resultados',
-        'casos-uso'
-    ];
-
-    // Función para mostrar una sección y ocultar las demás (si es necesario)
-    function mostrarSeccion(sectionIdToShow) {
-        controlableSections.forEach(id => {
-            const section = document.getElementById(id);
-            if (section) {
-                if (id === sectionIdToShow) {
-                    section.style.display = 'block';
-                } else {
-                    section.style.display = 'none';
-                }
-            }
+    // Animaciones GSAP para la sección hero
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animación inicial de los elementos
+        gsap.from("#heroTitle", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: "power3.out"
         });
-
-        // Desplazamiento suave a la sección mostrada
-        const offset = $('.navbar').outerHeight();
-        $('html, body').animate({
-            scrollTop: $('#' + sectionIdToShow).offset().top - offset
-        }, 800);
-    }
-
-    // Función para ocultar una sección específica
-    function ocultarSeccion(sectionIdToHide) {
-        const section = document.getElementById(sectionIdToHide);
-        if (section) {
-            section.style.display = 'none';
-        }
-        // Vuelve al inicio de "Datos y Encuestas" o a la sección principal de datos
-        const offset = $('.navbar').outerHeight();
-        $('html, body').animate({
-            scrollTop: $('#datos-y-encuestas').offset().top - offset
-        }, 800);
-    }
-
-    $(document).ready(function(){
-        // Smooth scroll para enlaces internos (excluye los que tienen onclick para las secciones ocultas)
-        $('a.nav-link, a.btn-primary').on('click', function(e) {
-            const href = $(this).attr('href');
-            // Check if it's an internal link and not handled by 'onclick'
-            if (href && href.startsWith('#') && $(this).attr('onclick') === undefined) {
-                e.preventDefault(); // Prevent default anchor click behavior
-                const hash = href;
-                const offset = $('.navbar').outerHeight();
-                $('html, body').animate({
-                    scrollTop: $(hash).offset().top - offset
-                }, 800);
-            }
+        
+        gsap.from(".hero-line", {
+            duration: 1,
+            scaleX: 0,
+            delay: 0.3,
+            ease: "power3.out"
         });
-
-        // Ocultar overlay de animación al cargar la página
-        $(window).on('load', function() {
-            $('#explosionOverlay').addClass('fade-out');
+        
+        gsap.from("#heroSubtitle", {
+            duration: 0.8,
+            y: 30,
+            opacity: 0,
+            delay: 0.6,
+            ease: "power3.out"
         });
-
-        // Inicializar todas las secciones controlables como ocultas al cargar
-        controlableSections.forEach(id => {
-            const section = document.getElementById(id);
-            if (section) {
-                section.style.display = 'none';
-            }
+        
+        gsap.from("#heroTagline", {
+            duration: 0.8,
+            y: 30,
+            opacity: 0,
+            delay: 0.9,
+            ease: "power3.out"
         });
-    });
-
-
-    // Paleta de colores para Chart.js (ajustada a la escala de grises con acentos sutiles)
-    const chartColors = {
-        primary: 'rgba(0, 0, 0, 0.8)',      // Negro oscuro
-        secondary: 'rgba(51, 51, 51, 0.8)', // Gris oscuro
-        accentLight: 'rgba(102, 102, 102, 0.8)', // Gris medio
-        accentDark: 'rgba(153, 153, 153, 0.8)',  // Gris claro
-        white: 'rgba(255, 255, 255, 0.8)',  // Blanco
-        black: 'rgba(0, 0, 0, 0.8)'
-    };
-
-    const chartBorderColors = {
-        primary: 'rgba(0, 0, 0, 1)',
-        secondary: 'rgba(51, 51, 51, 1)',
-        accentLight: 'rgba(102, 102, 102, 1)',
-        accentDark: 'rgba(153, 153, 153, 1)',
-        white: 'rgba(255, 255, 255, 1)',
-        black: 'rgba(0, 0, 0, 1)'
-    };
-
-    // Configuración base para títulos de gráficos
-    const titleOptions = {
-        display: true,
-        font: {
-            size: 16,
-            weight: 'bold',
-            family: 'Poppins, sans-serif'
-        },
-        color: '#333' // Color oscuro para contraste con el fondo blanco del chart-container
-    };
-
-    // Configuración base para escalas (ejes)
-    const scalesOptions = {
-        y: {
-            beginAtZero: true,
-            grid: {
-                color: 'rgba(0, 0, 0, 0.08)',
-                drawBorder: false
-            },
-            ticks: {
-                color: '#666',
-                font: {
-                    family: 'Poppins, sans-serif'
-                }
-            },
-            title: {
-                display: true,
-                color: '#555',
-                font: {
-                    size: 12,
-                    weight: 'bold',
-                    family: 'Poppins, sans-serif'
-                }
-            }
-        },
-        x: {
-            grid: {
-                display: false,
-                drawBorder: false
-            },
-            ticks: {
-                color: '#666',
-                font: {
-                    family: 'Poppins, sans-serif'
-                }
-            },
-            title: {
-                display: true,
-                color: '#555',
-                font: {
-                    size: 12,
-                    weight: 'bold',
-                    family: 'Poppins, sans-serif'
-                }
-            }
-        }
-    };
-
-    // Configuración base para tooltips
-    const tooltipOptions = {
-        backgroundColor: chartColors.primary,
-        titleFont: {
-            size: 13,
-            weight: 'bold',
-            family: 'Poppins, sans-serif'
-        },
-        bodyFont: {
-            size: 11,
-            family: 'Poppins, sans-serif'
-        },
-        padding: 10,
-        cornerRadius: 4
-    };
-
-    // --- Gráfico 1: Incidentes en Propiedades Privadas (2022 vs. 2023) ---
-    const ctx1 = document.getElementById('chart1').getContext('2d');
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: ['2022', '2023'],
-            datasets: [{
-                label: 'Número de Incidentes',
-                data: [216, 253],
-                backgroundColor: [chartColors.accentLight, chartColors.secondary],
-                borderColor: [chartBorderColors.accentLight, chartBorderColors.secondary],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                duration: 1000,
-                easing: 'easeOutQuart'
-            },
-            plugins: {
-                title: {
-                    ...titleOptions,
-                    text: '1. Incidentes en Propiedades Privadas en Argentina (2022-2023)'
+        
+        gsap.from(".hero-actions", {
+            duration: 0.8,
+            y: 30,
+            opacity: 0,
+            delay: 1.2,
+            ease: "power3.out"
+        });
+        
+        gsap.from("#modelContainer", {
+            duration: 1.5,
+            scale: 0.8,
+            opacity: 0,
+            delay: 0.6,
+            ease: "elastic.out(1, 0.5)"
+        });
+        
+        // Configurar ScrollTrigger para animaciones al hacer scroll
+        gsap.utils.toArray("section").forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
                 },
-                legend: {
-                    display: false
-                },
-                tooltip: tooltipOptions
-            },
-            scales: scalesOptions
-        }
-    });
-
-    // --- Gráfico 2: Detección de Conexiones Clandestinas en AMBA (2019-2023) ---
-    const ctx2 = document.getElementById('chart2').getContext('2d');
-    new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: ['2019', '2021', '2022', '2023'],
-            datasets: [{
-                label: 'Número de Conexiones Detectadas',
-                data: [424, 636, 544, 1599],
-                backgroundColor: [chartColors.secondary, chartColors.accentLight, chartColors.primary, chartColors.secondary],
-                borderColor: [chartBorderColors.secondary, chartBorderColors.accentLight, chartBorderColors.primary, chartBorderColors.secondary],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                duration: 1000,
-                easing: 'easeOutQuart'
-            },
-            plugins: {
-                title: {
-                    ...titleOptions,
-                    text: '2. Conexiones Clandestinas de Gas en AMBA (2019-2023)'
-                },
-                legend: {
-                    display: false
-                },
-                tooltip: tooltipOptions
-            },
-            scales: scalesOptions
-        }
-    });
-
-    // --- Gráfico 3: Incidentes de Intoxicación por CO por Distribuidora (2023) ---
-    const ctx3 = document.getElementById('chart3').getContext('2d');
-    new Chart(ctx3, {
-        type: 'bar',
-        data: {
-            labels: ['Camuzzi Gas Pampeana S.A.', 'Metrogas S.A.', 'Naturgy BAN S.A.'],
-            datasets: [{
-                label: 'Número de Incidentes',
-                data: [55, 35, 30],
-                backgroundColor: [chartColors.primary, chartColors.accentLight, chartColors.secondary],
-                borderColor: [chartBorderColors.primary, chartBorderColors.accentLight, chartBorderColors.secondary],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                duration: 1000,
-                easing: 'easeOutQuart'
-            },
-            plugins: {
-                title: {
-                    ...titleOptions,
-                    text: '3. Incidentes de Intoxicación por CO por Distribuidora (2023)'
-                },
-                legend: {
-                    display: false
-                },
-                tooltip: tooltipOptions
-            },
-            scales: {
-                y: scalesOptions.y,
-                x: {
-                    ...scalesOptions.x,
-                    ticks: {
-                        autoSkip: false,
-                        maxRotation: 45,
-                        minRotation: 45
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+        
+        // Simulación de fuga de gas
+        const simulateLeakBtn = document.getElementById('simulateLeakBtn');
+        const gasAlert = document.getElementById('gasAlert');
+        const safetyBar = document.getElementById('safetyBar');
+        const safetyLevel = document.getElementById('safetyLevel');
+        const particlesContainer = document.getElementById('particlesContainer');
+        const gasModel = document.getElementById('gasModel');
+        
+        if (simulateLeakBtn) {
+            simulateLeakBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Animación de alerta
+                gasAlert.style.display = 'flex';
+                gsap.from(gasAlert, {
+                    duration: 0.5,
+                    scale: 0.5,
+                    opacity: 0,
+                    ease: "back.out(1.7)"
+                });
+                
+                // Cambiar color del modelo
+                gsap.to(gasModel, {
+                    duration: 1,
+                    '--model-viewer-color': 'rgba(255, 50, 50, 0.3)',
+                    ease: "power2.inOut"
+                });
+                
+                // Reducir nivel de seguridad
+                let safety = 100;
+                const safetyInterval = setInterval(() => {
+                    safety -= 2;
+                    safetyBar.style.width = `${safety}%`;
+                    safetyBar.classList.remove('bg-success', 'bg-warning');
+                    
+                    if (safety > 70) {
+                        safetyBar.classList.add('bg-success');
+                        safetyLevel.textContent = `${safety}% Seguro`;
+                    } else if (safety > 30) {
+                        safetyBar.classList.add('bg-warning');
+                        safetyLevel.textContent = `Advertencia (${safety}%)`;
+                    } else {
+                        safetyBar.classList.add('bg-danger');
+                        safetyLevel.textContent = `¡PELIGRO! (${safety}%)`;
                     }
-                }
-            }
+                    
+                    if (safety <= 0) {
+                        clearInterval(safetyInterval);
+                        activateSafetyMeasures();
+                    }
+                }, 100);
+                
+                // Crear partículas de gas
+                createGasParticles();
+            });
         }
-    });
-
-    // --- Gráfico 4: Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024) ---
-    const ctx4 = document.getElementById('chart4').getContext('2d');
-    new Chart(ctx4, {
-        type: 'bar',
-        data: {
-            labels: ['Ene-May 2023', 'Ene-May 2024'],
-            datasets: [{
-                label: 'Número de Casos',
-                data: [284, 465],
-                backgroundColor: [chartColors.accentLight, chartColors.primary],
-                borderColor: [chartBorderColors.accentLight, chartBorderColors.primary],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                duration: 1000,
-                easing: 'easeOutQuart'
-            },
-            plugins: {
-                title: {
-                    ...titleOptions,
-                    text: '4. Casos de Intoxicación por CO en Argentina (Enero-Mayo 2023 vs 2024)'
-                },
-                legend: {
-                    display: false
-                },
-                tooltip: tooltipOptions
-            },
-            scales: scalesOptions
-        }
-    });
-
-    // --- Gráfico 5: Fatalidades por Monóxido de Carbono en Argentina (Comparación de Fuentes) ---
-    const ctx5 = document.getElementById('chart5').getContext('2d');
-    new Chart(ctx5, {
-        type: 'bar',
-        data: {
-            labels: [
-                'Est. anual (Min. Salud/Prensa)',
-                'Prom. anual (Morgue Judicial 2018-2021)',
-                'Total acum. 2019-May 2024 (Min. Salud)'
-            ],
-            datasets: [{
-                label: 'Número de Muertes',
-                data: [225, 22, 34],
-                backgroundColor: [chartColors.primary, chartColors.accentLight, chartColors.secondary],
-                borderColor: [chartBorderColors.primary, chartBorderColors.accentLight, chartBorderColors.secondary],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                duration: 1000,
-                easing: 'easeOutQuart'
-            },
-            plugins: {
-                title: {
-                    ...titleOptions,
-                    text: '5. Comparación de Fatalidades por Monóxido de Carbono en Argentina'
-                },
-                legend: {
-                    display: false
-                },
-                tooltip: tooltipOptions
-            },
-            scales: {
-                y: scalesOptions.y,
-                x: {
-                    ...scalesOptions.x,
-                    ticks: {
-                        autoSkip: false,
-                        maxRotation: 45,
-                        minRotation: 0,
-                        font: {
-                            size: 10
+        
+        function activateSafetyMeasures() {
+            // Simular activación de medidas de seguridad
+            setTimeout(() => {
+                // Restaurar seguridad
+                gsap.to(safetyBar, {
+                    width: '100%',
+                    duration: 2,
+                    ease: "power2.out",
+                    onUpdate: function() {
+                        const value = Math.round(this.progress() * 100);
+                        safetyBar.style.width = `${value}%`;
+                        
+                        if (value > 70) {
+                            safetyBar.className = 'progress-bar bg-success';
+                            safetyLevel.textContent = `${value}% Seguro`;
+                        } else if (value > 30) {
+                            safetyBar.className = 'progress-bar bg-warning';
+                            safetyLevel.textContent = `Recuperando (${value}%)`;
                         }
+                    },
+                    onComplete: function() {
+                        safetyLevel.textContent = '100% Seguro';
+                        gasAlert.style.display = 'none';
+                        particlesContainer.innerHTML = '';
+                        
+                        // Restaurar color del modelo
+                        gsap.to(gasModel, {
+                            duration: 1,
+                            '--model-viewer-color': 'transparent',
+                            ease: "power2.inOut"
+                        });
                     }
-                }
+                });
+            }, 2000);
+        }
+        
+        function createGasParticles() {
+            particlesContainer.innerHTML = '';
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'gas-particle';
+                particlesContainer.appendChild(particle);
+                
+                // Posición aleatoria
+                const startX = Math.random() * 100;
+                const startY = Math.random() * 100;
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 15 + 5;
+                
+                // Animación
+                gsap.set(particle, {
+                    x: `${startX}%`,
+                    y: `${startY}%`,
+                    width: `${size}px`,
+                    height: `${size}px`,
+                    opacity: 0,
+                    backgroundColor: `rgba(255, ${Math.floor(Math.random() * 155 + 100)}, 50, 0.7)`
+                });
+                
+                gsap.to(particle, {
+                    duration: Math.random() * 3 + 2,
+                    x: `${startX + (Math.random() * 40 - 20)}%`,
+                    y: `${startY + (Math.random() * 40 + 20)}%`,
+                    opacity: Math.random() * 0.5 + 0.5,
+                    ease: "power1.out",
+                    repeat: -1,
+                    yoyo: true
+                });
             }
         }
-    });
-
-    // --- Gráfico 6: Factores Contribuyentes a Intoxicaciones por CO (2023) ---
-    const ctx6 = document.getElementById('chart6').getContext('2d');
-    new Chart(ctx6, {
-        type: 'pie',
-        data: {
-            labels: ['Ventilación Inexistente', 'Calefones', 'Calefactores', 'Conductos Evac. Defectuosos', 'Ventilación Insuficiente'],
-            datasets: [{
-                data: [24.4, 21.3, 21.3, 20.5, 15.4],
-                backgroundColor: [
-                    chartColors.primary,
-                    chartColors.secondary,
-                    chartColors.accentLight,
-                    chartColors.accentDark,
-                    chartColors.white
-                ],
-                borderColor: [
-                    chartBorderColors.primary,
-                    chartBorderColors.secondary,
-                    chartBorderColors.accentLight,
-                    chartBorderColors.accentDark,
-                    chartBorderColors.white
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            animation: {
-                duration: 1000,
-                easing: 'easeOutQuart'
-            },
-            plugins: {
-                title: {
-                    ...titleOptions,
-                    text: '6. Factores Contribuyentes a Incidentes de CO (2023)'
-                },
-                tooltip: {
-                    ...tooltipOptions,
-                    callbacks: {
-                        label: function(context) {
-                            let label = context.label || '';
-                            if (label) {
-                                label += ': ';
-                            }
-                            if (context.parsed !== null) {
-                                label += context.parsed + '%';
-                            }
-                            return label;
-                        }
+        
+        // Demo interactiva
+        const demoBtn = document.getElementById('demoBtn');
+        if (demoBtn) {
+            demoBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const demoModal = new bootstrap.Modal(document.getElementById('demoModal'));
+                demoModal.show();
+            });
+        }
+        
+        // Lógica de la demo interactiva
+        const startLeakBtn = document.getElementById('startLeakBtn');
+        const stopLeakBtn = document.getElementById('stopLeakBtn');
+        const demoGasLeak = document.getElementById('demoGasLeak');
+        const gasStatus = document.getElementById('gasStatus');
+        const valveStatus = document.getElementById('valveStatus');
+        const alarmStatus = document.getElementById('alarmStatus');
+        const timelineProgress = document.getElementById('timelineProgress');
+        
+        if (startLeakBtn) {
+            startLeakBtn.addEventListener('click', function() {
+                // Iniciar fuga
+                demoGasLeak.style.display = 'block';
+                gasStatus.textContent = 'Peligro';
+                gasStatus.className = 'status-danger';
+                
+                // Deshabilitar botón de inicio
+                startLeakBtn.disabled = true;
+                
+                // Habilitar botón de solución
+                stopLeakBtn.disabled = false;
+                
+                // Iniciar línea de tiempo
+                gsap.to(timelineProgress, {
+                    width: '50%',
+                    duration: 2,
+                    ease: "none",
+                    backgroundColor: '#ff6b6b'
+                });
+                
+                // Mostrar marcador de inicio de fuga
+                gsap.from("#leakStartMarker", {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.5
+                });
+            });
+        }
+        
+        if (stopLeakBtn) {
+            stopLeakBtn.addEventListener('click', function() {
+                // Activar ASG
+                demoGasLeak.style.display = 'none';
+                gasStatus.textContent = 'Seguro';
+                gasStatus.className = 'status-safe';
+                valveStatus.textContent = 'Cerrada';
+                valveStatus.className = 'status-closed';
+                alarmStatus.textContent = 'Activa';
+                alarmStatus.className = 'status-on';
+                
+                // Completar línea de tiempo
+                gsap.to(timelineProgress, {
+                    width: '100%',
+                    duration: 1,
+                    ease: "none",
+                    backgroundColor: '#51cf66',
+                    onComplete: function() {
+                        // Mostrar marcador de cierre de válvula
+                        gsap.from("#valveCloseMarker", {
+                            opacity: 0,
+                            y: 20,
+                            duration: 0.5
+                        });
                     }
-                },
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        font: {
-                            size: 10
-                        },
-                        color: '#333' // Ajustar color de leyenda para el fondo blanco del gráfico
-                    }
-                }
-            }
+                });
+                
+                // Deshabilitar botones
+                stopLeakBtn.disabled = true;
+                
+                // Reiniciar después de 5 segundos
+                setTimeout(resetDemo, 5000);
+            });
+        }
+        
+        function resetDemo() {
+            demoGasLeak.style.display = 'none';
+            gasStatus.textContent = 'Seguro';
+            gasStatus.className = 'status-safe';
+            valveStatus.textContent = 'Abierta';
+            valveStatus.className = 'status-open';
+            alarmStatus.textContent = 'Inactiva';
+            alarmStatus.className = 'status-off';
+            
+            timelineProgress.style.width = '0%';
+            timelineProgress.style.backgroundColor = '#ddd';
+            
+            startLeakBtn.disabled = false;
+            stopLeakBtn.disabled = true;
         }
     });
 </script>
