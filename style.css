@@ -1,226 +1,507 @@
-/* Nuevos estilos para elementos interactivos */
+/* ===================================== */
+/* Paleta de Colores Azul Marino    */
+/* ===================================== */
+:root {
+    --color-primary-dark: #0a1f44;   /* Azul marino muy oscuro para fondos principales */
+    --color-secondary-dark: #0d264f; /* Azul marino un poco más claro para secciones */
+    --color-tertiary-dark: #102e5b;  /* Azul marino medio-oscuro */
+    --color-light: #f0f4f8;          /* Gris muy claro, casi blanco, para texto */
+    --color-dark-text: #0a1f44;      /* Azul oscuro para texto en fondos claros */
+    --color-muted-text: #b1c1d8;     /* Azul grisáceo para texto secundario */
+    --color-accent: #2575fc;         /* Azul cian brillante para acentos y botones */
+    --color-accent-hover: #0050e0;   /* Azul más oscuro para hover */
+    --color-border: #1a3c6d;         /* Azul oscuro para bordes */
+    --color-card-bg: #102e5b;        /* Azul marino medio para fondos de tarjetas */
+}
 
-/* Botón de demo en el navbar */
-.nav-link.btn-demo {
+/* ===================================== */
+/* Estilos Base y Tipografía    */
+/* ===================================== */
+body {
+    background: var(--color-primary-dark);
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-light);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-light);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-accent);
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--color-accent-hover);
+}
+
+/* ===================================== */
+/* Barra de Navegación      */
+/* ===================================== */
+.navbar {
+    backdrop-filter: blur(8px);
+    background-color: rgba(10, 31, 68, 0.8); /* Azul marino con transparencia */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.3s ease;
+}
+
+.navbar-brand, .nav-link {
+    color: var(--color-light) !important;
+    font-weight: 600;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: var(--color-accent) !important;
+}
+
+.navbar-toggler {
+    border-color: var(--color-border);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28240, 244, 248, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* ===================================== */
+/* Botones Personalizados  */
+/* ===================================== */
+.btn-custom {
     background-color: var(--color-accent);
-    border-radius: 20px;
-    padding: 0.5rem 1.5rem !important;
-    margin-left: 1rem;
-    transition: all 0.3s ease;
+    border: 1px solid var(--color-accent);
+    color: var(--color-light);
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.7rem 2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(37, 117, 252, 0.2);
 }
 
-.nav-link.btn-demo:hover {
+.btn-custom:hover {
     background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(37, 117, 252, 0.3);
+    box-shadow: 0 6px 15px rgba(37, 117, 252, 0.3);
 }
 
-/* Efecto de partículas para simulación de fuga */
-.particles-container {
+.btn-secondary {
+    background-color: var(--color-card-bg) !important;
+    border-color: var(--color-border) !important;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-tertiary-dark) !important;
+    border-color: var(--color-tertiary-dark) !important;
+}
+
+
+/* ===================================== */
+/* Sección Hero               */
+/* ===================================== */
+.hero {
+    padding: 6rem 0;
+    position: relative;
+    padding-top: 120px;
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-secondary-dark));
+    min-height: 90vh;
+}
+
+.hero h1 {
+    font-size: 3.8rem;
+    color: var(--color-light);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.hero-line {
+    width: 100px;
+    height: 4px;
+    background-color: var(--color-accent);
+    margin: 1.5rem 0 2rem;
+    border-radius: 2px;
+}
+
+.hero p.lead {
+    color: var(--color-muted-text);
+}
+
+.model-container {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+model-viewer {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-card-bg);
+}
+
+/* ===================================== */
+/* Títulos de Sección Generales    */
+/* ===================================== */
+.section-title {
+    color: var(--color-light);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 4rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.section-title::after {
+    content: '';
     position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+}
+
+/* ===================================== */
+/* Características          */
+/* ===================================== */
+.features {
+    background-color: var(--color-secondary-dark);
+    padding: 6rem 0;
+}
+
+.features .col-md-4 {
+    padding: 2rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.features .col-md-4:hover {
+    transform: translateY(-8px);
+    background-color: var(--color-tertiary-dark);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.features i {
+    font-size: 4rem;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+}
+
+.features h3 {
+    color: var(--color-light);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.features p {
+    color: var(--color-muted-text);
+}
+
+/* ===================================== */
+/* Secciones de Contenido General   */
+/* ===================================== */
+.company-info {
+    background-color: var(--color-card-bg);
+    border-radius: 12px;
+    padding: 3rem;
+    color: var(--color-light);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.company-info p, .company-info ul {
+    color: var(--color-muted-text);
+    line-height: 1.8;
+}
+.company-info h3 {
+    color: var(--color-light);
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+.company-info ul li {
+    margin-bottom: 0.8rem;
+}
+
+/* ===================================== */
+/* Sección de Datos y Encuestas */
+/* ===================================== */
+.graphs-section {
+    padding: 6rem 0;
+}
+
+.graphs-section .card {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-light);
+    text-align: center;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.graphs-section .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.graphs-section .card-title {
+    color: var(--color-light);
+    font-weight: 600;
+}
+.graphs-section .card-body i {
+    font-size: 5rem;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+}
+.graphs-section .card-text {
+    color: var(--color-muted-text);
+}
+
+/* ===================================== */
+/* Secciones Ocultas           */
+/* ===================================== */
+#charts-section,
+#opiniones-usuarios-imagenes,
+#conclusion-encuestas,
+#analisis-producto,
+#pruebas-resultados,
+#casos-uso {
+    display: none;
+    background-color: var(--color-secondary-dark);
+    padding: 60px;
+    margin: 60px auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    max-width: 1200px;
+}
+
+/* Gráficos */
+.chart-container {
+    width: 90%;
+    margin: 50px auto;
+    background-color: var(--color-light);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+.chart-container h2 {
+    text-align: center;
+    color: var(--color-dark-text);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+.chart-note {
+    font-size: 0.9em;
+    color: var(--color-muted-text);
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Imágenes de Opiniones */
+#opiniones-usuarios-imagenes img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Acordeón (FAQ) */
+.faq-section {
+    background-color: var(--color-secondary-dark);
+    padding: 6rem 0;
+}
+.faq-section .accordion-item {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.faq-section .accordion-button {
+    background-color: var(--color-tertiary-dark);
+    color: var(--color-light);
+    font-weight: 600;
+    padding: 1.2rem 1.8rem;
+    border-radius: 10px 10px 0 0;
+    transition: background-color 0.3s ease;
+}
+.faq-section .accordion-button:not(.collapsed) {
+    background-color: var(--color-accent);
+    color: var(--color-light);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .2);
+    border-bottom: 1px solid var(--color-border);
+}
+.faq-section .accordion-button:not(.collapsed)::after {
+    filter: invert(0%) grayscale(0%);
+}
+.faq-section .accordion-body {
+    color: var(--color-muted-text);
+    background-color: var(--color-card-bg);
+    padding: 2rem;
+}
+.faq-section .accordion-button::after {
+    filter: brightness(200%);
+}
+
+/* Tabla de Comparación */
+.comparison-table-img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Tarjetas de Métricas */
+.metric-card {
+    background-color: var(--color-card-bg);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: var(--color-light);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+.metric-card h4 {
+    color: var(--color-accent);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+.metric-card p {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-light);
+    margin-bottom: 0;
+}
+.metric-card small {
+    color: var(--color-muted-text);
+}
+
+/* Pie de Página (Footer) */
+footer {
+    background-color: var(--color-primary-dark);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    margin-top: auto;
+    color: var(--color-muted-text);
+    border-top: 1px solid var(--color-border);
+}
+
+/* ===================================== */
+/* Efecto de Carga             */
+/* ===================================== */
+.explosion-animation-overlay {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.gas-particle {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(2px);
-}
-
-/* Alerta de gas en el modelo 3D */
-.gas-alert {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    right: 0;
-    background-color: rgba(255, 50, 50, 0.9);
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    display: none;
+    background-color: var(--color-primary-dark);
+    z-index: 1001;
+    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
-    animation: pulseAlert 1.5s infinite;
+    opacity: 1;
+    transition: opacity 1s ease-out 1.5s;
 }
 
-.gas-alert i {
-    margin-right: 10px;
-    font-size: 1.5rem;
-}
-
-@keyframes pulseAlert {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-/* Medidor de seguridad */
-.safety-meter {
-    background-color: rgba(10, 31, 68, 0.7);
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid var(--color-border);
-}
-
-/* Demo interactiva */
-.demo-house {
-    position: relative;
-    text-align: center;
-}
-
-.house-image {
-    position: relative;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.gas-leak {
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(255, 100, 100, 0.7);
-    border-radius: 50%;
-    filter: blur(5px);
-    display: none;
-    animation: gasPulse 2s infinite;
-}
-
-.asg-device {
-    position: absolute;
-    top: 20%;
-    right: 20%;
-    font-size: 2rem;
-    color: var(--color-accent);
-    animation: devicePulse 3s infinite;
-}
-
-.demo-controls {
-    margin: 20px 0;
-}
-
-.demo-status {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
-    background-color: var(--color-card-bg);
-    padding: 15px;
-    border-radius: 10px;
-}
-
-.status-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.status-safe {
-    color: #51cf66;
-}
-
-.status-danger {
-    color: #ff6b6b;
-    animation: blink 1s infinite;
-}
-
-.status-open {
-    color: #51cf66;
-}
-
-.status-closed {
-    color: #ff6b6b;
-}
-
-.status-on {
-    color: #fcc419;
-    animation: blink 1.5s infinite;
-}
-
-.status-off {
-    color: var(--color-muted-text);
-}
-
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-@keyframes gasPulse {
-    0% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.2); opacity: 0.9; }
-    100% { transform: scale(1); opacity: 0.7; }
-}
-
-@keyframes devicePulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-.demo-timeline {
-    margin-top: 30px;
-}
-
-.timeline-bar {
-    height: 10px;
-    background-color: #ddd;
-    border-radius: 5px;
-    position: relative;
-    margin: 10px 0 40px;
-}
-
-.timeline-progress {
-    height: 100%;
-    width: 0;
-    border-radius: 5px;
-    background-color: #ddd;
-}
-
-.timeline-marker {
-    position: absolute;
-    top: 20px;
-    transform: translateX(-50%);
-    font-size: 0.8rem;
-    color: var(--color-muted-text);
+.explosion-animation-overlay.fade-out {
     opacity: 0;
+    pointer-events: none;
 }
 
-#leakStartMarker {
-    left: 25%;
-}
-
-#valveCloseMarker {
-    left: 75%;
-}
-
-/* Efectos para el modelo 3D */
-model-viewer {
-    --poster-color: transparent;
-    --progress-bar-color: var(--color-accent);
-    --progress-mask: transparent;
-    transition: --model-viewer-color 0.5s ease;
-}
-
-/* Menús desplegables mejorados */
-.dropdown-menu {
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-}
-
-.dropdown-item {
-    color: var(--color-muted-text);
-    transition: all 0.3s ease;
-}
-
-.dropdown-item:hover {
-    background-color: var(--color-tertiary-dark);
+.explosion-animation-overlay p {
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--color-light);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===================================== */
+/* Media Queries              */
+/* ===================================== */
+@media (max-width: 991.98px) {
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+    .section-title {
+        font-size: 2.2rem;
+    }
+    .hero {
+        padding-top: 100px;
+    }
+    .model-container {
+        height: 350px;
+    }
+    .company-info {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero {
+        text-align: center;
+    }
+    .hero-line {
+        margin: 1.5rem auto 2rem;
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+    .features i {
+        font-size: 3.5rem;
+    }
+    .company-info {
+        padding: 1.5rem;
+    }
+    .chart-container {
+        width: 100%;
+        padding: 20px;
+    }
+    .chart-container h2 {
+        font-size: 1.5rem;
+    }
+    .metric-card {
+        padding: 20px;
+    }
+    .metric-card p {
+        font-size: 2rem;
+    }
+    #opiniones-usuarios-imagenes .col-md-6, #opiniones-usuarios-imagenes .col-lg-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
