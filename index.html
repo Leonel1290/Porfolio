@@ -45,9 +45,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#preguntas-frecuentes">Preguntas Frecuentes</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="mostrarSeccion('analisis-producto'); return false;">Análisis de Producto</a>
+                    <!-- INICIO: CAMBIOS PARA MENÚ DESPLEGABLE -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Análisis de Producto
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('analisis-producto'); return false;">Análisis Detallado</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('pruebas-resultados'); return false;">Pruebas y Resultados</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="mostrarSeccion('casos-uso'); return false;">Casos de Uso</a></li>
+                        </ul>
                     </li>
+                    <!-- FIN: CAMBIOS PARA MENÚ DESPLEGABLE -->
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
